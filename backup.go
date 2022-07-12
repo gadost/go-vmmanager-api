@@ -156,14 +156,14 @@ type BackupLocationParams struct {
 	SkipConnectionCheck bool  `json:"skip_connection_check"`
 }
 
-func (a *Api) GetBackup() (*BackupList, error) {
+func (a *Api) BackupList() (*BackupList, error) {
 	bodyResp, err := a.NewRequest([]byte(NilPayload), BackupUri, requestTypeGet, DefaultService)
 	var b *BackupList
 	json.Unmarshal(bodyResp, &b)
 	return b, err
 }
 
-func (a *Api) GetBackupByID(id int) (*Backup, error) {
+func (a *Api) BackupGet(id int) (*Backup, error) {
 	bodyResp, err := a.NewRequest(
 		[]byte(NilPayload),
 		BackupUri+fmt.Sprintf("/%d", id),
@@ -174,7 +174,7 @@ func (a *Api) GetBackupByID(id int) (*Backup, error) {
 	return b, err
 }
 
-func (a *Api) ChangeBackupByID(id int, name string, comment string) (*Task, error) {
+func (a *Api) BackupUpdate(id int, name string, comment string) (*Task, error) {
 	payload, _ := json.Marshal(&ChangeBackup{
 		Name:    name,
 		Comment: comment,
@@ -189,7 +189,7 @@ func (a *Api) ChangeBackupByID(id int, name string, comment string) (*Task, erro
 	return i, err
 }
 
-func (a *Api) DeleteBackupByID(id int) (*Task, error) {
+func (a *Api) BackupDelete(id int) (*Task, error) {
 	bodyResp, err := a.NewRequest(
 		[]byte(NilPayload),
 		BackupUri+fmt.Sprintf("/%d", id),
@@ -200,7 +200,7 @@ func (a *Api) DeleteBackupByID(id int) (*Task, error) {
 	return t, err
 }
 
-func (a *Api) CopyBackupByID(id int, node int) (*Task, error) {
+func (a *Api) BackupCopy(id int, node int) (*Task, error) {
 	payload, _ := json.Marshal(&Node{
 		Node: node,
 	})
@@ -214,7 +214,7 @@ func (a *Api) CopyBackupByID(id int, node int) (*Task, error) {
 	return t, err
 }
 
-func (a *Api) MoveBackupByID(id int, src int, dst int) (*Task, error) {
+func (a *Api) BackupMove(id int, src int, dst int) (*Task, error) {
 	payload, _ := json.Marshal(&MoveBackup{
 		Source:      src,
 		Destination: dst,
@@ -229,7 +229,7 @@ func (a *Api) MoveBackupByID(id int, src int, dst int) (*Task, error) {
 	return t, err
 }
 
-func (a *Api) RelocateBackupByID(id int, dst int) (*Task, error) {
+func (a *Api) BackupRelocate(id int, dst int) (*Task, error) {
 	payload, _ := json.Marshal(&RelocateBackup{
 		Destination: dst,
 	})
@@ -243,7 +243,7 @@ func (a *Api) RelocateBackupByID(id int, dst int) (*Task, error) {
 	return t, err
 }
 
-func (a *Api) ChangeStateBackupByID(id int, state string) error {
+func (a *Api) BackupStateUpdate(id int, state string) error {
 	payload, _ := json.Marshal(&State{
 		State: state,
 	})
@@ -256,7 +256,7 @@ func (a *Api) ChangeStateBackupByID(id int, state string) error {
 	return err
 }
 
-func (a *Api) CreateDiskBackupByDiskID(did int, dparams *DiskBackup) (*RelocateTask, error) {
+func (a *Api) BackupDiskNew(did int, dparams *DiskBackup) (*RelocateTask, error) {
 	payload, _ := json.Marshal(dparams)
 	bodyResp, err := a.NewRequest(
 		payload,
@@ -268,7 +268,7 @@ func (a *Api) CreateDiskBackupByDiskID(did int, dparams *DiskBackup) (*RelocateT
 	return t, err
 }
 
-func (a *Api) GetDiskBackupByDiskID(did int) (*BackupList, error) {
+func (a *Api) BackupByDiskGet(did int) (*BackupList, error) {
 
 	bodyResp, err := a.NewRequest(
 		[]byte(NilPayload),
@@ -280,7 +280,7 @@ func (a *Api) GetDiskBackupByDiskID(did int) (*BackupList, error) {
 	return b, err
 }
 
-func (a *Api) DeleteBackupByDiskIDAndBackupID(did int, id int) (*Task, error) {
+func (a *Api) BackupDiskDelete(did int, id int) (*Task, error) {
 	bodyResp, err := a.NewRequest(
 		[]byte(NilPayload),
 		fmt.Sprintf("/disk/%d/backup/%d", did, id),
@@ -291,7 +291,7 @@ func (a *Api) DeleteBackupByDiskIDAndBackupID(did int, id int) (*Task, error) {
 	return t, err
 }
 
-func (a *Api) CreateVMBackupByHostID(hid int, params *VMBackupParams) (*RelocateTask, error) {
+func (a *Api) BackupVMNew(hid int, params *VMBackupParams) (*RelocateTask, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
 		payload,
@@ -303,7 +303,7 @@ func (a *Api) CreateVMBackupByHostID(hid int, params *VMBackupParams) (*Relocate
 	return t, err
 }
 
-func (a *Api) GetBackupByHostID(hid int) (*BackupByHostIDResponse, error) {
+func (a *Api) BackupHostGet(hid int) (*BackupByHostIDResponse, error) {
 	bodyResp, err := a.NewRequest(
 		[]byte(NilPayload),
 		fmt.Sprintf("/host/%d/backup", hid),
@@ -314,7 +314,7 @@ func (a *Api) GetBackupByHostID(hid int) (*BackupByHostIDResponse, error) {
 	return b, err
 }
 
-func (a *Api) GetOutdatedBackup() (*BackupList, error) {
+func (a *Api) BackupOutdatedGet() (*BackupList, error) {
 	bodyResp, err := a.NewRequest(
 		[]byte(NilPayload),
 		"/outdated/disk/backup",
@@ -325,7 +325,7 @@ func (a *Api) GetOutdatedBackup() (*BackupList, error) {
 	return b, err
 }
 
-func (a *Api) GetBackupLocationList() (*BackupLocationResponse, error) {
+func (a *Api) BackupLocationList() (*BackupLocationResponse, error) {
 	bodyResp, err := a.NewRequest(
 		[]byte(NilPayload),
 		"/backup_location",
@@ -336,7 +336,7 @@ func (a *Api) GetBackupLocationList() (*BackupLocationResponse, error) {
 	return b, err
 }
 
-func (a *Api) CreateBackupLocation(params *BackupLocationParams) (*Task, error) {
+func (a *Api) BackupLocationNew(params *BackupLocationParams) (*Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
 		payload,
@@ -348,7 +348,7 @@ func (a *Api) CreateBackupLocation(params *BackupLocationParams) (*Task, error) 
 	return t, err
 }
 
-func (a *Api) ChangeBackupLocationByID(lid int, params *BackupLocationParams) (*Task, error) {
+func (a *Api) BackupLocationUpdate(lid int, params *BackupLocationParams) (*Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
 		payload,
@@ -360,7 +360,7 @@ func (a *Api) ChangeBackupLocationByID(lid int, params *BackupLocationParams) (*
 	return t, err
 }
 
-func (a *Api) DeleteBackupLocationByID(lid int) (*DeletedBackupResponse, error) {
+func (a *Api) BackupLocationDelete(lid int) (*DeletedBackupResponse, error) {
 	bodyResp, err := a.NewRequest(
 		[]byte(NilPayload),
 		fmt.Sprintf("/backup_location/%d", lid),
