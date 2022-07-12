@@ -7,8 +7,6 @@ import (
 	"io"
 	"net/http"
 	"time"
-
-	"log"
 )
 
 type AuthByEmailAndPassword struct {
@@ -120,7 +118,7 @@ func (a *Api) WithExtendedTokenLifetime(expiresAt time.Time, desc string) *Api {
 		ExpiresAt:   expiresAt.Format("2006-01-02 15:04:05"),
 		Description: desc,
 	})
-	log.Println(string(payload))
+
 	bodyResp, _ := a.NewRequest(payload, "/token", requestTypePost, AuthService)
 	json.Unmarshal(bodyResp, &a.AuthData)
 	return a
