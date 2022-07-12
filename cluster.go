@@ -338,17 +338,6 @@ type StoragesTasks struct {
 	StoragesTasks []int `json:"storages_tasks"`
 }
 
-func (a *Api) GetCluster() (*ClusterListResponse, error) {
-	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
-		"/cluster",
-		requestTypeGet,
-		DefaultService)
-	var c *ClusterListResponse
-	json.Unmarshal(bodyResp, &c)
-	return c, err
-}
-
 type HDDOversellingRequest struct {
 	Value float32 `json:"value"`
 }
@@ -437,6 +426,19 @@ type SSHKeyRequest struct {
 	Name     string `json:"name"`
 	SSHKey   string `json:"ssh_key"`
 	Clusters []int  `json:"clusters"`
+}
+
+func (a *Api) ClusterList() (*ClusterListResponse, error) {
+	bodyResp, err := a.NewRequest(
+		[]byte(NilPayload),
+		"/cluster",
+		requestTypeGet,
+		DefaultService)
+
+	var c *ClusterListResponse
+	json.Unmarshal(bodyResp, &c)
+
+	return c, err
 }
 
 func (a *Api) ClusterNew(params *CreateClusterRequest) (*Task, error) {

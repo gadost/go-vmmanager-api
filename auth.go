@@ -1,11 +1,8 @@
 package vmmanagerapi
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
-	"io"
-	"net/http"
 	"time"
 )
 
@@ -68,34 +65,6 @@ func (a *Api) Auth(auth *Auth) *Api {
 	json.Unmarshal(bodyResp, &a.AuthData)
 
 	return a
-}
-
-// NewRequest to API
-func (a *Api) NewRequest(payload []byte, uri string, reqType string, service string) ([]byte, error) {
-	body := bytes.NewReader(payload)
-	req, err := http.NewRequest(reqType, a.entrypoint(service)+uri, body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Proto = "HTTP/2"
-	req.Header.Set("Accept", "application/json")
-	req.Header.Set("Content-Type", "application/json")
-
-	if a.AuthData.Token != "" {
-		req.Header.Set("X-XSRF-TOKEN", a.AuthData.Token)
-	}
-
-	resp, err := a.conn.Do(req)
-	if err != nil {
-		return nil, err
-	}
-
-	defer resp.Body.Close()
-
-	bodyResp, err := io.ReadAll(resp.Body)
-
-	return bodyResp, err
 }
 
 // ChangePasswordByToken POST request to "/public/token/{token_id}/change_password"
