@@ -4,9 +4,11 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"time"
+
+	"log"
 )
 
 type AuthByEmailAndPassword struct {
@@ -73,14 +75,15 @@ func (a *Api) Auth(auth *Auth) *Api {
 // NewRequest to API
 func (a *Api) NewRequest(payload []byte, uri string, reqType string, service string) ([]byte, error) {
 	body := bytes.NewReader(payload)
-
 	req, err := http.NewRequest(reqType, a.entrypoint(service)+uri, body)
 	if err != nil {
 		return nil, err
 	}
 
+	req.Proto = "HTTP/2"
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("Content-Type", "application/json")
+
 	if a.AuthData.Token != "" {
 		req.Header.Set("X-XSRF-TOKEN", a.AuthData.Token)
 	}
@@ -92,7 +95,7 @@ func (a *Api) NewRequest(payload []byte, uri string, reqType string, service str
 
 	defer resp.Body.Close()
 
-	bodyResp, err := ioutil.ReadAll(resp.Body)
+	bodyResp, err := io.ReadAll(resp.Body)
 
 	return bodyResp, err
 }
@@ -117,12 +120,9 @@ func (a *Api) WithExtendedTokenLifetime(expiresAt time.Time, desc string) *Api {
 		ExpiresAt:   expiresAt.Format("2006-01-02 15:04:05"),
 		Description: desc,
 	})
-	a.NewRequest(
-		payload,
-		fmt.Sprintf("/token/"),
-		requestTypePost,
-		DefaultService)
-
+	log.Println(string(payload))
+	bodyResp, _ := a.NewRequest(payload, "/token", requestTypePost, AuthService)
+	json.Unmarshal(bodyResp, &a.AuthData)
 	return a
 }
 
