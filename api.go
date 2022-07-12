@@ -13,10 +13,12 @@ const (
 	AuthService               = "auth"
 	AuthByEmailAndPasswordUri = "/public/auth"
 	AuthByKeyUri              = "/public/auth_by_key"
-	AuthV4Uri                 = "auth/v4/public/token"
+	AuthV4Uri                 = "/public/token"
 	requestTypePost           = "POST"
 	requestTypeGet            = "GET"
 	requestTypeDelete         = "DELETE"
+	NilPayload                = ""
+	BackupUri                 = "/backup"
 )
 
 type Api struct {
