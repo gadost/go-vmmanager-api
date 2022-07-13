@@ -388,6 +388,12 @@ type StoragesTasks struct {
 	StoragesTasks []int `json:"storages_tasks"`
 }
 
+type StorageTask struct {
+	ID            int `json:"id"`
+	Task          int `json:"task"`
+	StoragesTasks int `json:"storages_tasks"`
+}
+
 type HDDOversellingRequest struct {
 	Value float32 `json:"value"`
 }
@@ -915,20 +921,6 @@ type HostMigrationStorage struct {
 	AvailableMib int    `json:"available_mib"`
 }
 
-type NodeElement struct {
-	ID                  int                    `json:"id"`
-	Name                string                 `json:"name"`
-	RAMMib              RAMMib                 `json:"ram_mib"`
-	Storage             HostMigrationStorage   `json:"storage"`
-	Storages            []HostMigrationStorage `json:"storages"`
-	Priority            int                    `json:"priority"`
-	State               string                 `json:"state"`
-	Suitable            bool                   `json:"suitable"`
-	HostCreationBlocked bool                   `json:"host_creation_blocked"`
-	HostCount           int                    `json:"host_count"`
-	HostLimit           int                    `json:"host_limit"`
-}
-
 type HostMigrateResponse struct {
 	Nodes []NodeElement `json:"nodes"`
 }
@@ -1266,4 +1258,284 @@ type ImportInterface struct {
 	Mac             string      `json:"mac"`
 	NicModel        string      `json:"nic_model"`
 	AdditionalProp1 interface{} `json:"additionalProp1"`
+}
+
+// License
+
+type License struct {
+	Key string `json:"key"`
+}
+
+type Clusters struct {
+	Clusters []int `json:"clusters"`
+}
+
+type IPNetUpdate struct {
+	Gateway     string `json:"gateway"`
+	NeedReserve bool   `json:"need_reserve"`
+	Name        string `json:"name"`
+	Vlan        string `json:"vlan"`
+	Note        string `json:"note"`
+}
+
+type IPPoolConnectRequest struct {
+	Clusters []IPPoolCluster `json:"clusters"`
+}
+
+type IPPoolCluster struct {
+	Name      string `json:"name"`
+	ID        int    `json:"id"`
+	Enabled   bool   `json:"enabled"`
+	Interface int    `json:"interface"`
+}
+
+type IPPoolRangeRequest struct {
+	Name string `json:"name"`
+}
+
+type IPMgr5MigrateRequest struct {
+	Dbhost     string `json:"dbhost"`
+	Dbname     string `json:"dbname"`
+	Dbuser     string `json:"dbuser"`
+	Dbpassword string `json:"dbpassword"`
+}
+
+type HetznerIPs struct {
+	HetznerIP []string `json:"hetzner_ip"`
+}
+
+type NodeIPUpdateRequest struct {
+	IP      string `json:"ip"`
+	SSHPort int    `json:"ssh_port"`
+}
+
+type IPPoolResponse struct {
+	LastNotify int      `json:"last_notify"`
+	List       []IPPool `json:"list"`
+}
+
+type IPPool struct {
+	ID       int         `json:"id"`
+	Name     string      `json:"name"`
+	Note     string      `json:"note"`
+	TotalIP  string      `json:"total_ip"`
+	UsingIP  string      `json:"using_ip"`
+	Clusters []ClusterID `json:"clusters"`
+}
+
+type IPPoolClusterListResponse struct {
+	LastNotify int             `json:"last_notify"`
+	List       []IPPoolCluster `json:"list"`
+}
+
+type NodeHetznerIPResponse struct {
+	LastNotify int                    `json:"last_notify"`
+	List       []NodeHetznerIPElement `json:"list"`
+	Size       int                    `json:"size"`
+}
+
+type NodeHetznerIPElement struct {
+	Host   Host          `json:"host"`
+	IP     HetznerIP     `json:"ip"`
+	Subnet HetznerSubnet `json:"subnet"`
+}
+
+type HetznerIP struct {
+	ID     int    `json:"id"`
+	IPAddr string `json:"ip_addr"`
+	State  string `json:"state"`
+}
+
+type HetznerSubnet struct {
+	ID     int    `json:"id"`
+	Subnet string `json:"subnet"`
+	UsedIP int    `json:"used_ip"`
+}
+
+// Nodes
+type NodeCluster struct {
+	DataCenter string `json:"data_center"`
+	ID         int    `json:"id"`
+	Name       string `json:"name"`
+	TimeZone   string `json:"time_zone"`
+}
+type NodeInterface struct {
+	NodeInterface string `json:"node_interface"`
+	NetworkSwitch string `json:"network_switch"`
+	ID            int    `json:"id"`
+}
+type NodesResponse struct {
+	LastNotify int           `json:"last_notify"`
+	List       []NodeElement `json:"list"`
+}
+
+type NodeElement struct {
+	ID                  int             `json:"id"`
+	Name                string          `json:"name"`
+	Cluster             NodeCluster     `json:"cluster"`
+	IP                  string          `json:"ip"`
+	Ipv6                string          `json:"ipv6"`
+	State               string          `json:"state"`
+	StorageMib          StorageMib      `json:"storage_mib"`
+	RAMMib              RAMMib          `json:"ram_mib"`
+	CPUNumber           int             `json:"cpu_number"`
+	Comment             string          `json:"comment"`
+	Interfaces          []NodeInterface `json:"interfaces"`
+	Overselling         int             `json:"overselling"`
+	HostCount           int             `json:"host_count"`
+	HostLimit           int             `json:"host_limit"`
+	HostFilter          []HostFilter    `json:"host_filter"`
+	HostCreationBlocked bool            `json:"host_creation_blocked"`
+}
+
+type NodeScriptResponse struct {
+	LastNotify int                 `json:"last_notify"`
+	List       []NodeScriptElement `json:"list"`
+}
+
+type UpdatedAt struct {
+	Date    string      `json:"date"`
+	Account BaseAccount `json:"account"`
+}
+
+type NodeScriptElement struct {
+	ID          int         `json:"id"`
+	Name        string      `json:"name"`
+	Script      string      `json:"script"`
+	Description string      `json:"description"`
+	Type        string      `json:"type"`
+	Priority    int         `json:"priority"`
+	Account     BaseAccount `json:"account"`
+	Autorun     []int       `json:"autorun"`
+	UpdatedAt   UpdatedAt   `json:"updated_at"`
+}
+
+type NodeReducedClusterListResponse struct {
+	LastNotify int                         `json:"last_notify"`
+	List       []NodeReducedClusterElement `json:"list"`
+}
+
+type NodeReducedClusterElement struct {
+	ID           int                       `json:"id"`
+	Cluster      ClusterVirtualizationType `json:"cluster"`
+	IP           string                    `json:"ip"`
+	LibvirtError string                    `json:"libvirt_error"`
+}
+
+type ClusterVirtualizationType struct {
+	VirtualizationType string `json:"virtualization_type"`
+}
+
+type NodeResponse struct {
+	ID          int    `json:"id"`
+	Name        string `json:"name"`
+	Cluster     int    `json:"cluster"`
+	State       string `json:"state"`
+	IPAddr      string `json:"ip_addr"`
+	QemuVersion string `json:"qemu_version"`
+}
+
+type NodeFileListResponse struct {
+	LastNotify int                   `json:"last_notify"`
+	List       []NodeFileListElement `json:"list"`
+	Size       int                   `json:"size"`
+}
+
+type NodeFileListElement struct {
+	EntityID int    `json:"entity_id"`
+	Name     string `json:"name"`
+	Node     int    `json:"node"`
+	Path     string `json:"path"`
+	SizeMib  int    `json:"size_mib"`
+	Type     string `json:"type"`
+}
+
+type NodeHostIFaces struct {
+	List []NodeHostIFace `json:"list"`
+}
+
+type NodeHostIFace struct {
+	InternalName string  `json:"internal_name"`
+	NetIsSynced  bool    `json:"net_is_synced"`
+	Ifaces       []Iface `json:"ifaces"`
+	Date         string  `json:"date"`
+}
+
+type Iface struct {
+	Name string   `json:"name"`
+	Mac  string   `json:"mac"`
+	IP   []NodeIP `json:"ip"`
+}
+
+type NodeIP struct {
+	IPFamily int    `json:"ip_family"`
+	Name     string `json:"name"`
+}
+
+type IPParams struct {
+	V4 string `json:"v4"`
+	V6 string `json:"v6"`
+}
+
+type NodeNetworkIFaces struct {
+	LastNotify int                `json:"last_notify"`
+	List       []NodeNetworkIFace `json:"list"`
+}
+
+type NodeNetworkIFace struct {
+	Name          string                     `json:"name"`
+	IPParams      IPParams                   `json:"ip_params"`
+	Type          string                     `json:"type"`
+	State         string                     `json:"state"`
+	Used          bool                       `json:"used"`
+	HostCount     int                        `json:"host_count"`
+	Vlan          int                        `json:"vlan"`
+	IsDefault     bool                       `json:"is_default"`
+	IsMainNetwork bool                       `json:"is_main_network"`
+	Slaves        []string                   `json:"slaves"`
+	Mode          string                     `json:"mode"`
+	OldValues     OldValuesNodeNetworkIFaces `json:"old_values"`
+}
+
+type OldValuesNodeNetworkIFaces struct {
+	Name          string   `json:"name"`
+	IPParams      IPParams `json:"ip_params"`
+	Type          string   `json:"type"`
+	State         string   `json:"state"`
+	Used          bool     `json:"used"`
+	HostCount     int      `json:"host_count"`
+	Vlan          int      `json:"vlan"`
+	IsDefault     bool     `json:"is_default"`
+	IsMainNetwork bool     `json:"is_main_network"`
+	Slaves        []string `json:"slaves"`
+	Mode          string   `json:"mode"`
+}
+
+type HostStorage struct {
+	Path string `json:"path"`
+	Tags []int  `json:"tags"`
+}
+
+type NodeInterfaceRequest struct {
+	NodeInterface    string `json:"node_interface"`
+	ClusterInterface int    `json:"cluster_interface"`
+}
+type NodeNewRequest struct {
+	Name                     string                 `json:"name"`
+	Cluster                  int                    `json:"cluster"`
+	IP                       string                 `json:"ip"`
+	Ipv6                     string                 `json:"ipv6"`
+	SSHPort                  int                    `json:"ssh_port"`
+	HostMax                  int                    `json:"host_max"`
+	Password                 string                 `json:"password"`
+	HostStorage              HostStorage            `json:"host_storage"`
+	ImageStoragePath         string                 `json:"image_storage_path"`
+	Comment                  string                 `json:"comment"`
+	Overselling              int                    `json:"overselling"`
+	LvmVgRename              bool                   `json:"lvm_vg_rename"`
+	HetznerIP                []string               `json:"hetzner_ip"`
+	Interfaces               []NodeInterfaceRequest `json:"interfaces"`
+	HostLimit                int                    `json:"host_limit"`
+	HostFilter               []HostFilter           `json:"host_filter"`
+	NetworkAutosetupDisabled bool                   `json:"network_autosetup_disabled"`
 }

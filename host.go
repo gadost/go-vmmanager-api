@@ -574,7 +574,7 @@ func (a *Api) IPAddPTR(hid int, params *types.Domain) (*types.Task, error) {
 	bodyResp, err := a.NewRequest(
 		payload,
 		fmt.Sprintf("/ip/%d/ptr", hid),
-		requestTypeDelete,
+		requestTypePost,
 		DefaultService)
 
 	var t *types.Task
