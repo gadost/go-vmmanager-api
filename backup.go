@@ -66,7 +66,7 @@ func (a *Api) BackupCopy(id int, node int) (*types.Task, error) {
 }
 
 func (a *Api) BackupMove(id int, src int, dst int) (*types.Task, error) {
-	payload, _ := json.Marshal(&types.MoveBackup{
+	payload, _ := json.Marshal(&types.Move{
 		Source:      src,
 		Destination: dst,
 	})

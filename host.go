@@ -538,6 +538,7 @@ func (a *Api) IPs(where *ParamsQuery) (*types.IPList, error) {
 		fmt.Sprintf("/ip%s", where),
 		requestTypeGet,
 		DefaultService)
+
 	var h *types.IPList
 	json.Unmarshal(bodyResp, &h)
 	return h, err
