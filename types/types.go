@@ -1143,3 +1143,127 @@ type ImageResponse struct {
 type ImageState struct {
 	State string `json:"state"`
 }
+
+// Import
+
+type ImportHistoryResponse struct {
+	List []ImportHistoryResponseElement `json:"list"`
+}
+
+type ImportHistoryResponseElement struct {
+	Data   string `json:"data"`
+	Date   string `json:"date"`
+	TaskID int    `json:"task_id"`
+	Type   string `json:"type"`
+}
+
+type ImportHistoryRequest struct {
+	Data   string `json:"data"`
+	TaskID int    `json:"task_id"`
+	State  string `json:"state"`
+	Type   string `json:"type"`
+	URL    string `json:"url"`
+}
+
+type ImportHistoryResult struct {
+	State  string `json:"state"`
+	Result Result `json:"result"`
+}
+
+type Result struct {
+	AdditionalProp1 interface{} `json:"additionalProp1"`
+}
+
+type ImportedFrom struct {
+	IP       string `json:"ip"`
+	Type     string `json:"type"`
+	SSHPort  int    `json:"ssh_port"`
+	Password string `json:"password"`
+}
+
+type User struct {
+	ID              int         `json:"id"`
+	Name            string      `json:"name"`
+	Level           string      `json:"level"`
+	Enabled         bool        `json:"enabled"`
+	AdditionalProp1 interface{} `json:"additionalProp1"`
+}
+
+type Event struct {
+	AdditionalProp1 interface{} `json:"additionalProp1"`
+}
+
+type Network struct {
+	AdditionalProp1 interface{} `json:"additionalProp1"`
+}
+
+type ImportStorage struct {
+	Name            string      `json:"name"`
+	PoolType        string      `json:"pool_type"`
+	TgtPath         string      `json:"tgt_path"`
+	AdditionalProp1 interface{} `json:"additionalProp1"`
+}
+
+type Setting struct {
+	AdditionalProp1 interface{} `json:"additionalProp1"`
+}
+
+type ImportClusterParams struct {
+	ImportHistory    int             `json:"import_history"`
+	ClusterName      string          `json:"cluster_name"`
+	OsStoragePath    string          `json:"os_storage_path"`
+	ImageStoragePath string          `json:"image_storage_path"`
+	RAMOverselling   int             `json:"ram_overselling"`
+	DNSServers       []string        `json:"dns_servers"`
+	Timezone         string          `json:"timezone"`
+	ImportedFrom     ImportedFrom    `json:"imported_from"`
+	User             []User          `json:"user"`
+	Event            Event           `json:"event"`
+	Network          []Network       `json:"network"`
+	Storage          []ImportStorage `json:"storage"`
+	Settings         []Setting       `json:"settings"`
+	Node             []ImportNode    `json:"node"`
+	AdditionalProp1  interface{}     `json:"additionalProp1"`
+}
+
+type ImportNode struct {
+	Name            string                 `json:"name"`
+	IP              string                 `json:"ip"`
+	SSHPort         int                    `json:"ssh_port"`
+	Password        string                 `json:"password"`
+	Status          int                    `json:"status"`
+	Fake            bool                   `json:"fake"`
+	PhysicalCpucore int                    `json:"physical_cpucore"`
+	AllocationRule  []ImportAllocationRule `json:"allocation_rule"`
+	Host            []ImportHost           `json:"host"`
+	AdditionalProp1 interface{}            `json:"additionalProp1"`
+}
+
+type ImportAllocationRule struct {
+	Priority        int         `json:"priority"`
+	RuleType        int         `json:"rule_type"`
+	RuleOper        int         `json:"rule_oper"`
+	Value           string      `json:"value"`
+	Action          int         `json:"action"`
+	Stop            bool        `json:"stop"`
+	AdditionalProp1 interface{} `json:"additionalProp1"`
+}
+
+type ImportHost struct {
+	Name            string            `json:"name"`
+	CPU             int               `json:"cpu"`
+	RAM             int               `json:"ram"`
+	Fake            bool              `json:"fake"`
+	Interface       []ImportInterface `json:"interface"`
+	FirewallRules   []FirewallRule    `json:"firewall_rules"`
+	AdditionalProp1 interface{}       `json:"additionalProp1"`
+}
+
+type ImportInterface struct {
+	ID              int         `json:"id"`
+	VMID            int         `json:"vm_id"`
+	NetID           int         `json:"net_id"`
+	Mac             string      `json:"mac"`
+	NicModel        string      `json:"nic_model"`
+	AdditionalProp1 interface{} `json:"additionalProp1"`
+}
