@@ -97,7 +97,7 @@ type Node struct {
 	Node int `json:"node"`
 }
 
-type MoveBackup struct {
+type Move struct {
 	Source      int `json:"source"`
 	Destination int `json:"destination"`
 }
@@ -1100,4 +1100,46 @@ type ScheduleElement struct {
 
 type ScheduleListResponse struct {
 	SheduleList []ScheduleElement `json:"shedule_list"`
+}
+
+// Images
+
+type Image struct {
+	Name    string `json:"name"`
+	Account int    `json:"account"`
+	Comment string `json:"comment"`
+	ForAll  bool   `json:"for_all"`
+}
+
+type ImagesListResponse struct {
+	LastNotify int                         `json:"last_notify"`
+	List       []ImagesListResponseElement `json:"list"`
+}
+
+type ImagesListResponseElement struct {
+	ID      int                      `json:"id"`
+	Name    string                   `json:"name"`
+	Account string                   `json:"account"`
+	ForAll  bool                     `json:"for_all"`
+	Type    string                   `json:"type"`
+	Comment string                   `json:"comment"`
+	State   string                   `json:"state"`
+	Nodes   []ImagesListResponseNode `json:"nodes"`
+}
+
+type ImagesListResponseNode struct {
+	ID      int    `json:"id"`
+	Name    string `json:"name"`
+	IPAddr  string `json:"ip_addr"`
+	SSHPort int    `json:"ssh_port"`
+}
+
+type ImageResponse struct {
+	ID    int    `json:"id"`
+	Name  string `json:"name"`
+	State string `json:"state"`
+}
+
+type ImageState struct {
+	State string `json:"state"`
 }

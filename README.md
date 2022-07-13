@@ -50,5 +50,6 @@ func main() {
 - Disk
 - Form
 - Host
+- Image
 
 still in development
