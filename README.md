@@ -30,5 +30,6 @@ func main() {
 - Auth
 - Backup
 - Cluster
+- Disk
 
 still in development
