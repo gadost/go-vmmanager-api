@@ -51,5 +51,6 @@ func main() {
 - Form
 - Host
 - Image
+- Import
 
 still in development
