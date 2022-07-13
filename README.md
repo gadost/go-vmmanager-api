@@ -9,19 +9,36 @@ package main
 
 import (
     vmm "github.com/gadost/go-vmmanager-api"
+    "github.com/gadost/go-vmmanager-api/types"
     "fmt"
 )
 
 func main() {
+    // Define auth params
     auth := &vmm.Auth{
         AuthByEmailAndPassword: vmm.AuthByEmailAndPassword{
             Email:    "admin@email.com",
             Password: "superPassworD",
         },
     }
+
+    // Connect to VMmanager6
     conn := vmm.New("domain.com").Auth(auth)
+
+    // Get Cluster list
     resp, err := conn.ClusterList()
     fmt.Println(resp.LastNotify)
+
+    //Migrate host
+    s := &types.HostMigrateRequest{
+        Plain: false,
+        Node:  0,
+    }
+
+    resp2, err := conn.HostMigrate(1,s)
+    if err != nil {
+        fmt.Println(resp2.Task)
+    }
 }
 ```
 
@@ -32,5 +49,6 @@ func main() {
 - Cluster
 - Disk
 - Form
+- Host
 
 still in development

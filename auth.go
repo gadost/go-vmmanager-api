@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"time"
+
+	"github.com/gadost/go-vmmanager-api/types"
 )
 
 type AuthByEmailAndPassword struct {
@@ -25,22 +27,6 @@ type Auth struct {
 	AuthByKey
 	AuthByEmailAndPassword
 	authUri string
-}
-
-type Password struct {
-	Password string `json:"password"`
-}
-
-type InviteUser struct {
-	Password        string `json:"password"`
-	Lang            string `json:"lang"`
-	AdditionalProp1 struct {
-	} `json:"additionalProp1"`
-}
-
-type TokenLifetime struct {
-	ExpiresAt   string `json:"expires_at"`
-	Description string `json:"description"`
 }
 
 // Auth get session and token
@@ -69,7 +55,7 @@ func (a *Api) Auth(auth *Auth) *Api {
 
 // ChangePasswordByToken POST request to "/public/token/{token_id}/change_password"
 func (a *Api) ChangePasswordByToken(password string) error {
-	payload, _ := json.Marshal(&Password{Password: password})
+	payload, _ := json.Marshal(&types.Password{Password: password})
 	_, err := a.NewRequest(
 		payload,
 		fmt.Sprintf("/public/token/%s/change_password", a.AuthData.Token),
@@ -83,7 +69,7 @@ func (a *Api) ChangePasswordByToken(password string) error {
 
 // WithExtendedTokenLifetime extend token lifetime. default 1h
 func (a *Api) WithExtendedTokenLifetime(expiresAt time.Time, desc string) *Api {
-	payload, _ := json.Marshal(&TokenLifetime{
+	payload, _ := json.Marshal(&types.TokenLifetime{
 		ExpiresAt:   expiresAt.Format("2006-01-02 15:04:05"),
 		Description: desc,
 	})
@@ -95,7 +81,7 @@ func (a *Api) WithExtendedTokenLifetime(expiresAt time.Time, desc string) *Api {
 
 // InviteUserByToken  POST request to /public/token/{token_id}/invite_user
 func (a *Api) InviteUserByToken(password string, lang string) error {
-	payload, _ := json.Marshal(&InviteUser{Password: password, Lang: lang})
+	payload, _ := json.Marshal(&types.InviteUser{Password: password, Lang: lang})
 	_, err := a.NewRequest(
 		payload,
 		fmt.Sprintf("/public/token/%s/invite_user", a.AuthData.Token),

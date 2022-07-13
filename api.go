@@ -29,6 +29,10 @@ type Api struct {
 	AuthData AuthData
 }
 
+type ParamsQuery struct {
+	Query string
+}
+
 func New(host string) *Api {
 	return &Api{
 		Host: host,
@@ -81,4 +85,21 @@ func (a *Api) NewRequest(payload []byte, uri string, reqType string, service str
 	bodyResp, err := io.ReadAll(resp.Body)
 
 	return bodyResp, err
+}
+
+func MakeQuery(params map[string]string) *ParamsQuery {
+	query := "?"
+	for k, v := range params {
+		query += fmt.Sprintf("%s=%s&", k, v)
+	}
+
+	if query[len(query)-1:] == "&" {
+		query = query[:len(query)-1]
+	}
+
+	return &ParamsQuery{Query: query}
+}
+
+func NilQuery() *ParamsQuery {
+	return &ParamsQuery{}
 }
