@@ -532,13 +532,13 @@ func (a *Api) HostUpdateVNCPorts(hid int, params *types.VNCPortUpdateRequest) (*
 	return t, err
 }
 
-func (a *Api) IPs(where *ParamsQuery) (*types.IP, error) {
+func (a *Api) IPs(where *ParamsQuery) (*types.IPList, error) {
 	bodyResp, err := a.NewRequest(
 		[]byte(NilPayload),
 		fmt.Sprintf("/ip%s", where),
 		requestTypeGet,
 		DefaultService)
-	var h *types.IP
+	var h *types.IPList
 	json.Unmarshal(bodyResp, &h)
 	return h, err
 }

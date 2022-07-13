@@ -211,13 +211,13 @@ func (a *Api) BackupLocationUpdate(lid int, params *types.BackupLocationParams) 
 	return t, err
 }
 
-func (a *Api) BackupLocationDelete(lid int) (*types.DeletedBackupResponse, error) {
+func (a *Api) BackupLocationDelete(lid int) (*types.DeletedResponse, error) {
 	bodyResp, err := a.NewRequest(
 		[]byte(NilPayload),
 		fmt.Sprintf("/backup_location/%d", lid),
 		requestTypeDelete,
 		DefaultService)
-	var d *types.DeletedBackupResponse
+	var d *types.DeletedResponse
 	json.Unmarshal(bodyResp, &d)
 	return d, err
 }
