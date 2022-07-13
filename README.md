@@ -52,5 +52,7 @@ func main() {
 - Host
 - Image
 - Import
+- License
+- Network
 
 still in development
