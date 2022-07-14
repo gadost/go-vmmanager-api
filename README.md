@@ -58,4 +58,5 @@ func main() {
 - Script
 - OS
 - Platform Backups
+- Preset
 still in development

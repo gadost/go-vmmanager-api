@@ -1683,3 +1683,38 @@ type PlatformBackupScheduleRequest struct {
 	ConnectionParams struct {
 	} `json:"connection_params"`
 }
+
+// presets
+
+type PresetListResponse struct {
+	LastNotify int                 `json:"last_notify"`
+	List       []PresetListElement `json:"list"`
+}
+
+type PresetListElement struct {
+	ID                 int               `json:"id"`
+	VirtualizationType string            `json:"virtualization_type"`
+	Name               string            `json:"name"`
+	Comment            string            `json:"comment"`
+	RAMMib             int               `json:"ram_mib"`
+	HddMib             int               `json:"hdd_mib"`
+	Disks              []DiskHostRequest `json:"disks"`
+	CPUNumber          int               `json:"cpu_number"`
+	CPUMode            string            `json:"cpu_mode"`
+	Nesting            bool              `json:"nesting"`
+	CPUCustomModel     string            `json:"cpu_custom_model"`
+	CPUWeight          int               `json:"cpu_weight"`
+	IoWeight           int               `json:"io_weight"`
+	IoReadMbitps       int               `json:"io_read_mbitps"`
+	IoWriteMbitps      int               `json:"io_write_mbitps"`
+	IoReadIops         int               `json:"io_read_iops"`
+	IoWriteIops        int               `json:"io_write_iops"`
+	NetInMbitps        int               `json:"net_in_mbitps"`
+	NetOutMbitps       int               `json:"net_out_mbitps"`
+	NetWeight          int               `json:"net_weight"`
+	AntiSpoofing       bool              `json:"anti_spoofing"`
+	TCPConnectionsIn   int               `json:"tcp_connections_in"`
+	TCPConnectionsOut  int               `json:"tcp_connections_out"`
+	ProcessNumber      int               `json:"process_number"`
+	FirewallRules      []FirewallRule    `json:"firewall_rules,omitempty"`
+}
