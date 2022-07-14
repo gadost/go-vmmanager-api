@@ -1646,3 +1646,40 @@ type OSSaveRequest struct {
 	Os             []string `json:"os"`
 	RepositoryType string   `json:"repository_type"`
 }
+
+type PlatformBackupSchedule struct {
+	LastNotify int                        `json:"last_notify"`
+	List       []PlatformBackuListElement `json:"list"`
+}
+
+type PlatformBackupElement struct {
+	ID           int    `json:"id"`
+	Name         string `json:"name"`
+	Downloadable bool   `json:"downloadable"`
+	Location     string `json:"location"`
+	Date         string `json:"date"`
+	Size         int    `json:"size"`
+}
+
+type PlatformBackuListElement struct {
+	ID               int                     `json:"id"`
+	ScheduleType     string                  `json:"schedule_type"`
+	CronExpression   string                  `json:"cron_expression"`
+	Name             string                  `json:"name"`
+	Enabled          bool                    `json:"enabled"`
+	NextRun          string                  `json:"next_run"`
+	Comment          string                  `json:"comment"`
+	StorageType      string                  `json:"storage_type"`
+	ConnectionParams interface{}             `json:"connection_params"`
+	BackupList       []PlatformBackupElement `json:"backup_list"`
+}
+
+type PlatformBackupScheduleRequest struct {
+	ScheduleType     string `json:"schedule_type"`
+	CronExpression   string `json:"cron_expression"`
+	Name             string `json:"name"`
+	Comment          string `json:"comment"`
+	StorageType      string `json:"storage_type"`
+	ConnectionParams struct {
+	} `json:"connection_params"`
+}
