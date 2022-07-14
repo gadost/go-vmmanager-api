@@ -184,3 +184,316 @@ func (a *Api) NodeNew(params *types.NodeNewRequest) (*types.StorageTask, error) 
 	json.Unmarshal(bodyResp, &t)
 	return t, err
 }
+
+func (a *Api) NodeScriptNew(params *types.NodeScriptRequest) (*types.ID, error) {
+	payload, _ := json.Marshal(params)
+	bodyResp, err := a.NewRequest(
+		payload,
+		"/node_script",
+		requestTypePost,
+		DefaultService)
+	var t *types.ID
+	json.Unmarshal(bodyResp, &t)
+	return t, err
+}
+
+func (a *Api) NodeScriptUpdate(nsid int, params *types.NodeScriptRequest) (*types.Task, error) {
+	payload, _ := json.Marshal(params)
+	bodyResp, err := a.NewRequest(
+		payload,
+		fmt.Sprintf("/node_script/%d", nsid),
+		requestTypePost,
+		DefaultService)
+	var t *types.Task
+	json.Unmarshal(bodyResp, &t)
+	return t, err
+}
+
+func (a *Api) NodeUpdate(nid int, params *types.NodeUpdateRequest) (*types.ID, error) {
+	payload, _ := json.Marshal(params)
+	bodyResp, err := a.NewRequest(
+		payload,
+		fmt.Sprintf("/node/%d", nid),
+		requestTypePost,
+		DefaultService)
+	var t *types.ID
+	json.Unmarshal(bodyResp, &t)
+	return t, err
+}
+
+func (a *Api) NodeLibvirtCertUpdate(nid int) (*types.Task, error) {
+	bodyResp, err := a.NewRequest(
+		[]byte(NilPayload),
+		fmt.Sprintf("/node/%d/cert", nid),
+		requestTypePost,
+		DefaultService)
+	var t *types.Task
+	json.Unmarshal(bodyResp, &t)
+	return t, err
+}
+
+func (a *Api) NodeFilesUpdate(nid int, params *types.NodeFilesUpdateRequest) (*types.ID, error) {
+	payload, _ := json.Marshal(params)
+	bodyResp, err := a.NewRequest(
+		payload,
+		fmt.Sprintf("/node/%d/files", nid),
+		requestTypePost,
+		DefaultService)
+	var t *types.ID
+	json.Unmarshal(bodyResp, &t)
+	return t, err
+}
+
+func (a *Api) NodeHAEnable(nid int, params interface{}) (*types.ID, error) {
+	payload, _ := json.Marshal(params)
+	bodyResp, err := a.NewRequest(
+		payload,
+		fmt.Sprintf("/node/%d/ha/enable", nid),
+		requestTypePost,
+		DefaultService)
+	var t *types.ID
+	json.Unmarshal(bodyResp, &t)
+	return t, err
+}
+
+func (a *Api) NodeHAStateUpdate(nid int, params *types.State) (*types.ID, error) {
+	payload, _ := json.Marshal(params)
+	bodyResp, err := a.NewRequest(
+		payload,
+		fmt.Sprintf("/node/%d/ha/state", nid),
+		requestTypePost,
+		DefaultService)
+	var t *types.ID
+	json.Unmarshal(bodyResp, &t)
+	return t, err
+}
+
+func (a *Api) NodeHostIFacesUpdate(nid int, params *types.NodeHostIFaces) (*types.Task, error) {
+	payload, _ := json.Marshal(params)
+	bodyResp, err := a.NewRequest(
+		payload,
+		fmt.Sprintf("/node/%d/host/ifaces", nid),
+		requestTypePost,
+		DefaultService)
+	var t *types.Task
+	json.Unmarshal(bodyResp, &t)
+	return t, err
+}
+
+func (a *Api) NodeHostStatesUpdate(nid int, params interface{}) (*types.Task, error) {
+	payload, _ := json.Marshal(params)
+	bodyResp, err := a.NewRequest(
+		payload,
+		fmt.Sprintf("/node/%d/host/states", nid),
+		requestTypePost,
+		DefaultService)
+	var t *types.Task
+	json.Unmarshal(bodyResp, &t)
+	return t, err
+}
+
+func (a *Api) NodeImportedConfigure(nid int, params *types.NetworkAutosetupDisabled) (*types.Task, error) {
+	payload, _ := json.Marshal(params)
+	bodyResp, err := a.NewRequest(
+		payload,
+		fmt.Sprintf("/node/%d/import/configure", nid),
+		requestTypePost,
+		DefaultService)
+	var t *types.Task
+	json.Unmarshal(bodyResp, &t)
+	return t, err
+}
+
+func (a *Api) NodeInterfaceNew(nid int, params *types.NodeNetworkInterface) (*types.Task, error) {
+	payload, _ := json.Marshal(params)
+	bodyResp, err := a.NewRequest(
+		payload,
+		fmt.Sprintf("/node/%d/network/iface", nid),
+		requestTypePost,
+		DefaultService)
+	var t *types.Task
+	json.Unmarshal(bodyResp, &t)
+	return t, err
+}
+
+func (a *Api) NodeInterfaceUpdate(nid int, iface string, params *types.NodeNetworkInterface) (*types.Task, error) {
+	payload, _ := json.Marshal(params)
+	bodyResp, err := a.NewRequest(
+		payload,
+		fmt.Sprintf("/node/%d/network/iface/%s", nid, iface),
+		requestTypePost,
+		DefaultService)
+	var t *types.Task
+	json.Unmarshal(bodyResp, &t)
+	return t, err
+}
+
+func (a *Api) NodeInterfaceRevert(nid int, iface string, params interface{}) (*types.Task, error) {
+	payload, _ := json.Marshal(params)
+	bodyResp, err := a.NewRequest(
+		payload,
+		fmt.Sprintf("/node/%d/network/iface/%s/revert", nid, iface),
+		requestTypePost,
+		DefaultService)
+	var t *types.Task
+	json.Unmarshal(bodyResp, &t)
+	return t, err
+}
+
+func (a *Api) NodeInterfacesUpdate(nid int, params *types.NodeNetworkInterfaces) (*types.Task, error) {
+	payload, _ := json.Marshal(params)
+	bodyResp, err := a.NewRequest(
+		payload,
+		fmt.Sprintf("/node/%d/network/ifaces", nid),
+		requestTypePost,
+		DefaultService)
+	var t *types.Task
+	json.Unmarshal(bodyResp, &t)
+	return t, err
+}
+
+func (a *Api) NodeNetworkLock(nid int, params interface{}) (*types.Task, error) {
+	payload, _ := json.Marshal(params)
+	bodyResp, err := a.NewRequest(
+		payload,
+		fmt.Sprintf("/node/%d/network/lock", nid),
+		requestTypePost,
+		DefaultService)
+	var t *types.Task
+	json.Unmarshal(bodyResp, &t)
+	return t, err
+}
+
+func (a *Api) NodeNetworkRevert(nid int, params interface{}) (*types.Task, error) {
+	payload, _ := json.Marshal(params)
+	bodyResp, err := a.NewRequest(
+		payload,
+		fmt.Sprintf("/node/%d/network/revert", nid),
+		requestTypePost,
+		DefaultService)
+	var t *types.Task
+	json.Unmarshal(bodyResp, &t)
+	return t, err
+}
+
+func (a *Api) NodeNetworkSave(nid int, params interface{}) (*types.Task, error) {
+	payload, _ := json.Marshal(params)
+	bodyResp, err := a.NewRequest(
+		payload,
+		fmt.Sprintf("/node/%d/network/save", nid),
+		requestTypePost,
+		DefaultService)
+	var t *types.Task
+	json.Unmarshal(bodyResp, &t)
+	return t, err
+}
+
+func (a *Api) NodeNetworkUnlock(nid int, params interface{}) (*types.Task, error) {
+	payload, _ := json.Marshal(params)
+	bodyResp, err := a.NewRequest(
+		payload,
+		fmt.Sprintf("/node/%d/network/unlock", nid),
+		requestTypePost,
+		DefaultService)
+	var t *types.Task
+	json.Unmarshal(bodyResp, &t)
+	return t, err
+}
+
+func (a *Api) NodeProblemsNew(nid int, params *types.Problems) (*types.Task, error) {
+	payload, _ := json.Marshal(params)
+	bodyResp, err := a.NewRequest(
+		payload,
+		fmt.Sprintf("/node/%d/problem", nid),
+		requestTypePost,
+		DefaultService)
+	var t *types.Task
+	json.Unmarshal(bodyResp, &t)
+	return t, err
+}
+
+func (a *Api) NodeRelocate(nid int, params interface{}) (*types.Task, error) {
+	payload, _ := json.Marshal(params)
+	bodyResp, err := a.NewRequest(
+		payload,
+		fmt.Sprintf("/node/%d/relocate", nid),
+		requestTypePost,
+		DefaultService)
+	var t *types.Task
+	json.Unmarshal(bodyResp, &t)
+	return t, err
+}
+
+func (a *Api) NodeScriptRun(nid int, params *types.Script) (*types.Task, error) {
+	payload, _ := json.Marshal(params)
+	bodyResp, err := a.NewRequest(
+		payload,
+		fmt.Sprintf("/node/%d/problem", nid),
+		requestTypePost,
+		DefaultService)
+	var t *types.Task
+	json.Unmarshal(bodyResp, &t)
+	return t, err
+}
+
+func (a *Api) NodeStorageCheck(cid int, sid int) (*types.Task, error) {
+
+	bodyResp, err := a.NewRequest(
+		[]byte(NilPayload),
+		fmt.Sprintf("/node/%d/storage/%d/check", cid, sid),
+		requestTypePost,
+		DefaultService)
+
+	var r *types.Task
+	json.Unmarshal(bodyResp, &r)
+	return r, err
+}
+
+func (a *Api) NodeHDDOverselling(
+	nid int, params *types.HDDOversellingRequest) (*types.HDDOversellingResponse, error) {
+	payload, _ := json.Marshal(params)
+	bodyResp, err := a.NewRequest(
+		payload,
+		fmt.Sprintf("/node/%d/problem", nid),
+		requestTypePost,
+		DefaultService)
+	var t *types.HDDOversellingResponse
+	json.Unmarshal(bodyResp, &t)
+	return t, err
+}
+
+func (a *Api) NodeScriptDelete(nsid int) (*types.DeletedResponse, error) {
+	bodyResp, err := a.NewRequest(
+		[]byte(NilPayload),
+		fmt.Sprintf("/node_script/%d", nsid),
+		requestTypeDelete,
+		DefaultService)
+
+	var t *types.DeletedResponse
+	json.Unmarshal(bodyResp, &t)
+	return t, err
+}
+
+func (a *Api) NodeDelete(nsid int) (*types.Task, error) {
+	bodyResp, err := a.NewRequest(
+		[]byte(NilPayload),
+		fmt.Sprintf("/node/%d", nsid),
+		requestTypeDelete,
+		DefaultService)
+
+	var t *types.Task
+	json.Unmarshal(bodyResp, &t)
+	return t, err
+}
+
+func (a *Api) NodeNetworkInterfaceDelete(nsid int, iface string) (*types.Task, error) {
+	bodyResp, err := a.NewRequest(
+		[]byte(NilPayload),
+		fmt.Sprintf("/node/%d/network/iface/%s", nsid, iface),
+		requestTypeDelete,
+		DefaultService)
+
+	var t *types.Task
+	json.Unmarshal(bodyResp, &t)
+	return t, err
+}

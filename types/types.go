@@ -399,7 +399,8 @@ type HDDOversellingRequest struct {
 }
 
 type HDDOversellingResponse struct {
-	Value float32 `json:"value"`
+	Value          float32 `json:"value"`
+	HddOverselling float32 `json:"hdd_overselling"`
 }
 
 type VXLanResponse struct {
@@ -1538,4 +1539,68 @@ type NodeNewRequest struct {
 	HostLimit                int                    `json:"host_limit"`
 	HostFilter               []HostFilter           `json:"host_filter"`
 	NetworkAutosetupDisabled bool                   `json:"network_autosetup_disabled"`
+}
+
+type NodeScriptRequest struct {
+	Name        string `json:"name"`
+	Script      string `json:"script"`
+	Description string `json:"description"`
+	Type        string `json:"type"`
+	Priority    int    `json:"priority"`
+	Autorun     []int  `json:"autorun"`
+}
+
+type NodeUpdateRequest struct {
+	HostCreationBlocked bool         `json:"host_creation_blocked"`
+	OpenVswitch         bool         `json:"open_vswitch"`
+	Comment             string       `json:"comment"`
+	Name                string       `json:"name"`
+	Overselling         int          `json:"overselling"`
+	Ipv6                string       `json:"ipv6"`
+	HostLimit           int          `json:"host_limit"`
+	HostFilter          []HostFilter `json:"host_filter"`
+	Values              interface{}  `json:"values"`
+}
+
+type NodeFilesUpdateRequest struct {
+	List []NodeFileUpdateRequest `json:"list"`
+}
+
+type NodeFileUpdateRequest struct {
+	Size int    `json:"size"`
+	Name string `json:"name"`
+	Type string `json:"type"`
+	Path string `json:"path"`
+}
+
+type NetworkAutosetupDisabled struct {
+	NetworkAutosetupDisabled bool `json:"network_autosetup_disabled"`
+}
+
+type NodeNetworkInterface struct {
+	Name          string   `json:"name"`
+	Type          string   `json:"type"`
+	IPParams      IPParams `json:"ip_params"`
+	Vlan          int      `json:"vlan"`
+	Slaves        []string `json:"slaves"`
+	TakeSlaveIP   bool     `json:"take_slave_ip"`
+	Mode          string   `json:"mode"`
+	IsDefault     bool     `json:"is_default"`
+	IsMainNetwork bool     `json:"is_main_network"`
+}
+
+type NodeNetworkInterfaces struct {
+	List []NodeNetworkInterface `json:"list"`
+}
+
+type Problems struct {
+	Problems []string `json:"problems"`
+}
+
+type Script struct {
+	Script int `json:"script"`
+}
+
+type Scripts struct {
+	Script []int `json:"script"`
 }
