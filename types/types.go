@@ -3,182 +3,182 @@ package types
 // Auth
 
 type Password struct {
-	Password string `json:"password"`
+	Password string `json:"password,omitempty"`
 }
 
 type InviteUser struct {
-	Password        string          `json:"password"`
-	Lang            string          `json:"lang"`
-	AdditionalProp1 AdditionalProp1 `json:"additionalProp1"`
+	Password        string          `json:"password,omitempty"`
+	Lang            string          `json:"lang,omitempty"`
+	AdditionalProp1 AdditionalProp1 `json:"additionalProp1,omitempty"`
 }
 
 type AdditionalProp1 struct {
 }
 
 type TokenLifetime struct {
-	ExpiresAt   string `json:"expires_at"`
-	Description string `json:"description"`
+	ExpiresAt   string `json:"expires_at,omitempty"`
+	Description string `json:"description,omitempty"`
 }
 
 //Backups
 
 type BackupList struct {
-	LastNotify int                 `json:"last_notify"`
-	List       []BackupListElement `json:"list"`
+	LastNotify int                 `json:"last_notify,omitempty"`
+	List       []BackupListElement `json:"list,omitempty"`
 }
 
 type BackupListElement struct {
-	ID               int            `json:"id"`
-	Name             string         `json:"name"`
-	Account          BaseAccount    `json:"account"`
-	Disk             Disk           `json:"disk"`
-	ActualSizeMib    int            `json:"actual_size_mib"`
-	EstimatedSizeMib int            `json:"estimated_size_mib"`
-	Cluster          Cluster        `json:"cluster"`
-	Host             int            `json:"host"`
-	Schedule         int            `json:"schedule"`
-	DateCreate       string         `json:"date_create"`
-	AvailableUntil   string         `json:"available_until"`
-	Comment          string         `json:"comment"`
-	BackupLocation   BackupLocation `json:"backup_location"`
+	ID               int            `json:"id,omitempty"`
+	Name             string         `json:"name,omitempty"`
+	Account          BaseAccount    `json:"account,omitempty"`
+	Disk             Disk           `json:"disk,omitempty"`
+	ActualSizeMib    int            `json:"actual_size_mib,omitempty"`
+	EstimatedSizeMib int            `json:"estimated_size_mib,omitempty"`
+	Cluster          Cluster        `json:"cluster,omitempty"`
+	Host             int            `json:"host,omitempty"`
+	Schedule         int            `json:"schedule,omitempty"`
+	DateCreate       string         `json:"date_create,omitempty"`
+	AvailableUntil   string         `json:"available_until,omitempty"`
+	Comment          string         `json:"comment,omitempty"`
+	BackupLocation   BackupLocation `json:"backup_location,omitempty"`
 }
 
 type BaseAccount struct {
-	ID    int    `json:"id"`
-	Email string `json:"email"`
+	ID    int    `json:"id,omitempty"`
+	Email string `json:"email,omitempty"`
 }
 
 type Disk struct {
-	ID   int    `json:"id"`
-	Name string `json:"name"`
+	ID   int    `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
 }
 
 type Cluster struct {
-	ID               int    `json:"id"`
-	DatacenterType   string `json:"datacenter_type"`
-	ImageStoragePath string `json:"image_storage_path"`
-	Name             string `json:"name"`
+	ID               int    `json:"id,omitempty"`
+	DatacenterType   string `json:"datacenter_type,omitempty"`
+	ImageStoragePath string `json:"image_storage_path,omitempty"`
+	Name             string `json:"name,omitempty"`
 }
 
 type BackupLocation struct {
-	ID   int    `json:"id"`
-	Name string `json:"name"`
-	Type string `json:"type"`
+	ID   int    `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+	Type string `json:"type,omitempty"`
 }
 
 type Backup struct {
-	ID             int            `json:"id"`
-	Name           string         `json:"name"`
-	Account        string         `json:"account"`
-	ForAll         bool           `json:"for_all"`
-	Type           string         `json:"type"`
-	Comment        string         `json:"comment"`
-	State          string         `json:"state"`
-	ExpandPart     string         `json:"expand_part"`
-	BackupLocation BackupLocation `json:"backup_location"`
+	ID             int            `json:"id,omitempty"`
+	Name           string         `json:"name,omitempty"`
+	Account        string         `json:"account,omitempty"`
+	ForAll         bool           `json:"for_all,omitempty"`
+	Type           string         `json:"type,omitempty"`
+	Comment        string         `json:"comment,omitempty"`
+	State          string         `json:"state,omitempty"`
+	ExpandPart     string         `json:"expand_part,omitempty"`
+	BackupLocation BackupLocation `json:"backup_location,omitempty"`
 }
 
 type ChangeBackup struct {
-	Name    string `json:"name"`
-	Comment string `json:"comment"`
+	Name    string `json:"name,omitempty"`
+	Comment string `json:"comment,omitempty"`
 }
 
 type Task struct {
-	ID   int `json:"id"`
-	Task int `json:"task"`
+	ID   int `json:"id,omitempty"`
+	Task int `json:"task,omitempty"`
 }
 type RelocateTask struct {
-	ID           int `json:"id"`
-	Task         int `json:"task"`
-	RelocateTask int `json:"relocate_task"`
+	ID           int `json:"id,omitempty"`
+	Task         int `json:"task,omitempty"`
+	RelocateTask int `json:"relocate_task,omitempty"`
 }
 
 type Node struct {
-	Node int `json:"node"`
+	Node int `json:"node,omitempty"`
 }
 
 type Move struct {
-	Source      int `json:"source"`
-	Destination int `json:"destination"`
+	Source      int `json:"source,omitempty"`
+	Destination int `json:"destination,omitempty"`
 }
 
 type RelocateBackup struct {
-	Destination int `json:"destination"`
+	Destination int `json:"destination,omitempty"`
 }
 
 type State struct {
-	State string `json:"state"`
+	State string `json:"state,omitempty"`
 }
 
 type DiskBackup struct {
-	Name            string `json:"name"`
-	Comment         string `json:"comment"`
-	BackupLocations []int  `json:"backup_locations"`
-	Schedule        int    `json:"schedule"`
+	Name            string `json:"name,omitempty"`
+	Comment         string `json:"comment,omitempty"`
+	BackupLocations []int  `json:"backup_locations,omitempty"`
+	Schedule        int    `json:"schedule,omitempty"`
 }
 
 type VMBackupParams struct {
-	Name            string `json:"name"`
-	Comment         string `json:"comment"`
-	BackupLocations []int  `json:"backup_locations"`
-	Schedule        int    `json:"schedule"`
+	Name            string `json:"name,omitempty"`
+	Comment         string `json:"comment,omitempty"`
+	BackupLocations []int  `json:"backup_locations,omitempty"`
+	Schedule        int    `json:"schedule,omitempty"`
 }
 
 type BackupByHostIDResponse struct {
-	LastNotify int      `json:"last_notify"`
-	List       []Backup `json:"list"`
+	LastNotify int      `json:"last_notify,omitempty"`
+	List       []Backup `json:"list,omitempty"`
 }
 
 type BackupLocationResponse struct {
-	LastNotify int                     `json:"last_notify"`
-	List       []BackupLocationElement `json:"list"`
+	LastNotify int                     `json:"last_notify,omitempty"`
+	List       []BackupLocationElement `json:"list,omitempty"`
 }
 
 type BackupLocationElement struct {
-	ID               int              `json:"id"`
-	Name             string           `json:"name"`
-	Comment          string           `json:"comment"`
-	State            string           `json:"state"`
-	QuotaMib         int              `json:"quota_mib"`
-	Type             string           `json:"type"`
-	ConnectionParams ConnectionParams `json:"connection_params"`
-	Clusters         []Cluster        `json:"clusters"`
+	ID               int              `json:"id,omitempty"`
+	Name             string           `json:"name,omitempty"`
+	Comment          string           `json:"comment,omitempty"`
+	State            string           `json:"state,omitempty"`
+	QuotaMib         int              `json:"quota_mib,omitempty"`
+	Type             string           `json:"type,omitempty"`
+	ConnectionParams ConnectionParams `json:"connection_params,omitempty"`
+	Clusters         []Cluster        `json:"clusters,omitempty"`
 }
 
 type ConnectionParams struct {
 }
 
 type ID struct {
-	ID int `json:"id"`
+	ID int `json:"id,omitempty"`
 }
 
 type BackupLocationParams struct {
-	Name                string           `json:"name"`
-	Comment             string           `json:"comment"`
-	QuotaMib            int              `json:"quota_mib"`
-	Type                string           `json:"type"`
-	ConnectionParams    ConnectionParams `json:"connection_params"`
-	Clusters            []int            `json:"clusters"`
-	Schedules           []int            `json:"schedules"`
-	SkipConnectionCheck bool             `json:"skip_connection_check"`
+	Name                string           `json:"name,omitempty"`
+	Comment             string           `json:"comment,omitempty"`
+	QuotaMib            int              `json:"quota_mib,omitempty"`
+	Type                string           `json:"type,omitempty"`
+	ConnectionParams    ConnectionParams `json:"connection_params,omitempty"`
+	Clusters            []int            `json:"clusters,omitempty"`
+	Schedules           []int            `json:"schedules,omitempty"`
+	SkipConnectionCheck bool             `json:"skip_connection_check,omitempty"`
 }
 
 // Cluster
 
 type ClusterListResponse struct {
-	LastNotify int              `json:"last_notify"`
-	List       []ClusterElement `json:"list"`
+	LastNotify int              `json:"last_notify,omitempty"`
+	List       []ClusterElement `json:"list,omitempty"`
 }
 
 type ClusterElement struct {
-	VirtualizationType     string           `json:"virtualization_type"`
+	VirtualizationType     string           `json:"virtualization_type,omitempty"`
 	OsStoragePath          string           `json:"os_storage_path,omitempty"`
 	ImageStoragePath       string           `json:"image_storage_path,omitempty"`
 	CPUNumber              CPUNumber        `json:"cpu_number,omitempty"`
-	HostCount              int              `json:"host_count"`
+	HostCount              int              `json:"host_count,omitempty"`
 	AccountHostCount       int              `json:"account_host_count,omitempty"`
 	HostPerNodeLimit       int              `json:"host_per_node_limit,omitempty"`
-	Name                   string           `json:"name"`
+	Name                   string           `json:"name,omitempty"`
 	Comment                string           `json:"comment,omitempty"`
 	RAMMib                 RAMMib           `json:"ram_mib,omitempty"`
 	StorageMib             StorageMib       `json:"storage_mib,omitempty"`
@@ -188,7 +188,7 @@ type ClusterElement struct {
 	HostDistributionPolicy string           `json:"host_distribution_policy,omitempty"`
 	HostFilter             []HostFilter     `json:"host_filter,omitempty"`
 	NodeCount              int              `json:"node_count,omitempty"`
-	ID                     int              `json:"id"`
+	ID                     int              `json:"id,omitempty"`
 	Overselling            int              `json:"overselling,omitempty"`
 	BackupLocations        []BackupLocation `json:"backup_locations,omitempty"`
 	DomainTemplate         string           `json:"domain_template,omitempty"`
@@ -198,1409 +198,1409 @@ type ClusterElement struct {
 	DNSServers             []string         `json:"dns_servers,omitempty"`
 	DcNetworks             []int            `json:"dc_networks,omitempty"`
 	NodeNetwork            NodeNetwork      `json:"node_network,omitempty"`
-	VxlanMode              string           `json:"vxlan_mode"`
-	VxlanSettings          string           `json:"vxlan_settings"`
-	Vxlans                 []Vxlan          `json:"vxlans"`
+	VxlanMode              string           `json:"vxlan_mode,omitempty"`
+	VxlanSettings          string           `json:"vxlan_settings,omitempty"`
+	Vxlans                 []Vxlan          `json:"vxlans,omitempty"`
 	DatacenterType         string           `json:"datacenter_type,omitempty"`
 }
 
 type Vxlan struct {
-	ID   int    `json:"id"`
-	Name string `json:"name"`
-	Tag  int    `json:"tag"`
+	ID   int    `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+	Tag  int    `json:"tag,omitempty"`
 }
 
 type NodeNetwork struct {
-	Timeout int    `json:"timeout"`
-	Gateway string `json:"gateway"`
+	Timeout int    `json:"timeout,omitempty"`
+	Gateway string `json:"gateway,omitempty"`
 }
 
 type CPUNumber struct {
-	Total int `json:"total"`
-	Used  int `json:"used"`
+	Total int `json:"total,omitempty"`
+	Used  int `json:"used,omitempty"`
 }
 
 type RAMMib struct {
-	Total int `json:"total"`
-	Used  int `json:"used"`
+	Total int `json:"total,omitempty"`
+	Used  int `json:"used,omitempty"`
 }
 
 type StorageMib struct {
-	Total int `json:"total"`
-	Used  int `json:"used"`
+	Total int `json:"total,omitempty"`
+	Used  int `json:"used,omitempty"`
 }
 
 type HostFilter struct {
-	Entity     string `json:"entity"`
-	Expression string `json:"expression"`
+	Entity     string `json:"entity,omitempty"`
+	Expression string `json:"expression,omitempty"`
 }
 
 type DatacenterParams struct {
-	Gateway        string       `json:"gateway"`
-	Mac            string       `json:"mac"`
-	BgpCommunity   string       `json:"bgp_community"`
-	BgpAs          int          `json:"bgp_as"`
-	BgpSessions    []BgpSession `json:"bgp_sessions"`
-	BgpCommunityV6 string       `json:"bgp_community_v6"`
-	BgpAsV6        int          `json:"bgp_as_v6"`
-	BgpSessionsV6  []BgpSession `json:"bgp_sessions_v6"`
+	Gateway        string       `json:"gateway,omitempty"`
+	Mac            string       `json:"mac,omitempty"`
+	BgpCommunity   string       `json:"bgp_community,omitempty"`
+	BgpAs          int          `json:"bgp_as,omitempty"`
+	BgpSessions    []BgpSession `json:"bgp_sessions,omitempty"`
+	BgpCommunityV6 string       `json:"bgp_community_v6,omitempty"`
+	BgpAsV6        int          `json:"bgp_as_v6,omitempty"`
+	BgpSessionsV6  []BgpSession `json:"bgp_sessions_v6,omitempty"`
 }
 
 type BgpSession struct {
-	IP      string `json:"ip"`
-	BgpAs   int    `json:"bgp_as"`
-	Comment string `json:"comment"`
+	IP      string `json:"ip,omitempty"`
+	BgpAs   int    `json:"bgp_as,omitempty"`
+	Comment string `json:"comment,omitempty"`
 }
 
 type Storage struct {
-	ID       int      `json:"id"`
-	Name     string   `json:"name"`
-	Type     string   `json:"type"`
-	Enabled  bool     `json:"enabled"`
-	IsMain   bool     `json:"is_main"`
-	VirtPool VirtPool `json:"virt_pool"`
-	Tags     []int    `json:"tags"`
+	ID       int      `json:"id,omitempty"`
+	Name     string   `json:"name,omitempty"`
+	Type     string   `json:"type,omitempty"`
+	Enabled  bool     `json:"enabled,omitempty"`
+	IsMain   bool     `json:"is_main,omitempty"`
+	VirtPool VirtPool `json:"virt_pool,omitempty"`
+	Tags     []int    `json:"tags,omitempty"`
 }
 
 type VirtPool struct {
-	VMStoragePath   string `json:"vm_storage_path"`
-	VolumeGroup     string `json:"volume_group"`
-	ZfsPoolName     string `json:"zfs_pool_name"`
-	RbdPoolName     string `json:"rbd_pool_name"`
-	RbdUser         string `json:"rbd_user"`
-	PlacementGroups int    `json:"placement_groups"`
-	NetworkDiskPath string `json:"network_disk_path"`
+	VMStoragePath   string `json:"vm_storage_path,omitempty"`
+	VolumeGroup     string `json:"volume_group,omitempty"`
+	ZfsPoolName     string `json:"zfs_pool_name,omitempty"`
+	RbdPoolName     string `json:"rbd_pool_name,omitempty"`
+	RbdUser         string `json:"rbd_user,omitempty"`
+	PlacementGroups int    `json:"placement_groups,omitempty"`
+	NetworkDiskPath string `json:"network_disk_path,omitempty"`
 }
 
 type ClusterResponse struct {
-	VirtualizationType     string           `json:"virtualization_type"`
-	OsStoragePath          string           `json:"os_storage_path"`
-	ImageStoragePath       string           `json:"image_storage_path"`
-	CPUNumber              CPUNumber        `json:"cpu_number"`
-	HostCount              int              `json:"host_count"`
-	AccountHostCount       int              `json:"account_host_count"`
-	HostPerNodeLimit       int              `json:"host_per_node_limit"`
-	Name                   string           `json:"name"`
-	Comment                string           `json:"comment"`
-	RAMMib                 RAMMib           `json:"ram_mib"`
-	StorageMib             StorageMib       `json:"storage_mib"`
-	TimeZone               string           `json:"time_zone"`
-	State                  string           `json:"state"`
-	DataCenter             string           `json:"data_center"`
-	HostDistributionPolicy string           `json:"host_distribution_policy"`
-	HostFilter             []HostFilter     `json:"host_filter"`
-	NodeCount              int              `json:"node_count"`
-	ID                     int              `json:"id"`
-	Overselling            int              `json:"overselling"`
-	BackupLocations        []BackupLocation `json:"backup_locations"`
-	DomainTemplate         string           `json:"domain_template"`
-	DatacenterParams       DatacenterParams `json:"datacenter_params"`
-	Storages               []Storage        `json:"storages"`
-	Storage                Storage          `json:"storage"`
-	DNSServers             []string         `json:"dns_servers"`
-	DcNetworks             []int            `json:"dc_networks"`
-	NodeNetwork            NodeNetwork      `json:"node_network"`
-	VxlanMode              string           `json:"vxlan_mode"`
-	VxlanSettings          string           `json:"vxlan_settings"`
-	Vxlans                 []Vxlan          `json:"vxlans"`
+	VirtualizationType     string           `json:"virtualization_type,omitempty"`
+	OsStoragePath          string           `json:"os_storage_path,omitempty"`
+	ImageStoragePath       string           `json:"image_storage_path,omitempty"`
+	CPUNumber              CPUNumber        `json:"cpu_number,omitempty"`
+	HostCount              int              `json:"host_count,omitempty"`
+	AccountHostCount       int              `json:"account_host_count,omitempty"`
+	HostPerNodeLimit       int              `json:"host_per_node_limit,omitempty"`
+	Name                   string           `json:"name,omitempty"`
+	Comment                string           `json:"comment,omitempty"`
+	RAMMib                 RAMMib           `json:"ram_mib,omitempty"`
+	StorageMib             StorageMib       `json:"storage_mib,omitempty"`
+	TimeZone               string           `json:"time_zone,omitempty"`
+	State                  string           `json:"state,omitempty"`
+	DataCenter             string           `json:"data_center,omitempty"`
+	HostDistributionPolicy string           `json:"host_distribution_policy,omitempty"`
+	HostFilter             []HostFilter     `json:"host_filter,omitempty"`
+	NodeCount              int              `json:"node_count,omitempty"`
+	ID                     int              `json:"id,omitempty"`
+	Overselling            int              `json:"overselling,omitempty"`
+	BackupLocations        []BackupLocation `json:"backup_locations,omitempty"`
+	DomainTemplate         string           `json:"domain_template,omitempty"`
+	DatacenterParams       DatacenterParams `json:"datacenter_params,omitempty"`
+	Storages               []Storage        `json:"storages,omitempty"`
+	Storage                Storage          `json:"storage,omitempty"`
+	DNSServers             []string         `json:"dns_servers,omitempty"`
+	DcNetworks             []int            `json:"dc_networks,omitempty"`
+	NodeNetwork            NodeNetwork      `json:"node_network,omitempty"`
+	VxlanMode              string           `json:"vxlan_mode,omitempty"`
+	VxlanSettings          string           `json:"vxlan_settings,omitempty"`
+	Vxlans                 []Vxlan          `json:"vxlans,omitempty"`
 }
 
 type CreateClusterRequest struct {
-	VirtualizationType     string           `json:"virtualization_type"`
-	DatacenterType         string           `json:"datacenter_type"`
-	Name                   string           `json:"name"`
-	Comment                string           `json:"comment"`
-	IsoEnabled             bool             `json:"iso_enabled"`
-	ManageDiskEnabled      bool             `json:"manage_disk_enabled"`
-	TimeZone               string           `json:"time_zone"`
-	Interfaces             []Interface      `json:"interfaces"`
-	Os                     []int            `json:"os"`
-	BackupLocations        []int            `json:"backup_locations"`
-	OsStoragePath          string           `json:"os_storage_path"`
-	ImageStoragePath       string           `json:"image_storage_path"`
-	Overselling            int              `json:"overselling"`
-	HostDistributionPolicy string           `json:"host_distribution_policy"`
-	HostFilter             []HostFilter     `json:"host_filter"`
-	DomainTemplate         string           `json:"domain_template"`
-	DatacenterParams       DatacenterParams `json:"datacenter_params"`
-	DomainChangeAllowed    bool             `json:"domain_change_allowed"`
-	ProxyEnabled           bool             `json:"proxy_enabled"`
-	HostPerNodeLimit       int              `json:"host_per_node_limit"`
-	DNSServers             []string         `json:"dns_servers"`
-	NodeNetwork            NodeNetwork      `json:"node_network"`
-	VxlanMode              string           `json:"vxlan_mode"`
-	VxlanSettings          VxlanSettings    `json:"vxlan_settings"`
+	VirtualizationType     string           `json:"virtualization_type,omitempty"`
+	DatacenterType         string           `json:"datacenter_type,omitempty"`
+	Name                   string           `json:"name,omitempty"`
+	Comment                string           `json:"comment,omitempty"`
+	IsoEnabled             bool             `json:"iso_enabled,omitempty"`
+	ManageDiskEnabled      bool             `json:"manage_disk_enabled,omitempty"`
+	TimeZone               string           `json:"time_zone,omitempty"`
+	Interfaces             []Interface      `json:"interfaces,omitempty"`
+	Os                     []int            `json:"os,omitempty"`
+	BackupLocations        []int            `json:"backup_locations,omitempty"`
+	OsStoragePath          string           `json:"os_storage_path,omitempty"`
+	ImageStoragePath       string           `json:"image_storage_path,omitempty"`
+	Overselling            int              `json:"overselling,omitempty"`
+	HostDistributionPolicy string           `json:"host_distribution_policy,omitempty"`
+	HostFilter             []HostFilter     `json:"host_filter,omitempty"`
+	DomainTemplate         string           `json:"domain_template,omitempty"`
+	DatacenterParams       DatacenterParams `json:"datacenter_params,omitempty"`
+	DomainChangeAllowed    bool             `json:"domain_change_allowed,omitempty"`
+	ProxyEnabled           bool             `json:"proxy_enabled,omitempty"`
+	HostPerNodeLimit       int              `json:"host_per_node_limit,omitempty"`
+	DNSServers             []string         `json:"dns_servers,omitempty"`
+	NodeNetwork            NodeNetwork      `json:"node_network,omitempty"`
+	VxlanMode              string           `json:"vxlan_mode,omitempty"`
+	VxlanSettings          VxlanSettings    `json:"vxlan_settings,omitempty"`
 }
 
 type VxlanSettings struct {
-	BgpCommunity   string       `json:"bgp_community"`
-	BgpAs          int          `json:"bgp_as"`
-	BgpSessions    []BgpSession `json:"bgp_sessions"`
-	BgpCommunityV6 string       `json:"bgp_community_v6"`
-	BgpAsV6        int          `json:"bgp_as_v6"`
-	BgpSessionsV6  []BgpSession `json:"bgp_sessions_v6"`
+	BgpCommunity   string       `json:"bgp_community,omitempty"`
+	BgpAs          int          `json:"bgp_as,omitempty"`
+	BgpSessions    []BgpSession `json:"bgp_sessions,omitempty"`
+	BgpCommunityV6 string       `json:"bgp_community_v6,omitempty"`
+	BgpAsV6        int          `json:"bgp_as_v6,omitempty"`
+	BgpSessionsV6  []BgpSession `json:"bgp_sessions_v6,omitempty"`
 }
 
 type Interface struct {
-	Interface int   `json:"interface"`
-	Ippool    []int `json:"ippool"`
+	Interface int   `json:"interface,omitempty"`
+	Ippool    []int `json:"ippool,omitempty"`
 }
 
 type Tasks struct {
-	ID    int   `json:"id"`
-	Tasks []int `json:"tasks"`
+	ID    int   `json:"id,omitempty"`
+	Tasks []int `json:"tasks,omitempty"`
 }
 
 type DeletedResponse struct {
-	Deleted []ID `json:"deleted"`
+	Deleted []ID `json:"deleted,omitempty"`
 }
 
 type DCNetworksResponse struct {
-	DcNetworks []int `json:"dc_networks"`
+	DcNetworks []int `json:"dc_networks,omitempty"`
 }
 
 type QemuVersion struct {
-	QemuVersion string `json:"qemu_version"`
+	QemuVersion string `json:"qemu_version,omitempty"`
 }
 
 type IPPoolRequest struct {
-	Interfaces []Interface `json:"interfaces"`
+	Interfaces []Interface `json:"interfaces,omitempty"`
 }
 
 type Name struct {
-	Name string `json:"name"`
+	Name string `json:"name,omitempty"`
 }
 
 type SSHKeysRequest struct {
-	SSHKeys []int `json:"ssh_keys"`
+	SSHKeys []int `json:"ssh_keys,omitempty"`
 }
 
 type AttachStorageToClusterRequest struct {
-	VirtPool       VirtPool `json:"virt_pool"`
-	IsMain         bool     `json:"is_main"`
-	HddOverselling int      `json:"hdd_overselling"`
-	IgnoreChecks   bool     `json:"ignore_checks"`
+	VirtPool       VirtPool `json:"virt_pool,omitempty"`
+	IsMain         bool     `json:"is_main,omitempty"`
+	HddOverselling int      `json:"hdd_overselling,omitempty"`
+	IgnoreChecks   bool     `json:"ignore_checks,omitempty"`
 }
 
 type StoragesTasks struct {
-	ID            int   `json:"id"`
-	Task          int   `json:"task"`
-	StoragesTasks []int `json:"storages_tasks"`
+	ID            int   `json:"id,omitempty"`
+	Task          int   `json:"task,omitempty"`
+	StoragesTasks []int `json:"storages_tasks,omitempty"`
 }
 
 type StorageTask struct {
-	ID            int `json:"id"`
-	Task          int `json:"task"`
-	StoragesTasks int `json:"storages_tasks"`
+	ID            int `json:"id,omitempty"`
+	Task          int `json:"task,omitempty"`
+	StoragesTasks int `json:"storages_tasks,omitempty"`
 }
 
 type HDDOversellingRequest struct {
-	Value float32 `json:"value"`
+	Value float32 `json:"value,omitempty"`
 }
 
 type HDDOversellingResponse struct {
-	Value          float32 `json:"value"`
-	HddOverselling float32 `json:"hdd_overselling"`
+	Value          float32 `json:"value,omitempty"`
+	HddOverselling float32 `json:"hdd_overselling,omitempty"`
 }
 
 type VXLanResponse struct {
-	LastNotify int            `json:"last_notify"`
-	List       []VxlanElement `json:"list"`
+	LastNotify int            `json:"last_notify,omitempty"`
+	List       []VxlanElement `json:"list,omitempty"`
 }
 
 type VxlanElement struct {
-	Account BaseAccount `json:"account"`
-	ID      int         `json:"id"`
-	Name    string      `json:"name"`
-	Tag     int         `json:"tag"`
-	Hosts   []Host      `json:"hosts"`
-	Ranges  []string    `json:"ranges"`
+	Account BaseAccount `json:"account,omitempty"`
+	ID      int         `json:"id,omitempty"`
+	Name    string      `json:"name,omitempty"`
+	Tag     int         `json:"tag,omitempty"`
+	Hosts   []Host      `json:"hosts,omitempty"`
+	Ranges  []string    `json:"ranges,omitempty"`
 }
 
 type Host struct {
-	ID   int      `json:"id"`
-	Name string   `json:"name"`
-	Node NodeHost `json:"node"`
+	ID   int      `json:"id,omitempty"`
+	Name string   `json:"name,omitempty"`
+	Node NodeHost `json:"node,omitempty"`
 }
 
 type NodeHost struct {
-	ID   int    `json:"id"`
-	Name string `json:"name"`
+	ID   int    `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
 }
 
 type NodesVXLanResponse struct {
-	LastNotify int          `json:"last_notify"`
-	List       []NodesVxlan `json:"list"`
+	LastNotify int          `json:"last_notify,omitempty"`
+	List       []NodesVxlan `json:"list,omitempty"`
 }
 
 type HostVxlan struct {
-	ID     int      `json:"id"`
-	Name   string   `json:"name"`
-	Ranges []string `json:"ranges"`
+	ID     int      `json:"id,omitempty"`
+	Name   string   `json:"name,omitempty"`
+	Ranges []string `json:"ranges,omitempty"`
 }
 
 type NodesVxlan struct {
-	Node   NodeHost            `json:"node"`
-	Vxlans []NodesVxlanElement `json:"vxlans"`
+	Node   NodeHost            `json:"node,omitempty"`
+	Vxlans []NodesVxlanElement `json:"vxlans,omitempty"`
 }
 
 type NodesVxlanElement struct {
-	ID    int         `json:"id"`
-	Name  string      `json:"name"`
-	Tag   int         `json:"tag"`
-	Hosts []HostVxlan `json:"hosts"`
+	ID    int         `json:"id,omitempty"`
+	Name  string      `json:"name,omitempty"`
+	Tag   int         `json:"tag,omitempty"`
+	Hosts []HostVxlan `json:"hosts,omitempty"`
 }
 
 type UsersVXLanResponse struct {
-	LastNotify int                `json:"last_notify"`
-	List       []UserVxlanElement `json:"list"`
+	LastNotify int                `json:"last_notify,omitempty"`
+	List       []UserVxlanElement `json:"list,omitempty"`
 }
 
 type UserVxlanElement struct {
-	Account BaseAccount `json:"account"`
-	Hosts   []UserHost  `json:"hosts"`
+	Account BaseAccount `json:"account,omitempty"`
+	Hosts   []UserHost  `json:"hosts,omitempty"`
 }
 
 type UserHost struct {
-	ID     int         `json:"id"`
-	Name   string      `json:"name"`
-	Node   NodeHost    `json:"node"`
-	Vxlans []UserVxlan `json:"vxlans"`
+	ID     int         `json:"id,omitempty"`
+	Name   string      `json:"name,omitempty"`
+	Node   NodeHost    `json:"node,omitempty"`
+	Vxlans []UserVxlan `json:"vxlans,omitempty"`
 }
 
 type UserVxlan struct {
-	ID     int      `json:"id"`
-	Name   string   `json:"name"`
-	Tag    int      `json:"tag"`
-	Ranges []string `json:"ranges"`
+	ID     int      `json:"id,omitempty"`
+	Name   string   `json:"name,omitempty"`
+	Tag    int      `json:"tag,omitempty"`
+	Ranges []string `json:"ranges,omitempty"`
 }
 
 type SSHKeyResponse struct {
-	LastNotify int      `json:"last_notify"`
-	List       []SSHKey `json:"list"`
+	LastNotify int      `json:"last_notify,omitempty"`
+	List       []SSHKey `json:"list,omitempty"`
 }
 
 type SSHKey struct {
-	ID       int    `json:"id"`
-	Name     string `json:"name"`
-	SSHKey   string `json:"ssh_key"`
-	Clusters []int  `json:"clusters"`
+	ID       int    `json:"id,omitempty"`
+	Name     string `json:"name,omitempty"`
+	SSHKey   string `json:"ssh_key,omitempty"`
+	Clusters []int  `json:"clusters,omitempty"`
 }
 
 type SSHKeyRequest struct {
-	Name     string `json:"name"`
-	SSHKey   string `json:"ssh_key"`
-	Clusters []int  `json:"clusters"`
+	Name     string `json:"name,omitempty"`
+	SSHKey   string `json:"ssh_key,omitempty"`
+	Clusters []int  `json:"clusters,omitempty"`
 }
 
 // Disk
 
 type DiskListResponse struct {
-	LastNotify int           `json:"last_notify"`
-	List       []DiskElement `json:"list"`
+	LastNotify int           `json:"last_notify,omitempty"`
+	List       []DiskElement `json:"list,omitempty"`
 }
 
 type DiskElement struct {
-	ID         int         `json:"id"`
-	Bus        string      `json:"bus"`
-	Name       string      `json:"name"`
-	ExpandPart string      `json:"expand_part"`
-	TargetDev  string      `json:"target_dev"`
-	SizeMib    int         `json:"size_mib"`
-	SizeMibNew int         `json:"size_mib_new"`
-	Account    BaseAccount `json:"account"`
-	Storage    StorageID   `json:"storage"`
-	Tags       []int       `json:"tags"`
-	Host       HostParams  `json:"host"`
-	Node       NodeHost    `json:"node"`
-	Cluster    ClusterID   `json:"cluster"`
+	ID         int         `json:"id,omitempty"`
+	Bus        string      `json:"bus,omitempty"`
+	Name       string      `json:"name,omitempty"`
+	ExpandPart string      `json:"expand_part,omitempty"`
+	TargetDev  string      `json:"target_dev,omitempty"`
+	SizeMib    int         `json:"size_mib,omitempty"`
+	SizeMibNew int         `json:"size_mib_new,omitempty"`
+	Account    BaseAccount `json:"account,omitempty"`
+	Storage    StorageID   `json:"storage,omitempty"`
+	Tags       []int       `json:"tags,omitempty"`
+	Host       HostParams  `json:"host,omitempty"`
+	Node       NodeHost    `json:"node,omitempty"`
+	Cluster    ClusterID   `json:"cluster,omitempty"`
 }
 
 type ClusterID struct {
-	ID   int    `json:"id"`
-	Name string `json:"name"`
-	Type string `json:"type"`
+	ID   int    `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
+	Type string `json:"type,omitempty"`
 }
 
 type HostParams struct {
-	ID        int    `json:"id"`
-	Name      string `json:"name"`
-	BootOrder int    `json:"boot_order"`
-	IsMain    bool   `json:"is_main"`
-	Bus       string `json:"bus"`
+	ID        int    `json:"id,omitempty"`
+	Name      string `json:"name,omitempty"`
+	BootOrder int    `json:"boot_order,omitempty"`
+	IsMain    bool   `json:"is_main,omitempty"`
+	Bus       string `json:"bus,omitempty"`
 }
 
 type StorageID struct {
-	ID   int    `json:"id"`
-	Name string `json:"name"`
+	ID   int    `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
 }
 
 type NewDiskRequest struct {
-	Name       string `json:"name"`
-	SizeMib    int    `json:"size_mib"`
-	Node       int    `json:"node"`
-	Account    int    `json:"account"`
-	Storage    int    `json:"storage"`
-	ExpandPart string `json:"expand_part"`
+	Name       string `json:"name,omitempty"`
+	SizeMib    int    `json:"size_mib,omitempty"`
+	Node       int    `json:"node,omitempty"`
+	Account    int    `json:"account,omitempty"`
+	Storage    int    `json:"storage,omitempty"`
+	ExpandPart string `json:"expand_part,omitempty"`
 }
 
 type UpdateDiskRequest struct {
-	Name       string `json:"name"`
-	Account    int    `json:"account"`
-	SizeMib    int    `json:"size_mib"`
-	ExpandPart string `json:"expand_part"`
-	Pool       int    `json:"pool"`
-	Defer      Action `json:"defer"`
+	Name       string `json:"name,omitempty"`
+	Account    int    `json:"account,omitempty"`
+	SizeMib    int    `json:"size_mib,omitempty"`
+	ExpandPart string `json:"expand_part,omitempty"`
+	Pool       int    `json:"pool,omitempty"`
+	Defer      Action `json:"defer,omitempty"`
 }
 
 type Action struct {
-	Action string `json:"action"`
+	Action string `json:"action,omitempty"`
 }
 
 type MigrateDiskRequest struct {
-	Storage int  `json:"storage"`
-	Node    int  `json:"node"`
-	Plain   bool `json:"plain"`
+	Storage int  `json:"storage,omitempty"`
+	Node    int  `json:"node,omitempty"`
+	Plain   bool `json:"plain,omitempty"`
 }
 
 type BackupIDRequest struct {
-	Backup int `json:"backup"`
+	Backup int `json:"backup,omitempty"`
 }
 
 type UpdateBootOrderRequest struct {
-	Disks []DiskBootOrder `json:"disks"`
+	Disks []DiskBootOrder `json:"disks,omitempty"`
 }
 
 type DiskBootOrder struct {
-	ID        int `json:"id"`
-	BootOrder int `json:"boot_order"`
+	ID        int `json:"id,omitempty"`
+	BootOrder int `json:"boot_order,omitempty"`
 }
 
 type DiskParams struct {
-	IsMain bool   `json:"is_main"`
-	Bus    string `json:"bus"`
+	IsMain bool   `json:"is_main,omitempty"`
+	Bus    string `json:"bus,omitempty"`
 }
 
 // Host
 
 type IP4 struct {
-	IP string `json:"ip"`
+	IP string `json:"ip,omitempty"`
 }
 
 type HostInterface struct {
-	HostInterface string `json:"host_interface"`
-	Mac           string `json:"mac"`
-	NodeInterface int    `json:"node_interface"`
+	HostInterface string `json:"host_interface,omitempty"`
+	Mac           string `json:"mac,omitempty"`
+	NodeInterface int    `json:"node_interface,omitempty"`
 }
 
 type HostNode struct {
-	ID     int    `json:"id"`
-	Name   string `json:"name"`
-	IPAddr string `json:"ip_addr"`
+	ID     int    `json:"id,omitempty"`
+	Name   string `json:"name,omitempty"`
+	IPAddr string `json:"ip_addr,omitempty"`
 }
 
 type HostDisk struct {
-	ID         int `json:"id"`
-	DiskMib    int `json:"disk_mib"`
-	DiskMibNew int `json:"disk_mib_new"`
+	ID         int `json:"id,omitempty"`
+	DiskMib    int `json:"disk_mib,omitempty"`
+	DiskMibNew int `json:"disk_mib_new,omitempty"`
 }
 
 type FirewallRule struct {
-	Action    string   `json:"action"`
-	Direction string   `json:"direction"`
-	Protocols []string `json:"protocols"`
-	Portstart int      `json:"portstart"`
-	Portend   int      `json:"portend"`
+	Action    string   `json:"action,omitempty"`
+	Direction string   `json:"direction,omitempty"`
+	Protocols []string `json:"protocols,omitempty"`
+	Portstart int      `json:"portstart,omitempty"`
+	Portend   int      `json:"portend,omitempty"`
 }
 
 type HostsResponse struct {
-	LastNotify int           `json:"last_notify"`
-	List       []HostElement `json:"list"`
+	LastNotify int           `json:"last_notify,omitempty"`
+	List       []HostElement `json:"list,omitempty"`
 }
 
 type HostElement struct {
-	ExpandPart                string          `json:"expand_part"`
-	ID                        int             `json:"id"`
-	Name                      string          `json:"name"`
-	IP4                       []IP4           `json:"ip4"`
-	Interfaces                []HostInterface `json:"interfaces"`
-	Node                      HostNode        `json:"node"`
-	Cluster                   Cluster         `json:"cluster"`
-	State                     string          `json:"state"`
-	Domain                    string          `json:"domain"`
-	Account                   BaseAccount     `json:"account"`
-	Comment                   string          `json:"comment"`
-	Disk                      HostDisk        `json:"disk"`
-	DiskCount                 int             `json:"disk_count"`
-	CPUNumber                 int             `json:"cpu_number"`
-	CPUNumberNew              int             `json:"cpu_number_new"`
-	RAMMib                    int             `json:"ram_mib"`
-	RAMMibNew                 int             `json:"ram_mib_new"`
-	NetBandwidthMbitps        int             `json:"net_bandwidth_mbitps"`
-	NetBandwidthMbitpsChanged bool            `json:"net_bandwidth_mbitps_changed"`
-	IPAutomation              string          `json:"ip_automation"`
-	NetIsSynced               bool            `json:"net_is_synced"`
-	Tags                      []string        `json:"tags"`
-	OsName                    string          `json:"os_name"`
-	OsGroup                   string          `json:"os_group"`
-	Uptime                    int             `json:"uptime"`
-	RescueMode                bool            `json:"rescue_mode"`
-	IsoMounted                bool            `json:"iso_mounted"`
-	CPUMode                   string          `json:"cpu_mode"`
-	Nesting                   bool            `json:"nesting"`
-	CPUCustomModel            string          `json:"cpu_custom_model"`
-	CPUWeight                 int             `json:"cpu_weight"`
-	IoWeight                  int             `json:"io_weight"`
-	IoReadMbitps              int             `json:"io_read_mbitps"`
-	IoWriteMbitps             int             `json:"io_write_mbitps"`
-	IoReadIops                int             `json:"io_read_iops"`
-	IoWriteIops               int             `json:"io_write_iops"`
-	NetInMbitps               int             `json:"net_in_mbitps"`
-	NetOutMbitps              int             `json:"net_out_mbitps"`
-	NetWeight                 int             `json:"net_weight"`
-	AntiSpoofing              bool            `json:"anti_spoofing"`
-	Disabled                  bool            `json:"disabled"`
-	TCPConnectionsIn          int             `json:"tcp_connections_in"`
-	TCPConnectionsOut         int             `json:"tcp_connections_out"`
-	ProcessNumber             int             `json:"process_number"`
-	Vxlan                     Vxlan           `json:"vxlan"`
-	FirewallRules             []FirewallRule  `json:"firewall_rules"`
-	HasNonameIface            bool            `json:"has_noname_iface"`
-	VM5Restrictions           VM5Restrictions `json:"vm5_restrictions"`
+	ExpandPart                string          `json:"expand_part,omitempty"`
+	ID                        int             `json:"id,omitempty"`
+	Name                      string          `json:"name,omitempty"`
+	IP4                       []IP4           `json:"ip4,omitempty"`
+	Interfaces                []HostInterface `json:"interfaces,omitempty"`
+	Node                      HostNode        `json:"node,omitempty"`
+	Cluster                   Cluster         `json:"cluster,omitempty"`
+	State                     string          `json:"state,omitempty"`
+	Domain                    string          `json:"domain,omitempty"`
+	Account                   BaseAccount     `json:"account,omitempty"`
+	Comment                   string          `json:"comment,omitempty"`
+	Disk                      HostDisk        `json:"disk,omitempty"`
+	DiskCount                 int             `json:"disk_count,omitempty"`
+	CPUNumber                 int             `json:"cpu_number,omitempty"`
+	CPUNumberNew              int             `json:"cpu_number_new,omitempty"`
+	RAMMib                    int             `json:"ram_mib,omitempty"`
+	RAMMibNew                 int             `json:"ram_mib_new,omitempty"`
+	NetBandwidthMbitps        int             `json:"net_bandwidth_mbitps,omitempty"`
+	NetBandwidthMbitpsChanged bool            `json:"net_bandwidth_mbitps_changed,omitempty"`
+	IPAutomation              string          `json:"ip_automation,omitempty"`
+	NetIsSynced               bool            `json:"net_is_synced,omitempty"`
+	Tags                      []string        `json:"tags,omitempty"`
+	OsName                    string          `json:"os_name,omitempty"`
+	OsGroup                   string          `json:"os_group,omitempty"`
+	Uptime                    int             `json:"uptime,omitempty"`
+	RescueMode                bool            `json:"rescue_mode,omitempty"`
+	IsoMounted                bool            `json:"iso_mounted,omitempty"`
+	CPUMode                   string          `json:"cpu_mode,omitempty"`
+	Nesting                   bool            `json:"nesting,omitempty"`
+	CPUCustomModel            string          `json:"cpu_custom_model,omitempty"`
+	CPUWeight                 int             `json:"cpu_weight,omitempty"`
+	IoWeight                  int             `json:"io_weight,omitempty"`
+	IoReadMbitps              int             `json:"io_read_mbitps,omitempty"`
+	IoWriteMbitps             int             `json:"io_write_mbitps,omitempty"`
+	IoReadIops                int             `json:"io_read_iops,omitempty"`
+	IoWriteIops               int             `json:"io_write_iops,omitempty"`
+	NetInMbitps               int             `json:"net_in_mbitps,omitempty"`
+	NetOutMbitps              int             `json:"net_out_mbitps,omitempty"`
+	NetWeight                 int             `json:"net_weight,omitempty"`
+	AntiSpoofing              bool            `json:"anti_spoofing,omitempty"`
+	Disabled                  bool            `json:"disabled,omitempty"`
+	TCPConnectionsIn          int             `json:"tcp_connections_in,omitempty"`
+	TCPConnectionsOut         int             `json:"tcp_connections_out,omitempty"`
+	ProcessNumber             int             `json:"process_number,omitempty"`
+	Vxlan                     Vxlan           `json:"vxlan,omitempty"`
+	FirewallRules             []FirewallRule  `json:"firewall_rules,omitempty"`
+	HasNonameIface            bool            `json:"has_noname_iface,omitempty"`
+	VM5Restrictions           VM5Restrictions `json:"vm5_restrictions,omitempty"`
 }
 
 type VM5Restrictions struct {
-	NetIfaceCount      bool `json:"net_iface_count"`
-	NatOrExtra         bool `json:"nat_or_extra"`
-	Ipv6               bool `json:"ipv6"`
-	UnsupportedStorage bool `json:"unsupported_storage"`
-	Iso                bool `json:"iso"`
-	Snapshot           bool `json:"snapshot"`
+	NetIfaceCount      bool `json:"net_iface_count,omitempty"`
+	NatOrExtra         bool `json:"nat_or_extra,omitempty"`
+	Ipv6               bool `json:"ipv6,omitempty"`
+	UnsupportedStorage bool `json:"unsupported_storage,omitempty"`
+	Iso                bool `json:"iso,omitempty"`
+	Snapshot           bool `json:"snapshot,omitempty"`
 }
 
 type RecipeElement struct {
-	Recipe       int            `json:"recipe"`
-	RecipeParams []RecipeParams `json:"recipe_params"`
+	Recipe       int            `json:"recipe,omitempty"`
+	RecipeParams []RecipeParams `json:"recipe_params,omitempty"`
 }
 
 type RecipeParams struct {
-	Name  string `json:"name"`
-	Value string `json:"value"`
+	Name  string `json:"name,omitempty"`
+	Value string `json:"value,omitempty"`
 }
 
 type DiskHostRequest struct {
-	Name       string `json:"name"`
-	SizeMib    int    `json:"size_mib"`
-	BootOrder  int    `json:"boot_order"`
-	ExpandPart string `json:"expand_part"`
-	Storage    int    `json:"storage"`
-	Tags       []int  `json:"tags"`
+	Name       string `json:"name,omitempty"`
+	SizeMib    int    `json:"size_mib,omitempty"`
+	BootOrder  int    `json:"boot_order,omitempty"`
+	ExpandPart string `json:"expand_part,omitempty"`
+	Storage    int    `json:"storage,omitempty"`
+	Tags       []int  `json:"tags,omitempty"`
 }
 
 type IPAddr struct {
-	Name              string `json:"name"`
-	IPPool            int    `json:"ip_pool"`
-	IPNetwork         int    `json:"ip_network"`
-	WithoutAllocation bool   `json:"without_allocation"`
+	Name              string `json:"name,omitempty"`
+	IPPool            int    `json:"ip_pool,omitempty"`
+	IPNetwork         int    `json:"ip_network,omitempty"`
+	WithoutAllocation bool   `json:"without_allocation,omitempty"`
 }
 
 type CustomInterface struct {
 }
 
 type HostVxlanRequest struct {
-	ID         int `json:"id"`
-	Ipv4Number int `json:"ipv4_number"`
-	Ipnet      int `json:"ipnet"`
+	ID         int `json:"id,omitempty"`
+	Ipv4Number int `json:"ipv4_number,omitempty"`
+	Ipnet      int `json:"ipnet,omitempty"`
 }
 
 type NewHostRequest struct {
-	Name                string             `json:"name"`
-	Cluster             int                `json:"cluster"`
-	Node                int                `json:"node"`
-	Storage             int                `json:"storage"`
-	Account             int                `json:"account"`
-	Domain              string             `json:"domain"`
-	Preset              int                `json:"preset"`
-	Os                  int                `json:"os"`
-	Image               int                `json:"image"`
-	ExpandPart          string             `json:"expand_part"`
-	RecipeList          []RecipeElement    `json:"recipe_list"`
-	Recipe              int                `json:"recipe"`
-	RecipeParams        []RecipeParams     `json:"recipe_params"`
-	IgnoreRecipeFilters bool               `json:"ignore_recipe_filters"`
-	Password            string             `json:"password"`
-	RAMMib              int                `json:"ram_mib"`
-	HddMib              int                `json:"hdd_mib"`
-	Disks               []DiskHostRequest  `json:"disks"`
-	CPUNumber           int                `json:"cpu_number"`
-	NetBandwidthMbitps  int                `json:"net_bandwidth_mbitps"`
-	IPAddr              IPAddr             `json:"ip_addr"`
-	Ipv6Enabled         bool               `json:"ipv6_enabled"`
-	Ipv6Pool            []int              `json:"ipv6_pool"`
-	Ipv6Prefix          int                `json:"ipv6_prefix"`
-	Ipv4Pool            []int              `json:"ipv4_pool"`
-	Ipv4Number          int                `json:"ipv4_number"`
-	Comment             string             `json:"comment"`
-	Interfaces          []Interface        `json:"interfaces"`
-	CustomInterfaces    []CustomInterface  `json:"custom_interfaces"`
-	CPUMode             string             `json:"cpu_mode"`
-	Nesting             bool               `json:"nesting"`
-	CPUCustomModel      string             `json:"cpu_custom_model"`
-	CPUWeight           int                `json:"cpu_weight"`
-	IoWeight            int                `json:"io_weight"`
-	IoReadMbitps        int                `json:"io_read_mbitps"`
-	IoWriteMbitps       int                `json:"io_write_mbitps"`
-	IoReadIops          int                `json:"io_read_iops"`
-	IoWriteIops         int                `json:"io_write_iops"`
-	NetInMbitps         int                `json:"net_in_mbitps"`
-	NetOutMbitps        int                `json:"net_out_mbitps"`
-	NetWeight           int                `json:"net_weight"`
-	AntiSpoofing        bool               `json:"anti_spoofing"`
-	TCPConnectionsIn    int                `json:"tcp_connections_in"`
-	TCPConnectionsOut   int                `json:"tcp_connections_out"`
-	ProcessNumber       int                `json:"process_number"`
-	FirewallRules       []FirewallRule     `json:"firewall_rules"`
-	SendEmailMode       string             `json:"send_email_mode"`
-	Vxlan               []HostVxlanRequest `json:"vxlan"`
+	Name                string             `json:"name,omitempty"`
+	Cluster             int                `json:"cluster,omitempty"`
+	Node                int                `json:"node,omitempty"`
+	Storage             int                `json:"storage,omitempty"`
+	Account             int                `json:"account,omitempty"`
+	Domain              string             `json:"domain,omitempty"`
+	Preset              int                `json:"preset,omitempty"`
+	Os                  int                `json:"os,omitempty"`
+	Image               int                `json:"image,omitempty"`
+	ExpandPart          string             `json:"expand_part,omitempty"`
+	RecipeList          []RecipeElement    `json:"recipe_list,omitempty"`
+	Recipe              int                `json:"recipe,omitempty"`
+	RecipeParams        []RecipeParams     `json:"recipe_params,omitempty"`
+	IgnoreRecipeFilters bool               `json:"ignore_recipe_filters,omitempty"`
+	Password            string             `json:"password,omitempty"`
+	RAMMib              int                `json:"ram_mib,omitempty"`
+	HddMib              int                `json:"hdd_mib,omitempty"`
+	Disks               []DiskHostRequest  `json:"disks,omitempty"`
+	CPUNumber           int                `json:"cpu_number,omitempty"`
+	NetBandwidthMbitps  int                `json:"net_bandwidth_mbitps,omitempty"`
+	IPAddr              IPAddr             `json:"ip_addr,omitempty"`
+	Ipv6Enabled         bool               `json:"ipv6_enabled,omitempty"`
+	Ipv6Pool            []int              `json:"ipv6_pool,omitempty"`
+	Ipv6Prefix          int                `json:"ipv6_prefix,omitempty"`
+	Ipv4Pool            []int              `json:"ipv4_pool,omitempty"`
+	Ipv4Number          int                `json:"ipv4_number,omitempty"`
+	Comment             string             `json:"comment,omitempty"`
+	Interfaces          []Interface        `json:"interfaces,omitempty"`
+	CustomInterfaces    []CustomInterface  `json:"custom_interfaces,omitempty"`
+	CPUMode             string             `json:"cpu_mode,omitempty"`
+	Nesting             bool               `json:"nesting,omitempty"`
+	CPUCustomModel      string             `json:"cpu_custom_model,omitempty"`
+	CPUWeight           int                `json:"cpu_weight,omitempty"`
+	IoWeight            int                `json:"io_weight,omitempty"`
+	IoReadMbitps        int                `json:"io_read_mbitps,omitempty"`
+	IoWriteMbitps       int                `json:"io_write_mbitps,omitempty"`
+	IoReadIops          int                `json:"io_read_iops,omitempty"`
+	IoWriteIops         int                `json:"io_write_iops,omitempty"`
+	NetInMbitps         int                `json:"net_in_mbitps,omitempty"`
+	NetOutMbitps        int                `json:"net_out_mbitps,omitempty"`
+	NetWeight           int                `json:"net_weight,omitempty"`
+	AntiSpoofing        bool               `json:"anti_spoofing,omitempty"`
+	TCPConnectionsIn    int                `json:"tcp_connections_in,omitempty"`
+	TCPConnectionsOut   int                `json:"tcp_connections_out,omitempty"`
+	ProcessNumber       int                `json:"process_number,omitempty"`
+	FirewallRules       []FirewallRule     `json:"firewall_rules,omitempty"`
+	SendEmailMode       string             `json:"send_email_mode,omitempty"`
+	Vxlan               []HostVxlanRequest `json:"vxlan,omitempty"`
 }
 
 type RecipeTask struct {
-	ID             int   `json:"id"`
-	Task           int   `json:"task"`
-	RecipeTaskList []int `json:"recipe_task_list"`
-	RecipeTask     int   `json:"recipe_task"`
+	ID             int   `json:"id,omitempty"`
+	Task           int   `json:"task,omitempty"`
+	RecipeTaskList []int `json:"recipe_task_list,omitempty"`
+	RecipeTask     int   `json:"recipe_task,omitempty"`
 }
 
 type HostResponse struct {
-	ID           int    `json:"id"`
-	InternalName string `json:"internal_name"`
-	Node         int    `json:"node"`
-	Name         string `json:"name"`
-	State        string `json:"state"`
-	CPUNumber    int    `json:"cpu_number"`
-	RAMMib       int    `json:"ram_mib"`
-	ExpandPart   string `json:"expand_part"`
-	NetIsSynced  bool   `json:"net_is_synced"`
-	IPAutomation string `json:"ip_automation"`
+	ID           int    `json:"id,omitempty"`
+	InternalName string `json:"internal_name,omitempty"`
+	Node         int    `json:"node,omitempty"`
+	Name         string `json:"name,omitempty"`
+	State        string `json:"state,omitempty"`
+	CPUNumber    int    `json:"cpu_number,omitempty"`
+	RAMMib       int    `json:"ram_mib,omitempty"`
+	ExpandPart   string `json:"expand_part,omitempty"`
+	NetIsSynced  bool   `json:"net_is_synced,omitempty"`
+	IPAutomation string `json:"ip_automation,omitempty"`
 }
 
 type Property struct {
 }
 
 type HostUpdateValues struct {
-	Password         string   `json:"password"`
-	VncPassword      string   `json:"vnc_password"`
-	State            string   `json:"state"`
-	StateUpdatedDate string   `json:"state_updated_date"`
-	GuestAgent       bool     `json:"guest_agent"`
-	VncPort          int      `json:"vnc_port"`
-	Property         Property `json:"property"`
-	StartDate        int      `json:"start_date"`
+	Password         string   `json:"password,omitempty"`
+	VncPassword      string   `json:"vnc_password,omitempty"`
+	State            string   `json:"state,omitempty"`
+	StateUpdatedDate string   `json:"state_updated_date,omitempty"`
+	GuestAgent       bool     `json:"guest_agent,omitempty"`
+	VncPort          int      `json:"vnc_port,omitempty"`
+	Property         Property `json:"property,omitempty"`
+	StartDate        int      `json:"start_date,omitempty"`
 }
 type HostUpdateRequest struct {
-	Values            HostUpdateValues `json:"values"`
-	Comment           string           `json:"comment"`
-	Name              string           `json:"name"`
-	HaRestoreOnFail   bool             `json:"ha_restore_on_fail"`
-	HaRestorePriority int              `json:"ha_restore_priority"`
-	ExpandPart        string           `json:"expand_part"`
+	Values            HostUpdateValues `json:"values,omitempty"`
+	Comment           string           `json:"comment,omitempty"`
+	Name              string           `json:"name,omitempty"`
+	HaRestoreOnFail   bool             `json:"ha_restore_on_fail,omitempty"`
+	HaRestorePriority int              `json:"ha_restore_priority,omitempty"`
+	ExpandPart        string           `json:"expand_part,omitempty"`
 }
 
 type Account struct {
-	Account int `json:"account"`
+	Account int `json:"account,omitempty"`
 }
 
 type ImageSize struct {
-	ImageGib int `json:"image_gib"`
+	ImageGib int `json:"image_gib,omitempty"`
 }
 
 type HistoryElement struct {
-	Name       string      `json:"name"`
-	DateCreate string      `json:"date_create"`
-	State      string      `json:"state"`
-	Params     interface{} `json:"params"`
-	User       string      `json:"user"`
+	Name       string      `json:"name,omitempty"`
+	DateCreate string      `json:"date_create,omitempty"`
+	State      string      `json:"state,omitempty"`
+	Params     interface{} `json:"params,omitempty"`
+	User       string      `json:"user,omitempty"`
 }
 
 type HostHistoryResponse struct {
-	List []HistoryElement `json:"list"`
+	List []HistoryElement `json:"list,omitempty"`
 }
 
 type IFaceElement struct {
-	ID     int      `json:"id"`
-	Name   string   `json:"name"`
-	Bridge string   `json:"bridge"`
-	IP     []string `json:"ip"`
-	Mac    string   `json:"mac"`
-	Model  string   `json:"model"`
-	Vxlan  int      `json:"vxlan"`
+	ID     int      `json:"id,omitempty"`
+	Name   string   `json:"name,omitempty"`
+	Bridge string   `json:"bridge,omitempty"`
+	IP     []string `json:"ip,omitempty"`
+	Mac    string   `json:"mac,omitempty"`
+	Model  string   `json:"model,omitempty"`
+	Vxlan  int      `json:"vxlan,omitempty"`
 }
 
 type IFace struct {
-	LastNotify int            `json:"last_notify"`
-	List       []IFaceElement `json:"list"`
+	LastNotify int            `json:"last_notify,omitempty"`
+	List       []IFaceElement `json:"list,omitempty"`
 }
 
 type IFaceParams struct {
-	Name          string `json:"name"`
-	Mac           string `json:"mac"`
-	Bridge        string `json:"bridge"`
-	IsMainNetwork bool   `json:"is_main_network"`
-	Ippool        int    `json:"ippool"`
-	IPCount       int    `json:"ip_count"`
+	Name          string `json:"name,omitempty"`
+	Mac           string `json:"mac,omitempty"`
+	Bridge        string `json:"bridge,omitempty"`
+	IsMainNetwork bool   `json:"is_main_network,omitempty"`
+	Ippool        int    `json:"ippool,omitempty"`
+	IPCount       int    `json:"ip_count,omitempty"`
 }
 
 type IFaceModel struct {
-	Model string `json:"model"`
+	Model string `json:"model,omitempty"`
 }
 
 type AddIPToHostRequest struct {
-	IPAddr      IPAddr             `json:"ip_addr"`
-	Ipv6Pool    []int              `json:"ipv6_pool"`
-	Ipv6Prefix  int                `json:"ipv6_prefix"`
-	Ipv6Enabled bool               `json:"ipv6_enabled"`
-	Ipv4Pool    []int              `json:"ipv4_pool"`
-	Ipv4Number  int                `json:"ipv4_number"`
-	Interfaces  []interface{}      `json:"interfaces"`
-	Vxlan       []HostVxlanRequest `json:"vxlan"`
+	IPAddr      IPAddr             `json:"ip_addr,omitempty"`
+	Ipv6Pool    []int              `json:"ipv6_pool,omitempty"`
+	Ipv6Prefix  int                `json:"ipv6_prefix,omitempty"`
+	Ipv6Enabled bool               `json:"ipv6_enabled,omitempty"`
+	Ipv4Pool    []int              `json:"ipv4_pool,omitempty"`
+	Ipv4Number  int                `json:"ipv4_number,omitempty"`
+	Interfaces  []interface{}      `json:"interfaces,omitempty"`
+	Vxlan       []HostVxlanRequest `json:"vxlan,omitempty"`
 }
 
 type IPAutomationType struct {
-	IPAutomationType string `json:"ip_automation_type"`
+	IPAutomationType string `json:"ip_automation_type,omitempty"`
 }
 
 type IPV4Host struct {
-	ID        int    `json:"id"`
-	Name      string `json:"name"`
-	Interface int    `json:"interface"`
+	ID        int    `json:"id,omitempty"`
+	Name      string `json:"name,omitempty"`
+	Interface int    `json:"interface,omitempty"`
 }
 
 type IPV4InfoElement struct {
-	ID               int      `json:"id"`
-	IPAddr           string   `json:"ip_addr"`
-	Domain           string   `json:"domain"`
-	Gateway          string   `json:"gateway"`
-	Mask             string   `json:"mask"`
-	State            string   `json:"state"`
-	Family           int      `json:"family"`
-	Ippool           int      `json:"ippool"`
-	Network          int      `json:"network"`
-	Host             IPV4Host `json:"host"`
-	ClusterInterface int      `json:"cluster_interface"`
-	Vxlan            Vxlan    `json:"vxlan"`
+	ID               int      `json:"id,omitempty"`
+	IPAddr           string   `json:"ip_addr,omitempty"`
+	Domain           string   `json:"domain,omitempty"`
+	Gateway          string   `json:"gateway,omitempty"`
+	Mask             string   `json:"mask,omitempty"`
+	State            string   `json:"state,omitempty"`
+	Family           int      `json:"family,omitempty"`
+	Ippool           int      `json:"ippool,omitempty"`
+	Network          int      `json:"network,omitempty"`
+	Host             IPV4Host `json:"host,omitempty"`
+	ClusterInterface int      `json:"cluster_interface,omitempty"`
+	Vxlan            Vxlan    `json:"vxlan,omitempty"`
 }
 
 type IPV4Info struct {
-	LastNotify int               `json:"last_notify"`
-	List       []IPV4InfoElement `json:"list"`
-	Size       int               `json:"size"`
+	LastNotify int               `json:"last_notify,omitempty"`
+	List       []IPV4InfoElement `json:"list,omitempty"`
+	Size       int               `json:"size,omitempty"`
 }
 
 type IPV6Info struct {
-	LastNotify     int  `json:"last_notify"`
-	Ipv6Enabled    bool `json:"ipv6_enabled"`
-	Ipv6PtrEnabled bool `json:"ipv6_ptr_enabled"`
+	LastNotify     int  `json:"last_notify,omitempty"`
+	Ipv6Enabled    bool `json:"ipv6_enabled,omitempty"`
+	Ipv6PtrEnabled bool `json:"ipv6_ptr_enabled,omitempty"`
 }
 
 type ISOTags struct {
-	URL  string   `json:"url"`
-	Tags []string `json:"tags"`
+	URL  string   `json:"url,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 }
 
 type Socket struct {
-	Socket string `json:"socket"`
+	Socket string `json:"socket,omitempty"`
 }
 
 type Metadata struct {
-	Metadata interface{} `json:"metadata"`
+	Metadata interface{} `json:"metadata,omitempty"`
 }
 
 type HostMigrationStorage struct {
-	ID           int    `json:"id"`
-	Name         string `json:"name"`
-	Type         string `json:"type"`
-	AvailableMib int    `json:"available_mib"`
+	ID           int    `json:"id,omitempty"`
+	Name         string `json:"name,omitempty"`
+	Type         string `json:"type,omitempty"`
+	AvailableMib int    `json:"available_mib,omitempty"`
 }
 
 type HostMigrateResponse struct {
-	Nodes []NodeElement `json:"nodes"`
+	Nodes []NodeElement `json:"nodes,omitempty"`
 }
 
 type DiskMigration struct {
-	ID         int `json:"id"`
-	DstStorage int `json:"dst_storage"`
+	ID         int `json:"id,omitempty"`
+	DstStorage int `json:"dst_storage,omitempty"`
 }
 
 type HostMigrateRequest struct {
-	Plain bool            `json:"plain"`
-	Node  int             `json:"node"`
-	Disks []DiskMigration `json:"disks"`
+	Plain bool            `json:"plain,omitempty"`
+	Node  int             `json:"node,omitempty"`
+	Disks []DiskMigration `json:"disks,omitempty"`
 }
 
 type PTRUpdateRequest struct {
-	Name   string `json:"name"`
-	Domain string `json:"domain"`
+	Name   string `json:"name,omitempty"`
+	Domain string `json:"domain,omitempty"`
 }
 
 type PTRIP struct {
-	ID     int    `json:"id"`
-	Name   string `json:"name"`
-	Domain string `json:"domain"`
-	Status string `json:"status"`
+	ID     int    `json:"id,omitempty"`
+	Name   string `json:"name,omitempty"`
+	Domain string `json:"domain,omitempty"`
+	Status string `json:"status,omitempty"`
 }
 
 type PTRElement struct {
-	Family  int     `json:"family"`
-	Gateway string  `json:"gateway"`
-	IP      []PTRIP `json:"ip"`
-	IPCount int     `json:"ip_count"`
-	Network string  `json:"network"`
-	Prefix  int     `json:"prefix"`
+	Family  int     `json:"family,omitempty"`
+	Gateway string  `json:"gateway,omitempty"`
+	IP      []PTRIP `json:"ip,omitempty"`
+	IPCount int     `json:"ip_count,omitempty"`
+	Network string  `json:"network,omitempty"`
+	Prefix  int     `json:"prefix,omitempty"`
 }
 
 type PTRResponse struct {
-	List []PTRElement `json:"list"`
+	List []PTRElement `json:"list,omitempty"`
 }
 
 type Domain struct {
-	Domain string `json:"domain"`
+	Domain string `json:"domain,omitempty"`
 }
 
 type HostRecipe struct {
-	Recipe       int                `json:"recipe"`
-	RecipeParams []HostRecipeParams `json:"recipe_params"`
+	Recipe       int                `json:"recipe,omitempty"`
+	RecipeParams []HostRecipeParams `json:"recipe_params,omitempty"`
 }
 
 type HostRecipeParams struct {
-	Name  string `json:"name"`
-	Value string `json:"value"`
+	Name  string `json:"name,omitempty"`
+	Value string `json:"value,omitempty"`
 }
 
 type HostReinstallRequest struct {
-	Os                  int                `json:"os"`
-	Image               int                `json:"image"`
-	RecipeList          []HostRecipe       `json:"recipe_list"`
-	Recipe              int                `json:"recipe"`
-	RecipeParams        []HostRecipeParams `json:"recipe_params"`
-	IgnoreRecipeFilters bool               `json:"ignore_recipe_filters"`
-	SendEmailMode       string             `json:"send_email_mode"`
-	Password            string             `json:"password"`
-	Disk                int                `json:"disk"`
+	Os                  int                `json:"os,omitempty"`
+	Image               int                `json:"image,omitempty"`
+	RecipeList          []HostRecipe       `json:"recipe_list,omitempty"`
+	Recipe              int                `json:"recipe,omitempty"`
+	RecipeParams        []HostRecipeParams `json:"recipe_params,omitempty"`
+	IgnoreRecipeFilters bool               `json:"ignore_recipe_filters,omitempty"`
+	SendEmailMode       string             `json:"send_email_mode,omitempty"`
+	Password            string             `json:"password,omitempty"`
+	Disk                int                `json:"disk,omitempty"`
 }
 
 type RescueMode struct {
-	RescueMode bool `json:"rescue_mode"`
+	RescueMode bool `json:"rescue_mode,omitempty"`
 }
 
 type HostResourceUpdateRequest struct {
-	CPUNumber          int            `json:"cpu_number"`
-	RAMMib             int            `json:"ram_mib"`
-	NetBandwidthMbitps int            `json:"net_bandwidth_mbitps"`
-	CPUMode            string         `json:"cpu_mode"`
-	Nesting            bool           `json:"nesting"`
-	CPUCustomModel     string         `json:"cpu_custom_model"`
-	CPUWeight          int            `json:"cpu_weight"`
-	IoWeight           int            `json:"io_weight"`
-	IoReadMbitps       int            `json:"io_read_mbitps"`
-	IoWriteMbitps      int            `json:"io_write_mbitps"`
-	IoReadIops         int            `json:"io_read_iops"`
-	IoWriteIops        int            `json:"io_write_iops"`
-	NetInMbitps        int            `json:"net_in_mbitps"`
-	NetOutMbitps       int            `json:"net_out_mbitps"`
-	NetWeight          int            `json:"net_weight"`
-	AntiSpoofing       bool           `json:"anti_spoofing"`
-	TCPConnectionsIn   int            `json:"tcp_connections_in"`
-	TCPConnectionsOut  int            `json:"tcp_connections_out"`
-	ProcessNumber      int            `json:"process_number"`
-	FirewallRules      []FirewallRule `json:"firewall_rules"`
-	Defer              Action         `json:"defer"`
+	CPUNumber          int            `json:"cpu_number,omitempty"`
+	RAMMib             int            `json:"ram_mib,omitempty"`
+	NetBandwidthMbitps int            `json:"net_bandwidth_mbitps,omitempty"`
+	CPUMode            string         `json:"cpu_mode,omitempty"`
+	Nesting            bool           `json:"nesting,omitempty"`
+	CPUCustomModel     string         `json:"cpu_custom_model,omitempty"`
+	CPUWeight          int            `json:"cpu_weight,omitempty"`
+	IoWeight           int            `json:"io_weight,omitempty"`
+	IoReadMbitps       int            `json:"io_read_mbitps,omitempty"`
+	IoWriteMbitps      int            `json:"io_write_mbitps,omitempty"`
+	IoReadIops         int            `json:"io_read_iops,omitempty"`
+	IoWriteIops        int            `json:"io_write_iops,omitempty"`
+	NetInMbitps        int            `json:"net_in_mbitps,omitempty"`
+	NetOutMbitps       int            `json:"net_out_mbitps,omitempty"`
+	NetWeight          int            `json:"net_weight,omitempty"`
+	AntiSpoofing       bool           `json:"anti_spoofing,omitempty"`
+	TCPConnectionsIn   int            `json:"tcp_connections_in,omitempty"`
+	TCPConnectionsOut  int            `json:"tcp_connections_out,omitempty"`
+	ProcessNumber      int            `json:"process_number,omitempty"`
+	FirewallRules      []FirewallRule `json:"firewall_rules,omitempty"`
+	Defer              Action         `json:"defer,omitempty"`
 }
 
 type HostBackup struct {
-	Backup int `json:"backup"`
+	Backup int `json:"backup,omitempty"`
 }
 
 type Recipient struct {
-	Lang  string `json:"lang"`
-	Email string `json:"email"`
+	Lang  string `json:"lang,omitempty"`
+	Email string `json:"email,omitempty"`
 }
 
 type Recipe struct {
-	Recipe              int            `json:"recipe"`
-	Body                string         `json:"body"`
-	RecipeParams        []RecipeParams `json:"recipe_params"`
-	SendEmail           bool           `json:"send_email"`
-	IgnoreRecipeFilters bool           `json:"ignore_recipe_filters"`
-	Recipients          []Recipient    `json:"recipients"`
+	Recipe              int            `json:"recipe,omitempty"`
+	Body                string         `json:"body,omitempty"`
+	RecipeParams        []RecipeParams `json:"recipe_params,omitempty"`
+	SendEmail           bool           `json:"send_email,omitempty"`
+	IgnoreRecipeFilters bool           `json:"ignore_recipe_filters,omitempty"`
+	Recipients          []Recipient    `json:"recipients,omitempty"`
 }
 
 type VNCPort struct {
-	Domain  string `json:"domain"`
-	VncPort int    `json:"vnc_port"`
-	VncPass string `json:"vnc_pass"`
+	Domain  string `json:"domain,omitempty"`
+	VncPort int    `json:"vnc_port,omitempty"`
+	VncPass string `json:"vnc_pass,omitempty"`
 }
 
 type VNCPortUpdateRequest struct {
-	List []VNCPort `json:"list"`
+	List []VNCPort `json:"list,omitempty"`
 }
 
 type IP struct {
-	ID               int    `json:"id"`
-	IPAddr           string `json:"ip_addr"`
-	Domain           string `json:"domain"`
-	Gateway          string `json:"gateway"`
-	Mask             string `json:"mask"`
-	State            string `json:"state"`
-	Family           int    `json:"family"`
-	Ippool           int    `json:"ippool"`
-	Network          int    `json:"network"`
-	Host             IPHost `json:"host"`
-	ClusterInterface int    `json:"cluster_interface"`
+	ID               int    `json:"id,omitempty"`
+	IPAddr           string `json:"ip_addr,omitempty"`
+	Domain           string `json:"domain,omitempty"`
+	Gateway          string `json:"gateway,omitempty"`
+	Mask             string `json:"mask,omitempty"`
+	State            string `json:"state,omitempty"`
+	Family           int    `json:"family,omitempty"`
+	Ippool           int    `json:"ippool,omitempty"`
+	Network          int    `json:"network,omitempty"`
+	Host             IPHost `json:"host,omitempty"`
+	ClusterInterface int    `json:"cluster_interface,omitempty"`
 }
 
 type IPHost struct {
-	ID        int    `json:"id"`
-	Name      string `json:"name"`
-	Interface int    `json:"interface"`
+	ID        int    `json:"id,omitempty"`
+	Name      string `json:"name,omitempty"`
+	Interface int    `json:"interface,omitempty"`
 }
 
 type IPList struct {
-	LastNotify int  `json:"last_notify"`
-	List       []IP `json:"list"`
-	Size       int  `json:"size"`
+	LastNotify int  `json:"last_notify,omitempty"`
+	List       []IP `json:"list,omitempty"`
+	Size       int  `json:"size,omitempty"`
 }
 
 type UpdateIPResponseValues struct {
-	Domain  string `json:"domain"`
-	Gateway string `json:"gateway"`
-	IPAddr  string `json:"ip_addr"`
-	Netmask string `json:"netmask"`
+	Domain  string `json:"domain,omitempty"`
+	Gateway string `json:"gateway,omitempty"`
+	IPAddr  string `json:"ip_addr,omitempty"`
+	Netmask string `json:"netmask,omitempty"`
 }
 type UpdateIPResponse struct {
-	Values UpdateIPResponseValues `json:"values"`
+	Values UpdateIPResponseValues `json:"values,omitempty"`
 }
 
 type ScheduleElement struct {
-	Name           string      `json:"name"`
-	Handler        string      `json:"handler"`
-	Service        string      `json:"service"`
-	Method         string      `json:"method"`
-	InstanceID     int         `json:"instance_id"`
-	URLQueryParams interface{} `json:"url_query_params"`
-	PostParams     interface{} `json:"post_params"`
-	CronExpression string      `json:"cron_expression"`
+	Name           string      `json:"name,omitempty"`
+	Handler        string      `json:"handler,omitempty"`
+	Service        string      `json:"service,omitempty"`
+	Method         string      `json:"method,omitempty"`
+	InstanceID     int         `json:"instance_id,omitempty"`
+	URLQueryParams interface{} `json:"url_query_params,omitempty"`
+	PostParams     interface{} `json:"post_params,omitempty"`
+	CronExpression string      `json:"cron_expression,omitempty"`
 }
 
 type ScheduleListResponse struct {
-	SheduleList []ScheduleElement `json:"shedule_list"`
+	SheduleList []ScheduleElement `json:"shedule_list,omitempty"`
 }
 
 // Images
 
 type Image struct {
-	Name    string `json:"name"`
-	Account int    `json:"account"`
-	Comment string `json:"comment"`
-	ForAll  bool   `json:"for_all"`
+	Name    string `json:"name,omitempty"`
+	Account int    `json:"account,omitempty"`
+	Comment string `json:"comment,omitempty"`
+	ForAll  bool   `json:"for_all,omitempty"`
 }
 
 type ImagesListResponse struct {
-	LastNotify int                         `json:"last_notify"`
-	List       []ImagesListResponseElement `json:"list"`
+	LastNotify int                         `json:"last_notify,omitempty"`
+	List       []ImagesListResponseElement `json:"list,omitempty"`
 }
 
 type ImagesListResponseElement struct {
-	ID      int                      `json:"id"`
-	Name    string                   `json:"name"`
-	Account string                   `json:"account"`
-	ForAll  bool                     `json:"for_all"`
-	Type    string                   `json:"type"`
-	Comment string                   `json:"comment"`
-	State   string                   `json:"state"`
-	Nodes   []ImagesListResponseNode `json:"nodes"`
+	ID      int                      `json:"id,omitempty"`
+	Name    string                   `json:"name,omitempty"`
+	Account string                   `json:"account,omitempty"`
+	ForAll  bool                     `json:"for_all,omitempty"`
+	Type    string                   `json:"type,omitempty"`
+	Comment string                   `json:"comment,omitempty"`
+	State   string                   `json:"state,omitempty"`
+	Nodes   []ImagesListResponseNode `json:"nodes,omitempty"`
 }
 
 type ImagesListResponseNode struct {
-	ID      int    `json:"id"`
-	Name    string `json:"name"`
-	IPAddr  string `json:"ip_addr"`
-	SSHPort int    `json:"ssh_port"`
+	ID      int    `json:"id,omitempty"`
+	Name    string `json:"name,omitempty"`
+	IPAddr  string `json:"ip_addr,omitempty"`
+	SSHPort int    `json:"ssh_port,omitempty"`
 }
 
 type ImageResponse struct {
-	ID    int    `json:"id"`
-	Name  string `json:"name"`
-	State string `json:"state"`
+	ID    int    `json:"id,omitempty"`
+	Name  string `json:"name,omitempty"`
+	State string `json:"state,omitempty"`
 }
 
 type ImageState struct {
-	State string `json:"state"`
+	State string `json:"state,omitempty"`
 }
 
 // Import
 
 type ImportHistoryResponse struct {
-	List []ImportHistoryResponseElement `json:"list"`
+	List []ImportHistoryResponseElement `json:"list,omitempty"`
 }
 
 type ImportHistoryResponseElement struct {
-	Data   string `json:"data"`
-	Date   string `json:"date"`
-	TaskID int    `json:"task_id"`
-	Type   string `json:"type"`
+	Data   string `json:"data,omitempty"`
+	Date   string `json:"date,omitempty"`
+	TaskID int    `json:"task_id,omitempty"`
+	Type   string `json:"type,omitempty"`
 }
 
 type ImportHistoryRequest struct {
-	Data   string `json:"data"`
-	TaskID int    `json:"task_id"`
-	State  string `json:"state"`
-	Type   string `json:"type"`
-	URL    string `json:"url"`
+	Data   string `json:"data,omitempty"`
+	TaskID int    `json:"task_id,omitempty"`
+	State  string `json:"state,omitempty"`
+	Type   string `json:"type,omitempty"`
+	URL    string `json:"url,omitempty"`
 }
 
 type ImportHistoryResult struct {
-	State  string `json:"state"`
-	Result Result `json:"result"`
+	State  string `json:"state,omitempty"`
+	Result Result `json:"result,omitempty"`
 }
 
 type Result struct {
-	AdditionalProp1 interface{} `json:"additionalProp1"`
+	AdditionalProp1 interface{} `json:"additionalProp1,omitempty"`
 }
 
 type ImportedFrom struct {
-	IP       string `json:"ip"`
-	Type     string `json:"type"`
-	SSHPort  int    `json:"ssh_port"`
-	Password string `json:"password"`
+	IP       string `json:"ip,omitempty"`
+	Type     string `json:"type,omitempty"`
+	SSHPort  int    `json:"ssh_port,omitempty"`
+	Password string `json:"password,omitempty"`
 }
 
 type User struct {
-	ID              int         `json:"id"`
-	Name            string      `json:"name"`
-	Level           string      `json:"level"`
-	Enabled         bool        `json:"enabled"`
-	AdditionalProp1 interface{} `json:"additionalProp1"`
+	ID              int         `json:"id,omitempty"`
+	Name            string      `json:"name,omitempty"`
+	Level           string      `json:"level,omitempty"`
+	Enabled         bool        `json:"enabled,omitempty"`
+	AdditionalProp1 interface{} `json:"additionalProp1,omitempty"`
 }
 
 type Event struct {
-	AdditionalProp1 interface{} `json:"additionalProp1"`
+	AdditionalProp1 interface{} `json:"additionalProp1,omitempty"`
 }
 
 type Network struct {
-	AdditionalProp1 interface{} `json:"additionalProp1"`
+	AdditionalProp1 interface{} `json:"additionalProp1,omitempty"`
 }
 
 type ImportStorage struct {
-	Name            string      `json:"name"`
-	PoolType        string      `json:"pool_type"`
-	TgtPath         string      `json:"tgt_path"`
-	AdditionalProp1 interface{} `json:"additionalProp1"`
+	Name            string      `json:"name,omitempty"`
+	PoolType        string      `json:"pool_type,omitempty"`
+	TgtPath         string      `json:"tgt_path,omitempty"`
+	AdditionalProp1 interface{} `json:"additionalProp1,omitempty"`
 }
 
 type Setting struct {
-	AdditionalProp1 interface{} `json:"additionalProp1"`
+	AdditionalProp1 interface{} `json:"additionalProp1,omitempty"`
 }
 
 type ImportClusterParams struct {
-	ImportHistory    int             `json:"import_history"`
-	ClusterName      string          `json:"cluster_name"`
-	OsStoragePath    string          `json:"os_storage_path"`
-	ImageStoragePath string          `json:"image_storage_path"`
-	RAMOverselling   int             `json:"ram_overselling"`
-	DNSServers       []string        `json:"dns_servers"`
-	Timezone         string          `json:"timezone"`
-	ImportedFrom     ImportedFrom    `json:"imported_from"`
-	User             []User          `json:"user"`
-	Event            Event           `json:"event"`
-	Network          []Network       `json:"network"`
-	Storage          []ImportStorage `json:"storage"`
-	Settings         []Setting       `json:"settings"`
-	Node             []ImportNode    `json:"node"`
-	AdditionalProp1  interface{}     `json:"additionalProp1"`
+	ImportHistory    int             `json:"import_history,omitempty"`
+	ClusterName      string          `json:"cluster_name,omitempty"`
+	OsStoragePath    string          `json:"os_storage_path,omitempty"`
+	ImageStoragePath string          `json:"image_storage_path,omitempty"`
+	RAMOverselling   int             `json:"ram_overselling,omitempty"`
+	DNSServers       []string        `json:"dns_servers,omitempty"`
+	Timezone         string          `json:"timezone,omitempty"`
+	ImportedFrom     ImportedFrom    `json:"imported_from,omitempty"`
+	User             []User          `json:"user,omitempty"`
+	Event            Event           `json:"event,omitempty"`
+	Network          []Network       `json:"network,omitempty"`
+	Storage          []ImportStorage `json:"storage,omitempty"`
+	Settings         []Setting       `json:"settings,omitempty"`
+	Node             []ImportNode    `json:"node,omitempty"`
+	AdditionalProp1  interface{}     `json:"additionalProp1,omitempty"`
 }
 
 type ImportNode struct {
-	Name            string                 `json:"name"`
-	IP              string                 `json:"ip"`
-	SSHPort         int                    `json:"ssh_port"`
-	Password        string                 `json:"password"`
-	Status          int                    `json:"status"`
-	Fake            bool                   `json:"fake"`
-	PhysicalCpucore int                    `json:"physical_cpucore"`
-	AllocationRule  []ImportAllocationRule `json:"allocation_rule"`
-	Host            []ImportHost           `json:"host"`
-	AdditionalProp1 interface{}            `json:"additionalProp1"`
+	Name            string                 `json:"name,omitempty"`
+	IP              string                 `json:"ip,omitempty"`
+	SSHPort         int                    `json:"ssh_port,omitempty"`
+	Password        string                 `json:"password,omitempty"`
+	Status          int                    `json:"status,omitempty"`
+	Fake            bool                   `json:"fake,omitempty"`
+	PhysicalCpucore int                    `json:"physical_cpucore,omitempty"`
+	AllocationRule  []ImportAllocationRule `json:"allocation_rule,omitempty"`
+	Host            []ImportHost           `json:"host,omitempty"`
+	AdditionalProp1 interface{}            `json:"additionalProp1,omitempty"`
 }
 
 type ImportAllocationRule struct {
-	Priority        int         `json:"priority"`
-	RuleType        int         `json:"rule_type"`
-	RuleOper        int         `json:"rule_oper"`
-	Value           string      `json:"value"`
-	Action          int         `json:"action"`
-	Stop            bool        `json:"stop"`
-	AdditionalProp1 interface{} `json:"additionalProp1"`
+	Priority        int         `json:"priority,omitempty"`
+	RuleType        int         `json:"rule_type,omitempty"`
+	RuleOper        int         `json:"rule_oper,omitempty"`
+	Value           string      `json:"value,omitempty"`
+	Action          int         `json:"action,omitempty"`
+	Stop            bool        `json:"stop,omitempty"`
+	AdditionalProp1 interface{} `json:"additionalProp1,omitempty"`
 }
 
 type ImportHost struct {
-	Name            string            `json:"name"`
-	CPU             int               `json:"cpu"`
-	RAM             int               `json:"ram"`
-	Fake            bool              `json:"fake"`
-	Interface       []ImportInterface `json:"interface"`
-	FirewallRules   []FirewallRule    `json:"firewall_rules"`
-	AdditionalProp1 interface{}       `json:"additionalProp1"`
+	Name            string            `json:"name,omitempty"`
+	CPU             int               `json:"cpu,omitempty"`
+	RAM             int               `json:"ram,omitempty"`
+	Fake            bool              `json:"fake,omitempty"`
+	Interface       []ImportInterface `json:"interface,omitempty"`
+	FirewallRules   []FirewallRule    `json:"firewall_rules,omitempty"`
+	AdditionalProp1 interface{}       `json:"additionalProp1,omitempty"`
 }
 
 type ImportInterface struct {
-	ID              int         `json:"id"`
-	VMID            int         `json:"vm_id"`
-	NetID           int         `json:"net_id"`
-	Mac             string      `json:"mac"`
-	NicModel        string      `json:"nic_model"`
-	AdditionalProp1 interface{} `json:"additionalProp1"`
+	ID              int         `json:"id,omitempty"`
+	VMID            int         `json:"vm_id,omitempty"`
+	NetID           int         `json:"net_id,omitempty"`
+	Mac             string      `json:"mac,omitempty"`
+	NicModel        string      `json:"nic_model,omitempty"`
+	AdditionalProp1 interface{} `json:"additionalProp1,omitempty"`
 }
 
 // License
 
 type License struct {
-	Key string `json:"key"`
+	Key string `json:"key,omitempty"`
 }
 
 type Clusters struct {
-	Clusters []int `json:"clusters"`
+	Clusters []int `json:"clusters,omitempty"`
 }
 
 type IPNetUpdate struct {
-	Gateway     string `json:"gateway"`
-	NeedReserve bool   `json:"need_reserve"`
-	Name        string `json:"name"`
-	Vlan        string `json:"vlan"`
-	Note        string `json:"note"`
+	Gateway     string `json:"gateway,omitempty"`
+	NeedReserve bool   `json:"need_reserve,omitempty"`
+	Name        string `json:"name,omitempty"`
+	Vlan        string `json:"vlan,omitempty"`
+	Note        string `json:"note,omitempty"`
 }
 
 type IPPoolConnectRequest struct {
-	Clusters []IPPoolCluster `json:"clusters"`
+	Clusters []IPPoolCluster `json:"clusters,omitempty"`
 }
 
 type IPPoolCluster struct {
-	Name      string `json:"name"`
-	ID        int    `json:"id"`
-	Enabled   bool   `json:"enabled"`
-	Interface int    `json:"interface"`
+	Name      string `json:"name,omitempty"`
+	ID        int    `json:"id,omitempty"`
+	Enabled   bool   `json:"enabled,omitempty"`
+	Interface int    `json:"interface,omitempty"`
 }
 
 type IPPoolRangeRequest struct {
-	Name string `json:"name"`
+	Name string `json:"name,omitempty"`
 }
 
 type IPMgr5MigrateRequest struct {
-	Dbhost     string `json:"dbhost"`
-	Dbname     string `json:"dbname"`
-	Dbuser     string `json:"dbuser"`
-	Dbpassword string `json:"dbpassword"`
+	Dbhost     string `json:"dbhost,omitempty"`
+	Dbname     string `json:"dbname,omitempty"`
+	Dbuser     string `json:"dbuser,omitempty"`
+	Dbpassword string `json:"dbpassword,omitempty"`
 }
 
 type HetznerIPs struct {
-	HetznerIP []string `json:"hetzner_ip"`
+	HetznerIP []string `json:"hetzner_ip,omitempty"`
 }
 
 type NodeIPUpdateRequest struct {
-	IP      string `json:"ip"`
-	SSHPort int    `json:"ssh_port"`
+	IP      string `json:"ip,omitempty"`
+	SSHPort int    `json:"ssh_port,omitempty"`
 }
 
 type IPPoolResponse struct {
-	LastNotify int      `json:"last_notify"`
-	List       []IPPool `json:"list"`
+	LastNotify int      `json:"last_notify,omitempty"`
+	List       []IPPool `json:"list,omitempty"`
 }
 
 type IPPool struct {
-	ID       int         `json:"id"`
-	Name     string      `json:"name"`
-	Note     string      `json:"note"`
-	TotalIP  string      `json:"total_ip"`
-	UsingIP  string      `json:"using_ip"`
-	Clusters []ClusterID `json:"clusters"`
+	ID       int         `json:"id,omitempty"`
+	Name     string      `json:"name,omitempty"`
+	Note     string      `json:"note,omitempty"`
+	TotalIP  string      `json:"total_ip,omitempty"`
+	UsingIP  string      `json:"using_ip,omitempty"`
+	Clusters []ClusterID `json:"clusters,omitempty"`
 }
 
 type IPPoolClusterListResponse struct {
-	LastNotify int             `json:"last_notify"`
-	List       []IPPoolCluster `json:"list"`
+	LastNotify int             `json:"last_notify,omitempty"`
+	List       []IPPoolCluster `json:"list,omitempty"`
 }
 
 type NodeHetznerIPResponse struct {
-	LastNotify int                    `json:"last_notify"`
-	List       []NodeHetznerIPElement `json:"list"`
-	Size       int                    `json:"size"`
+	LastNotify int                    `json:"last_notify,omitempty"`
+	List       []NodeHetznerIPElement `json:"list,omitempty"`
+	Size       int                    `json:"size,omitempty"`
 }
 
 type NodeHetznerIPElement struct {
-	Host   Host          `json:"host"`
-	IP     HetznerIP     `json:"ip"`
-	Subnet HetznerSubnet `json:"subnet"`
+	Host   Host          `json:"host,omitempty"`
+	IP     HetznerIP     `json:"ip,omitempty"`
+	Subnet HetznerSubnet `json:"subnet,omitempty"`
 }
 
 type HetznerIP struct {
-	ID     int    `json:"id"`
-	IPAddr string `json:"ip_addr"`
-	State  string `json:"state"`
+	ID     int    `json:"id,omitempty"`
+	IPAddr string `json:"ip_addr,omitempty"`
+	State  string `json:"state,omitempty"`
 }
 
 type HetznerSubnet struct {
-	ID     int    `json:"id"`
-	Subnet string `json:"subnet"`
-	UsedIP int    `json:"used_ip"`
+	ID     int    `json:"id,omitempty"`
+	Subnet string `json:"subnet,omitempty"`
+	UsedIP int    `json:"used_ip,omitempty"`
 }
 
 // Nodes
 type NodeCluster struct {
-	DataCenter string `json:"data_center"`
-	ID         int    `json:"id"`
-	Name       string `json:"name"`
-	TimeZone   string `json:"time_zone"`
+	DataCenter string `json:"data_center,omitempty"`
+	ID         int    `json:"id,omitempty"`
+	Name       string `json:"name,omitempty"`
+	TimeZone   string `json:"time_zone,omitempty"`
 }
 type NodeInterface struct {
-	NodeInterface string `json:"node_interface"`
-	NetworkSwitch string `json:"network_switch"`
-	ID            int    `json:"id"`
+	NodeInterface string `json:"node_interface,omitempty"`
+	NetworkSwitch string `json:"network_switch,omitempty"`
+	ID            int    `json:"id,omitempty"`
 }
 type NodesResponse struct {
-	LastNotify int           `json:"last_notify"`
-	List       []NodeElement `json:"list"`
+	LastNotify int           `json:"last_notify,omitempty"`
+	List       []NodeElement `json:"list,omitempty"`
 }
 
 type NodeElement struct {
-	ID                  int             `json:"id"`
-	Name                string          `json:"name"`
-	Cluster             NodeCluster     `json:"cluster"`
-	IP                  string          `json:"ip"`
-	Ipv6                string          `json:"ipv6"`
-	State               string          `json:"state"`
-	StorageMib          StorageMib      `json:"storage_mib"`
-	RAMMib              RAMMib          `json:"ram_mib"`
-	CPUNumber           int             `json:"cpu_number"`
-	Comment             string          `json:"comment"`
-	Interfaces          []NodeInterface `json:"interfaces"`
-	Overselling         int             `json:"overselling"`
-	HostCount           int             `json:"host_count"`
-	HostLimit           int             `json:"host_limit"`
-	HostFilter          []HostFilter    `json:"host_filter"`
-	HostCreationBlocked bool            `json:"host_creation_blocked"`
+	ID                  int             `json:"id,omitempty"`
+	Name                string          `json:"name,omitempty"`
+	Cluster             NodeCluster     `json:"cluster,omitempty"`
+	IP                  string          `json:"ip,omitempty"`
+	Ipv6                string          `json:"ipv6,omitempty"`
+	State               string          `json:"state,omitempty"`
+	StorageMib          StorageMib      `json:"storage_mib,omitempty"`
+	RAMMib              RAMMib          `json:"ram_mib,omitempty"`
+	CPUNumber           int             `json:"cpu_number,omitempty"`
+	Comment             string          `json:"comment,omitempty"`
+	Interfaces          []NodeInterface `json:"interfaces,omitempty"`
+	Overselling         int             `json:"overselling,omitempty"`
+	HostCount           int             `json:"host_count,omitempty"`
+	HostLimit           int             `json:"host_limit,omitempty"`
+	HostFilter          []HostFilter    `json:"host_filter,omitempty"`
+	HostCreationBlocked bool            `json:"host_creation_blocked,omitempty"`
 }
 
 type NodeScriptResponse struct {
-	LastNotify int                 `json:"last_notify"`
-	List       []NodeScriptElement `json:"list"`
+	LastNotify int                 `json:"last_notify,omitempty"`
+	List       []NodeScriptElement `json:"list,omitempty"`
 }
 
 type UpdatedAt struct {
-	Date    string      `json:"date"`
-	Account BaseAccount `json:"account"`
+	Date    string      `json:"date,omitempty"`
+	Account BaseAccount `json:"account,omitempty"`
 }
 
 type NodeScriptElement struct {
-	ID          int         `json:"id"`
-	Name        string      `json:"name"`
-	Script      string      `json:"script"`
-	Description string      `json:"description"`
-	Type        string      `json:"type"`
-	Priority    int         `json:"priority"`
-	Account     BaseAccount `json:"account"`
-	Autorun     []int       `json:"autorun"`
-	UpdatedAt   UpdatedAt   `json:"updated_at"`
+	ID          int         `json:"id,omitempty"`
+	Name        string      `json:"name,omitempty"`
+	Script      string      `json:"script,omitempty"`
+	Description string      `json:"description,omitempty"`
+	Type        string      `json:"type,omitempty"`
+	Priority    int         `json:"priority,omitempty"`
+	Account     BaseAccount `json:"account,omitempty"`
+	Autorun     []int       `json:"autorun,omitempty"`
+	UpdatedAt   UpdatedAt   `json:"updated_at,omitempty"`
 }
 
 type NodeReducedClusterListResponse struct {
-	LastNotify int                         `json:"last_notify"`
-	List       []NodeReducedClusterElement `json:"list"`
+	LastNotify int                         `json:"last_notify,omitempty"`
+	List       []NodeReducedClusterElement `json:"list,omitempty"`
 }
 
 type NodeReducedClusterElement struct {
-	ID           int                       `json:"id"`
-	Cluster      ClusterVirtualizationType `json:"cluster"`
-	IP           string                    `json:"ip"`
-	LibvirtError string                    `json:"libvirt_error"`
+	ID           int                       `json:"id,omitempty"`
+	Cluster      ClusterVirtualizationType `json:"cluster,omitempty"`
+	IP           string                    `json:"ip,omitempty"`
+	LibvirtError string                    `json:"libvirt_error,omitempty"`
 }
 
 type ClusterVirtualizationType struct {
-	VirtualizationType string `json:"virtualization_type"`
+	VirtualizationType string `json:"virtualization_type,omitempty"`
 }
 
 type NodeResponse struct {
-	ID          int    `json:"id"`
-	Name        string `json:"name"`
-	Cluster     int    `json:"cluster"`
-	State       string `json:"state"`
-	IPAddr      string `json:"ip_addr"`
-	QemuVersion string `json:"qemu_version"`
+	ID          int    `json:"id,omitempty"`
+	Name        string `json:"name,omitempty"`
+	Cluster     int    `json:"cluster,omitempty"`
+	State       string `json:"state,omitempty"`
+	IPAddr      string `json:"ip_addr,omitempty"`
+	QemuVersion string `json:"qemu_version,omitempty"`
 }
 
 type NodeFileListResponse struct {
-	LastNotify int                   `json:"last_notify"`
-	List       []NodeFileListElement `json:"list"`
-	Size       int                   `json:"size"`
+	LastNotify int                   `json:"last_notify,omitempty"`
+	List       []NodeFileListElement `json:"list,omitempty"`
+	Size       int                   `json:"size,omitempty"`
 }
 
 type NodeFileListElement struct {
-	EntityID int    `json:"entity_id"`
-	Name     string `json:"name"`
-	Node     int    `json:"node"`
-	Path     string `json:"path"`
-	SizeMib  int    `json:"size_mib"`
-	Type     string `json:"type"`
+	EntityID int    `json:"entity_id,omitempty"`
+	Name     string `json:"name,omitempty"`
+	Node     int    `json:"node,omitempty"`
+	Path     string `json:"path,omitempty"`
+	SizeMib  int    `json:"size_mib,omitempty"`
+	Type     string `json:"type,omitempty"`
 }
 
 type NodeHostIFaces struct {
-	List []NodeHostIFace `json:"list"`
+	List []NodeHostIFace `json:"list,omitempty"`
 }
 
 type NodeHostIFace struct {
-	InternalName string  `json:"internal_name"`
-	NetIsSynced  bool    `json:"net_is_synced"`
-	Ifaces       []Iface `json:"ifaces"`
-	Date         string  `json:"date"`
+	InternalName string  `json:"internal_name,omitempty"`
+	NetIsSynced  bool    `json:"net_is_synced,omitempty"`
+	Ifaces       []Iface `json:"ifaces,omitempty"`
+	Date         string  `json:"date,omitempty"`
 }
 
 type Iface struct {
-	Name string   `json:"name"`
-	Mac  string   `json:"mac"`
-	IP   []NodeIP `json:"ip"`
+	Name string   `json:"name,omitempty"`
+	Mac  string   `json:"mac,omitempty"`
+	IP   []NodeIP `json:"ip,omitempty"`
 }
 
 type NodeIP struct {
-	IPFamily int    `json:"ip_family"`
-	Name     string `json:"name"`
+	IPFamily int    `json:"ip_family,omitempty"`
+	Name     string `json:"name,omitempty"`
 }
 
 type IPParams struct {
-	V4 string `json:"v4"`
-	V6 string `json:"v6"`
+	V4 string `json:"v4,omitempty"`
+	V6 string `json:"v6,omitempty"`
 }
 
 type NodeNetworkIFaces struct {
-	LastNotify int                `json:"last_notify"`
-	List       []NodeNetworkIFace `json:"list"`
+	LastNotify int                `json:"last_notify,omitempty"`
+	List       []NodeNetworkIFace `json:"list,omitempty"`
 }
 
 type NodeNetworkIFace struct {
-	Name          string                     `json:"name"`
-	IPParams      IPParams                   `json:"ip_params"`
-	Type          string                     `json:"type"`
-	State         string                     `json:"state"`
-	Used          bool                       `json:"used"`
-	HostCount     int                        `json:"host_count"`
-	Vlan          int                        `json:"vlan"`
-	IsDefault     bool                       `json:"is_default"`
-	IsMainNetwork bool                       `json:"is_main_network"`
-	Slaves        []string                   `json:"slaves"`
-	Mode          string                     `json:"mode"`
-	OldValues     OldValuesNodeNetworkIFaces `json:"old_values"`
+	Name          string                     `json:"name,omitempty"`
+	IPParams      IPParams                   `json:"ip_params,omitempty"`
+	Type          string                     `json:"type,omitempty"`
+	State         string                     `json:"state,omitempty"`
+	Used          bool                       `json:"used,omitempty"`
+	HostCount     int                        `json:"host_count,omitempty"`
+	Vlan          int                        `json:"vlan,omitempty"`
+	IsDefault     bool                       `json:"is_default,omitempty"`
+	IsMainNetwork bool                       `json:"is_main_network,omitempty"`
+	Slaves        []string                   `json:"slaves,omitempty"`
+	Mode          string                     `json:"mode,omitempty"`
+	OldValues     OldValuesNodeNetworkIFaces `json:"old_values,omitempty"`
 }
 
 type OldValuesNodeNetworkIFaces struct {
-	Name          string   `json:"name"`
-	IPParams      IPParams `json:"ip_params"`
-	Type          string   `json:"type"`
-	State         string   `json:"state"`
-	Used          bool     `json:"used"`
-	HostCount     int      `json:"host_count"`
-	Vlan          int      `json:"vlan"`
-	IsDefault     bool     `json:"is_default"`
-	IsMainNetwork bool     `json:"is_main_network"`
-	Slaves        []string `json:"slaves"`
-	Mode          string   `json:"mode"`
+	Name          string   `json:"name,omitempty"`
+	IPParams      IPParams `json:"ip_params,omitempty"`
+	Type          string   `json:"type,omitempty"`
+	State         string   `json:"state,omitempty"`
+	Used          bool     `json:"used,omitempty"`
+	HostCount     int      `json:"host_count,omitempty"`
+	Vlan          int      `json:"vlan,omitempty"`
+	IsDefault     bool     `json:"is_default,omitempty"`
+	IsMainNetwork bool     `json:"is_main_network,omitempty"`
+	Slaves        []string `json:"slaves,omitempty"`
+	Mode          string   `json:"mode,omitempty"`
 }
 
 type HostStorage struct {
-	Path string `json:"path"`
-	Tags []int  `json:"tags"`
+	Path string `json:"path,omitempty"`
+	Tags []int  `json:"tags,omitempty"`
 }
 
 type NodeInterfaceRequest struct {
-	NodeInterface    string `json:"node_interface"`
-	ClusterInterface int    `json:"cluster_interface"`
+	NodeInterface    string `json:"node_interface,omitempty"`
+	ClusterInterface int    `json:"cluster_interface,omitempty"`
 }
 type NodeNewRequest struct {
-	Name                     string                 `json:"name"`
-	Cluster                  int                    `json:"cluster"`
-	IP                       string                 `json:"ip"`
-	Ipv6                     string                 `json:"ipv6"`
-	SSHPort                  int                    `json:"ssh_port"`
-	HostMax                  int                    `json:"host_max"`
-	Password                 string                 `json:"password"`
-	HostStorage              HostStorage            `json:"host_storage"`
-	ImageStoragePath         string                 `json:"image_storage_path"`
-	Comment                  string                 `json:"comment"`
-	Overselling              int                    `json:"overselling"`
-	LvmVgRename              bool                   `json:"lvm_vg_rename"`
-	HetznerIP                []string               `json:"hetzner_ip"`
-	Interfaces               []NodeInterfaceRequest `json:"interfaces"`
-	HostLimit                int                    `json:"host_limit"`
-	HostFilter               []HostFilter           `json:"host_filter"`
-	NetworkAutosetupDisabled bool                   `json:"network_autosetup_disabled"`
+	Name                     string                 `json:"name,omitempty"`
+	Cluster                  int                    `json:"cluster,omitempty"`
+	IP                       string                 `json:"ip,omitempty"`
+	Ipv6                     string                 `json:"ipv6,omitempty"`
+	SSHPort                  int                    `json:"ssh_port,omitempty"`
+	HostMax                  int                    `json:"host_max,omitempty"`
+	Password                 string                 `json:"password,omitempty"`
+	HostStorage              HostStorage            `json:"host_storage,omitempty"`
+	ImageStoragePath         string                 `json:"image_storage_path,omitempty"`
+	Comment                  string                 `json:"comment,omitempty"`
+	Overselling              int                    `json:"overselling,omitempty"`
+	LvmVgRename              bool                   `json:"lvm_vg_rename,omitempty"`
+	HetznerIP                []string               `json:"hetzner_ip,omitempty"`
+	Interfaces               []NodeInterfaceRequest `json:"interfaces,omitempty"`
+	HostLimit                int                    `json:"host_limit,omitempty"`
+	HostFilter               []HostFilter           `json:"host_filter,omitempty"`
+	NetworkAutosetupDisabled bool                   `json:"network_autosetup_disabled,omitempty"`
 }
 
 type NodeScriptRequest struct {
-	Name        string `json:"name"`
-	Script      string `json:"script"`
-	Description string `json:"description"`
-	Type        string `json:"type"`
-	Priority    int    `json:"priority"`
-	Autorun     []int  `json:"autorun"`
+	Name        string `json:"name,omitempty"`
+	Script      string `json:"script,omitempty"`
+	Description string `json:"description,omitempty"`
+	Type        string `json:"type,omitempty"`
+	Priority    int    `json:"priority,omitempty"`
+	Autorun     []int  `json:"autorun,omitempty"`
 }
 
 type NodeUpdateRequest struct {
-	HostCreationBlocked bool         `json:"host_creation_blocked"`
-	OpenVswitch         bool         `json:"open_vswitch"`
-	Comment             string       `json:"comment"`
-	Name                string       `json:"name"`
-	Overselling         int          `json:"overselling"`
-	Ipv6                string       `json:"ipv6"`
-	HostLimit           int          `json:"host_limit"`
-	HostFilter          []HostFilter `json:"host_filter"`
-	Values              interface{}  `json:"values"`
+	HostCreationBlocked bool         `json:"host_creation_blocked,omitempty"`
+	OpenVswitch         bool         `json:"open_vswitch,omitempty"`
+	Comment             string       `json:"comment,omitempty"`
+	Name                string       `json:"name,omitempty"`
+	Overselling         int          `json:"overselling,omitempty"`
+	Ipv6                string       `json:"ipv6,omitempty"`
+	HostLimit           int          `json:"host_limit,omitempty"`
+	HostFilter          []HostFilter `json:"host_filter,omitempty"`
+	Values              interface{}  `json:"values,omitempty"`
 }
 
 type NodeFilesUpdateRequest struct {
-	List []NodeFileUpdateRequest `json:"list"`
+	List []NodeFileUpdateRequest `json:"list,omitempty"`
 }
 
 type NodeFileUpdateRequest struct {
-	Size int    `json:"size"`
-	Name string `json:"name"`
-	Type string `json:"type"`
-	Path string `json:"path"`
+	Size int    `json:"size,omitempty"`
+	Name string `json:"name,omitempty"`
+	Type string `json:"type,omitempty"`
+	Path string `json:"path,omitempty"`
 }
 
 type NetworkAutosetupDisabled struct {
-	NetworkAutosetupDisabled bool `json:"network_autosetup_disabled"`
+	NetworkAutosetupDisabled bool `json:"network_autosetup_disabled,omitempty"`
 }
 
 type NodeNetworkInterface struct {
-	Name          string   `json:"name"`
-	Type          string   `json:"type"`
-	IPParams      IPParams `json:"ip_params"`
-	Vlan          int      `json:"vlan"`
-	Slaves        []string `json:"slaves"`
-	TakeSlaveIP   bool     `json:"take_slave_ip"`
-	Mode          string   `json:"mode"`
-	IsDefault     bool     `json:"is_default"`
-	IsMainNetwork bool     `json:"is_main_network"`
+	Name          string   `json:"name,omitempty"`
+	Type          string   `json:"type,omitempty"`
+	IPParams      IPParams `json:"ip_params,omitempty"`
+	Vlan          int      `json:"vlan,omitempty"`
+	Slaves        []string `json:"slaves,omitempty"`
+	TakeSlaveIP   bool     `json:"take_slave_ip,omitempty"`
+	Mode          string   `json:"mode,omitempty"`
+	IsDefault     bool     `json:"is_default,omitempty"`
+	IsMainNetwork bool     `json:"is_main_network,omitempty"`
 }
 
 type NodeNetworkInterfaces struct {
-	List []NodeNetworkInterface `json:"list"`
+	List []NodeNetworkInterface `json:"list,omitempty"`
 }
 
 type Problems struct {
-	Problems []string `json:"problems"`
+	Problems []string `json:"problems,omitempty"`
 }
 
 type Script struct {
-	Script int `json:"script"`
+	Script int `json:"script,omitempty"`
 }
 
 type Scripts struct {
-	Script []int `json:"script"`
+	Script []int `json:"script,omitempty"`
 }
