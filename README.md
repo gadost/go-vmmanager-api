@@ -55,5 +55,6 @@ func main() {
 - License
 - Network
 - Node
-
+- Script
+- OS
 still in development
