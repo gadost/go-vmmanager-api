@@ -1604,3 +1604,45 @@ type Script struct {
 type Scripts struct {
 	Script []int `json:"script,omitempty"`
 }
+
+type OSClusterParams struct {
+	ID        int    `json:"id"`
+	Name      string `json:"name"`
+	UpdatedAt string `json:"updated_at"`
+}
+
+type OSList struct {
+	LastNotify int        `json:"last_notify"`
+	List       []OSParams `json:"list"`
+}
+
+type OSParams struct {
+	Name         string                   `json:"name"`
+	ID           int                      `json:"id"`
+	Clusters     []OSClusterParams        `json:"clusters"`
+	Repository   string                   `json:"repository"`
+	UpdatedAt    string                   `json:"updated_at"`
+	Tags         []string                 `json:"tags"`
+	State        string                   `json:"state"`
+	Adminonly    bool                     `json:"adminonly"`
+	Nodes        []ImagesListResponseNode `json:"nodes"`
+	OsGroup      string                   `json:"os_group"`
+	KmsSupported bool                     `json:"kms_supported"`
+	KmsIP        string                   `json:"kms_ip"`
+	KmsPort      string                   `json:"kms_port"`
+	IsLxdImage   bool                     `json:"is_lxd_image"`
+}
+
+type OSUpdateParams struct {
+	Adminonly  bool   `json:"adminonly"`
+	Clusters   []int  `json:"clusters"`
+	ProductKey string `json:"product_key"`
+	KmsIP      string `json:"kms_ip"`
+	KmsPort    string `json:"kms_port"`
+}
+
+type OSSaveRequest struct {
+	RepositoryID   int      `json:"repository_id"`
+	Os             []string `json:"os"`
+	RepositoryType string   `json:"repository_type"`
+}
