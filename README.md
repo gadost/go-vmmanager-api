@@ -54,5 +54,6 @@ func main() {
 - Import
 - License
 - Network
+- Node
 
 still in development
