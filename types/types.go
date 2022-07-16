@@ -1746,3 +1746,87 @@ type MigrateFormResponse struct {
 		HostLimit           int    `json:"host_limit"`
 	} `json:"nodes"`
 }
+
+// recipes
+
+type Recipes struct {
+	LastNotify int          `json:"last_notify"`
+	List       []RecipeResp `json:"list"`
+}
+
+type RecipeResp struct {
+	ID          int      `json:"id"`
+	Name        string   `json:"name"`
+	Repository  string   `json:"repository"`
+	UpdatedAt   string   `json:"updated_at"`
+	Tags        []string `json:"tags"`
+	HasEmail    bool     `json:"has_email"`
+	Access      string   `json:"access"`
+	ParamsCount int      `json:"params_count"`
+}
+
+type RecipeNew struct {
+	Name         string            `json:"name"`
+	Tags         []string          `json:"tags"`
+	Description  string            `json:"description"`
+	ScriptFilter []ScriptFilter    `json:"script_filter"`
+	Script       string            `json:"script"`
+	ForAll       bool              `json:"for_all"`
+	UserVisible  bool              `json:"user_visible"`
+	Account      int               `json:"account"`
+	EmailContent []EmailContent    `json:"email_content"`
+	Type         string            `json:"type"`
+	Params       []RecipeNewParams `json:"params"`
+}
+
+type ScriptFilter struct {
+	Entity     string `json:"entity,omitempty"`
+	Expression string `json:"expression,omitempty"`
+}
+
+type EmailContent struct {
+	Lang    string `json:"lang"`
+	Content string `json:"content"`
+	Subject string `json:"subject"`
+}
+
+type RecipeNewParams struct {
+	Name         string         `json:"name"`
+	Description  string         `json:"description"`
+	Required     bool           `json:"required"`
+	Type         string         `json:"type"`
+	SelectValues []SelectValues `json:"select_values"`
+}
+
+type SelectValues struct {
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+type RecipeResponse struct {
+	ID   int    `json:"id"`
+	Name string `json:"name"`
+}
+
+type RecipesSaveRequest struct {
+	RepositoryID int         `json:"repository_id"`
+	URL          string      `json:"url"`
+	Recipes      interface{} `json:"recipes"`
+}
+
+type ScriptVariablesResponse struct {
+	LastNotify int              `json:"last_notify"`
+	List       []ScriptVariable `json:"list"`
+}
+
+type ScriptVariable struct {
+	Name    string `json:"name"`
+	Value   string `json:"value"`
+	Comment string `json:"comment"`
+	Hidden  bool   `json:"hidden"`
+	Enabled bool   `json:"enabled"`
+	Builtin bool   `json:"builtin"`
+	Account int    `json:"account"`
+	ID      int    `json:"id"`
+	Scope   string `json:"scope"`
+}
