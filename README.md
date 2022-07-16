@@ -65,4 +65,11 @@ func main() {
 - Schedule
 - Tag
 
-still in development
+still in development:
+
+- Settings
+- Storage
+- Task
+- User
+- VMmmanager
+- VXLan
