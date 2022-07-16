@@ -2019,3 +2019,24 @@ type TaskEvent struct {
 	Status     string      `json:"status"`
 	Params     interface{} `json:"params"`
 }
+
+type LicenseInfo struct {
+	HostLimit         int               `json:"host_limit"`
+	HostLimitExceeded bool              `json:"host_limit_exceeded"`
+	License           LicenseInfoParams `json:"license"`
+	NodeLimit         int               `json:"node_limit"`
+	NodeLimitExceeded bool              `json:"node_limit_exceeded"`
+	LastNotify        int               `json:"last_notify"`
+}
+
+type LicenseInfoParams struct {
+	LicenseTTL   int    `json:"license_ttl"`
+	SignatureTTL int    `json:"signature_ttl"`
+	Valid        bool   `json:"valid"`
+	UserID       string `json:"user_id"`
+}
+
+type LicenseSet struct {
+	Signature string `json:"signature"`
+	Content   string `json:"content"`
+}
