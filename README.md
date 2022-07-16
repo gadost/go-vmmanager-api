@@ -61,5 +61,6 @@ func main() {
 - Preset
 - Recipe
 - Repository
+- Snapshot
 
 still in development
