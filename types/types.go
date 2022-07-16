@@ -1718,3 +1718,31 @@ type PresetListElement struct {
 	ProcessNumber      int               `json:"process_number"`
 	FirewallRules      []FirewallRule    `json:"firewall_rules,omitempty"`
 }
+
+type MigrateFormResponse struct {
+	Nodes []struct {
+		ID     int    `json:"id"`
+		Name   string `json:"name"`
+		RAMMib struct {
+			Unused int `json:"unused"`
+		} `json:"ram_mib"`
+		Storage struct {
+			ID           int    `json:"id"`
+			Name         string `json:"name"`
+			Type         string `json:"type"`
+			AvailableMib int    `json:"available_mib"`
+		} `json:"storage"`
+		Storages []struct {
+			ID           int    `json:"id"`
+			Name         string `json:"name"`
+			Type         string `json:"type"`
+			AvailableMib int    `json:"available_mib"`
+		} `json:"storages"`
+		Priority            int    `json:"priority"`
+		State               string `json:"state"`
+		Suitable            bool   `json:"suitable"`
+		HostCreationBlocked bool   `json:"host_creation_blocked"`
+		HostCount           int    `json:"host_count"`
+		HostLimit           int    `json:"host_limit"`
+	} `json:"nodes"`
+}

@@ -7,12 +7,10 @@ import (
 	"github.com/gadost/go-vmmanager-api/types"
 )
 
-func (a *Api) HostGet(where *ParamsQuery) (*types.HostsResponse, error) {
-	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
-		fmt.Sprintf("/host%s", where),
-		requestTypeGet,
-		DefaultService)
+func (a *Api) Hosts(where *ParamsQuery) (*types.HostsResponse, error) {
+	uri := fmt.Sprintf("/host%s", where)
+	bodyResp, err := a.NewRequest(NilPayload, uri, requestTypeGet, DefaultService)
+
 	var h *types.HostsResponse
 	json.Unmarshal(bodyResp, &h)
 	return h, err
@@ -20,22 +18,17 @@ func (a *Api) HostGet(where *ParamsQuery) (*types.HostsResponse, error) {
 
 func (a *Api) HostNew(hid int, params *types.NewHostRequest) (*types.RecipeTask, error) {
 	payload, _ := json.Marshal(params)
-	bodyResp, err := a.NewRequest(
-		payload,
-		"/host",
-		requestTypePost,
-		DefaultService)
+	bodyResp, err := a.NewRequest(payload, HostUri, requestTypePost, DefaultService)
+
 	var t *types.RecipeTask
 	json.Unmarshal(bodyResp, &t)
 	return t, err
 }
 
-func (a *Api) HostGetByID(hid int) (*types.HostResponse, error) {
-	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
-		fmt.Sprintf("/host/%d", hid),
-		requestTypeGet,
-		DefaultService)
+func (a *Api) HostByID(hid int) (*types.HostResponse, error) {
+	uri := fmt.Sprintf("/host/%d", hid)
+	bodyResp, err := a.NewRequest(NilPayload, uri, requestTypeGet, DefaultService)
+
 	var h *types.HostResponse
 	json.Unmarshal(bodyResp, &h)
 	return h, err
@@ -55,7 +48,7 @@ func (a *Api) HostUpdate(hid int, params *types.HostUpdateRequest) (*types.Task,
 
 func (a *Api) HostDelete(hid int) (*types.Task, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/host/%d", hid),
 		requestTypeDelete,
 		DefaultService)
@@ -90,7 +83,7 @@ func (a *Api) HostImageSizeLimit(hid int, params *types.ImageSize) (*types.Image
 
 func (a *Api) HostClone(hid int) (*types.Task, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/host/%d/clone", hid),
 		requestTypePost,
 		DefaultService)
@@ -101,7 +94,7 @@ func (a *Api) HostClone(hid int) (*types.Task, error) {
 
 func (a *Api) HostRepairGuestAgent(hid int) (*types.Task, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/host/%d/guest_agent", hid),
 		requestTypePost,
 		DefaultService)
@@ -112,7 +105,7 @@ func (a *Api) HostRepairGuestAgent(hid int) (*types.Task, error) {
 
 func (a *Api) HostHistory(hid int) (*types.HostHistoryResponse, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/host/%d/history", hid),
 		requestTypeGet,
 		DefaultService)
@@ -131,9 +124,9 @@ func (a *Api) HostNewLogEntry(hid int, payload []byte) ([]byte, error) {
 	return bodyResp, err
 }
 
-func (a *Api) HostIFace(hid int) (*types.IFace, error) {
+func (a *Api) HostInteface(hid int) (*types.IFace, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/host/%d/iface", hid),
 		requestTypeGet,
 		DefaultService)
@@ -142,7 +135,7 @@ func (a *Api) HostIFace(hid int) (*types.IFace, error) {
 	return h, err
 }
 
-func (a *Api) HostNewIFace(hid int, params *types.IFaceParams) ([]byte, error) {
+func (a *Api) HostIntefaceNew(hid int, params *types.IFaceParams) ([]byte, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
 		payload,
@@ -153,7 +146,7 @@ func (a *Api) HostNewIFace(hid int, params *types.IFaceParams) ([]byte, error) {
 	return bodyResp, err
 }
 
-func (a *Api) HostUpdateIFace(hid int, iface string, params *types.IFaceModel) (*types.Task, error) {
+func (a *Api) HostIntefaceUpdate(hid int, iface string, params *types.IFaceModel) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
 		payload,
@@ -166,9 +159,9 @@ func (a *Api) HostUpdateIFace(hid int, iface string, params *types.IFaceModel) (
 	return t, err
 }
 
-func (a *Api) HostDeleteIFace(hid int, iface string) (*types.Task, error) {
+func (a *Api) HostIntefaceDelete(hid int, iface string) (*types.Task, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/host/%d/iface/%s", hid, iface),
 		requestTypeDelete,
 		DefaultService)
@@ -178,7 +171,7 @@ func (a *Api) HostDeleteIFace(hid int, iface string) (*types.Task, error) {
 	return t, err
 }
 
-func (a *Api) HostAddIP(hid int, params *types.AddIPToHostRequest) (*types.Task, error) {
+func (a *Api) HostIPNew(hid int, params *types.AddIPToHostRequest) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
 		payload,
@@ -191,7 +184,7 @@ func (a *Api) HostAddIP(hid int, params *types.AddIPToHostRequest) (*types.Task,
 	return t, err
 }
 
-func (a *Api) HostUpdateIPAutomation(hid int, params *types.IPAutomationType) (*types.Task, error) {
+func (a *Api) HostIPAutomationUpdate(hid int, params *types.IPAutomationType) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
 		payload,
@@ -204,9 +197,9 @@ func (a *Api) HostUpdateIPAutomation(hid int, params *types.IPAutomationType) (*
 	return t, err
 }
 
-func (a *Api) HostIPV4Info(hid int) (*types.IPV4Info, error) {
+func (a *Api) HostIPV4(hid int) (*types.IPV4Info, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/host/%d/ipv4", hid),
 		requestTypeGet,
 		DefaultService)
@@ -215,9 +208,9 @@ func (a *Api) HostIPV4Info(hid int) (*types.IPV4Info, error) {
 	return h, err
 }
 
-func (a *Api) HostIPV6Info(hid int) (*types.IPV6Info, error) {
+func (a *Api) HostIPV6(hid int) (*types.IPV6Info, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/host/%d/ipv6", hid),
 		requestTypeGet,
 		DefaultService)
@@ -226,9 +219,9 @@ func (a *Api) HostIPV6Info(hid int) (*types.IPV6Info, error) {
 	return h, err
 }
 
-func (a *Api) HostDisconnectISOWithoutReinstall(hid int) (*types.Task, error) {
+func (a *Api) HostISODisconnectWithoutReinstall(hid int) (*types.Task, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/host/%d/iso/cancel", hid),
 		requestTypePost,
 		DefaultService)
@@ -237,9 +230,9 @@ func (a *Api) HostDisconnectISOWithoutReinstall(hid int) (*types.Task, error) {
 	return t, err
 }
 
-func (a *Api) HostDisconnectISOWithReinstall(hid int) (*types.Task, error) {
+func (a *Api) HostISODisconnectWithReinstall(hid int) (*types.Task, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/host/%d/iso/finish", hid),
 		requestTypePost,
 		DefaultService)
@@ -248,7 +241,7 @@ func (a *Api) HostDisconnectISOWithReinstall(hid int) (*types.Task, error) {
 	return t, err
 }
 
-func (a *Api) HostConnectISO(hid int, params *types.ISOTags) (*types.Task, error) {
+func (a *Api) HostISOConnect(hid int, params *types.ISOTags) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
 		payload,
@@ -264,7 +257,7 @@ func (a *Api) HostConnectISO(hid int, params *types.ISOTags) (*types.Task, error
 func (a *Api) HostLXDConsole(hid int) (*types.Socket, error) {
 
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/host/%d/lxd/console", hid),
 		requestTypePost,
 		DefaultService)
@@ -276,7 +269,7 @@ func (a *Api) HostLXDConsole(hid int) (*types.Socket, error) {
 
 func (a *Api) HostMetrics(hid int) ([]byte, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/host/%d/metrics", hid),
 		requestTypeGet,
 		DefaultService)
@@ -286,7 +279,7 @@ func (a *Api) HostMetrics(hid int) ([]byte, error) {
 
 func (a *Api) HostMigrateForm(hid int) (*types.HostMigrateResponse, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/host/%d/migrate", hid),
 		requestTypeGet,
 		DefaultService)
@@ -308,7 +301,7 @@ func (a *Api) HostMigrate(hid int, params *types.HostMigrateRequest) (*types.Tas
 	return t, err
 }
 
-func (a *Api) HostUpdatePassword(hid int, params *types.Password) (*types.Task, error) {
+func (a *Api) HostPasswordUpdate(hid int, params *types.Password) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
 		payload,
@@ -321,7 +314,7 @@ func (a *Api) HostUpdatePassword(hid int, params *types.Password) (*types.Task, 
 	return t, err
 }
 
-func (a *Api) HostNewPTR(hid int, params *types.PTRUpdateRequest) (*types.Task, error) {
+func (a *Api) HostPTRNew(hid int, params *types.PTRUpdateRequest) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
 		payload,
@@ -336,7 +329,7 @@ func (a *Api) HostNewPTR(hid int, params *types.PTRUpdateRequest) (*types.Task, 
 
 func (a *Api) HostPTR(hid int) (*types.PTRResponse, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/host/%d/ptr", hid),
 		requestTypeGet,
 		DefaultService)
@@ -345,7 +338,7 @@ func (a *Api) HostPTR(hid int) (*types.PTRResponse, error) {
 	return h, err
 }
 
-func (a *Api) HostUpdatePTR(hid int, domain string, params *types.Domain) (*types.Task, error) {
+func (a *Api) HostPTRUpdate(hid int, domain string, params *types.Domain) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
 		payload,
@@ -358,9 +351,9 @@ func (a *Api) HostUpdatePTR(hid int, domain string, params *types.Domain) (*type
 	return t, err
 }
 
-func (a *Api) HostDeletePTR(hid int, domain string) (*types.Task, error) {
+func (a *Api) HostPTRDelete(hid int, domain string) (*types.Task, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/host/%d/ptr/%s", hid, domain),
 		requestTypeDelete,
 		DefaultService)
@@ -409,7 +402,7 @@ func (a *Api) HostRescueMode(hid int, params *types.RescueMode) (*types.Task, er
 	return t, err
 }
 
-func (a *Api) HostUpdateResource(hid int, params *types.HostResourceUpdateRequest) (*types.Task, error) {
+func (a *Api) HostResourceUpdate(hid int, params *types.HostResourceUpdateRequest) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
 		payload,
@@ -424,7 +417,7 @@ func (a *Api) HostUpdateResource(hid int, params *types.HostResourceUpdateReques
 
 func (a *Api) HostRestart(hid int) (*types.Task, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/host/%d/restart", hid),
 		requestTypePost,
 		DefaultService)
@@ -447,7 +440,7 @@ func (a *Api) HostRestore(hid int, params *types.HostBackup) (*types.Task, error
 	return t, err
 }
 
-func (a *Api) HostRunRecipe(hid int, params *types.Recipe) (*types.RecipeTask, error) {
+func (a *Api) HostRecipeRun(hid int, params *types.Recipe) (*types.RecipeTask, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
 		payload,
@@ -462,7 +455,7 @@ func (a *Api) HostRunRecipe(hid int, params *types.Recipe) (*types.RecipeTask, e
 
 func (a *Api) HostStart(hid int) (*types.Task, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/host/%d/start", hid),
 		requestTypePost,
 		DefaultService)
@@ -474,7 +467,7 @@ func (a *Api) HostStart(hid int) (*types.Task, error) {
 
 func (a *Api) HostStop(hid int) (*types.Task, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/host/%d/stop", hid),
 		requestTypePost,
 		DefaultService)
@@ -484,9 +477,9 @@ func (a *Api) HostStop(hid int) (*types.Task, error) {
 	return t, err
 }
 
-func (a *Api) HostSyncHAMetadata(hid int) (*types.Task, error) {
+func (a *Api) HostHAMetadataSync(hid int) (*types.Task, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/host/%d/sync_ha_metadata", hid),
 		requestTypePost,
 		DefaultService)
@@ -498,7 +491,7 @@ func (a *Api) HostSyncHAMetadata(hid int) (*types.Task, error) {
 
 func (a *Api) HostVNCSettings(hid int) ([]byte, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/host/%d/vnc_settings", hid),
 		requestTypeGet,
 		DefaultService)
@@ -506,7 +499,7 @@ func (a *Api) HostVNCSettings(hid int) ([]byte, error) {
 	return bodyResp, err
 }
 
-func (a *Api) HostUpdateVNCSettings(hid int, params *types.Password) (*types.Task, error) {
+func (a *Api) HostVNCSettingsUpdate(hid int, params *types.Password) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
 		payload,
@@ -519,7 +512,7 @@ func (a *Api) HostUpdateVNCSettings(hid int, params *types.Password) (*types.Tas
 	return t, err
 }
 
-func (a *Api) HostUpdateVNCPorts(hid int, params *types.VNCPortUpdateRequest) (*types.Task, error) {
+func (a *Api) HostVNCPortsUpdate(hid int, params *types.VNCPortUpdateRequest) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
 		payload,
@@ -534,7 +527,7 @@ func (a *Api) HostUpdateVNCPorts(hid int, params *types.VNCPortUpdateRequest) (*
 
 func (a *Api) IPs(where *ParamsQuery) (*types.IPList, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/ip%s", where),
 		requestTypeGet,
 		DefaultService)
@@ -559,7 +552,7 @@ func (a *Api) IPUpdate(iid int, params *types.UpdateIPResponse) (*types.Task, er
 
 func (a *Api) IPDelete(iid int) (*types.Task, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/ip/%d", iid),
 		requestTypeDelete,
 		DefaultService)
@@ -569,7 +562,7 @@ func (a *Api) IPDelete(iid int) (*types.Task, error) {
 	return t, err
 }
 
-func (a *Api) IPAddPTR(hid int, params *types.Domain) (*types.Task, error) {
+func (a *Api) IPPTRNew(hid int, params *types.Domain) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
 		payload,
@@ -582,9 +575,9 @@ func (a *Api) IPAddPTR(hid int, params *types.Domain) (*types.Task, error) {
 	return t, err
 }
 
-func (a *Api) HostScheduleList() (*types.ScheduleListResponse, error) {
+func (a *Api) HostSchedules() (*types.ScheduleListResponse, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		"/schedule_list",
 		requestTypeGet,
 		DefaultService)

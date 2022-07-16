@@ -22,7 +22,7 @@ func (a *Api) ImageNew(hid int, params *types.Image) (*types.Task, error) {
 
 func (a *Api) Images() (*types.ImagesListResponse, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		"/image",
 		requestTypeGet,
 		DefaultService)
@@ -34,7 +34,7 @@ func (a *Api) Images() (*types.ImagesListResponse, error) {
 
 func (a *Api) Image(imid int) (*types.ImageResponse, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/image/%d", imid),
 		requestTypeGet,
 		DefaultService)
@@ -59,7 +59,7 @@ func (a *Api) ImageUpdate(imid int, params *types.Image) (*types.Task, error) {
 
 func (a *Api) ImageDelete(hid int) (*types.Task, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/image/%d", hid),
 		requestTypeDelete,
 		DefaultService)
@@ -110,7 +110,7 @@ func (a *Api) ImageMove(imid int, params *types.Move) (*types.Task, error) {
 
 func (a *Api) ImageNodeDelete(imid int, nid int) (*types.Task, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/image/%d/node/%d", imid, nid),
 		requestTypeDelete,
 		DefaultService)
@@ -122,7 +122,7 @@ func (a *Api) ImageNodeDelete(imid int, nid int) (*types.Task, error) {
 
 func (a *Api) ImageNodeEnable(imid int, nid int) (*types.Task, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/image/%d/node/%d/enable", imid, nid),
 		requestTypePost,
 		DefaultService)
@@ -134,7 +134,7 @@ func (a *Api) ImageNodeEnable(imid int, nid int) (*types.Task, error) {
 
 func (a *Api) ImageNodeDisable(imid int, nid int) (*types.Task, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/image/%d/node/%d/disable", imid, nid),
 		requestTypePost,
 		DefaultService)

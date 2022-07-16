@@ -7,12 +7,9 @@ import (
 	"github.com/gadost/go-vmmanager-api/types"
 )
 
-func (a *Api) ClusterList() (*types.ClusterListResponse, error) {
-	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
-		"/cluster",
-		requestTypeGet,
-		DefaultService)
+func (a *Api) Clusters() (*types.ClusterListResponse, error) {
+	uri := ClusterUri
+	bodyResp, err := a.NewRequest(NilPayload, uri, requestTypeGet, DefaultService)
 
 	var c *types.ClusterListResponse
 	json.Unmarshal(bodyResp, &c)
@@ -22,22 +19,18 @@ func (a *Api) ClusterList() (*types.ClusterListResponse, error) {
 
 func (a *Api) ClusterNew(params *types.CreateClusterRequest) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
-	bodyResp, err := a.NewRequest(
-		payload,
-		"/cluster",
-		requestTypePost,
-		DefaultService)
+	uri := ClusterUri
+	bodyResp, err := a.NewRequest(payload, uri, requestTypePost, DefaultService)
+
 	var t *types.Task
 	json.Unmarshal(bodyResp, &t)
 	return t, err
 }
 
-func (a *Api) ClusterGet(cid int) (*types.ClusterResponse, error) {
-	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
-		fmt.Sprintf("/cluster/%d", cid),
-		requestTypeGet,
-		DefaultService)
+func (a *Api) Cluster(cid int) (*types.ClusterResponse, error) {
+	uri := fmt.Sprintf("%s/%d", ClusterUri, cid)
+	bodyResp, err := a.NewRequest(NilPayload, uri, requestTypeGet, DefaultService)
+
 	var c *types.ClusterResponse
 	json.Unmarshal(bodyResp, &c)
 	return c, err
@@ -45,54 +38,42 @@ func (a *Api) ClusterGet(cid int) (*types.ClusterResponse, error) {
 
 func (a *Api) ClusterUpdate(cid int, params *types.CreateClusterRequest) (*types.Tasks, error) {
 	payload, _ := json.Marshal(params)
-	bodyResp, err := a.NewRequest(
-		payload,
-		fmt.Sprintf("/cluster/%d", cid),
-		requestTypePost,
-		DefaultService)
+	uri := fmt.Sprintf("%s/%d", ClusterUri, cid)
+	bodyResp, err := a.NewRequest(payload, uri, requestTypePost, DefaultService)
 	var t *types.Tasks
 	json.Unmarshal(bodyResp, &t)
 	return t, err
 }
 
 func (a *Api) ClusterDelete(cid int) (*types.DeletedResponse, error) {
-	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
-		fmt.Sprintf("/cluster/%d", cid),
-		requestTypeDelete,
-		DefaultService)
+	uri := fmt.Sprintf("%s/%d", ClusterUri, cid)
+	bodyResp, err := a.NewRequest(NilPayload, uri, requestTypeDelete, DefaultService)
+
 	var d *types.DeletedResponse
 	json.Unmarshal(bodyResp, &d)
 	return d, err
 }
 
 func (a *Api) ClusterConnectDCNetwork(cid int) (*types.DCNetworksResponse, error) {
-	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
-		fmt.Sprintf("/cluster/%d/dc_network", cid),
-		requestTypePost,
-		DefaultService)
+	uri := fmt.Sprintf("%s/%d/dc_network", ClusterUri, cid)
+	bodyResp, err := a.NewRequest(NilPayload, uri, requestTypePost, DefaultService)
+
 	var d *types.DCNetworksResponse
 	json.Unmarshal(bodyResp, &d)
 	return d, err
 }
 
-func (a *Api) ClusterFixFRR(cid int) error {
-	_, err := a.NewRequest(
-		[]byte(NilPayload),
-		fmt.Sprintf("/cluster/%d/fix_frr", cid),
-		requestTypePost,
-		DefaultService)
+func (a *Api) ClusterFixFRR(cid int) ([]byte, error) {
+	uri := fmt.Sprintf("%s/%d/fix_frr", ClusterUri, cid)
+	bodyResp, err := a.NewRequest(NilPayload, uri, requestTypePost, DefaultService)
 
-	return err
+	return bodyResp, err
 }
 
 func (a *Api) ClusterHaAgentUpdate(cid int) (*types.Task, error) {
-	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
-		fmt.Sprintf("/cluster/%d/ha_agent_update", cid),
-		requestTypePost,
-		DefaultService)
+	uri := fmt.Sprintf("%s/%d/ha_agent_update", ClusterUri, cid)
+	bodyResp, err := a.NewRequest(NilPayload, uri, requestTypePost, DefaultService)
+
 	var t *types.Task
 	json.Unmarshal(bodyResp, &t)
 	return t, err
@@ -100,9 +81,10 @@ func (a *Api) ClusterHaAgentUpdate(cid int) (*types.Task, error) {
 
 func (a *Api) ClusterInternalEditUpdate(cid int, params *types.QemuVersion) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
+	uri := fmt.Sprintf("%s/%d/internal_edit", ClusterUri, cid)
 	bodyResp, err := a.NewRequest(
 		payload,
-		fmt.Sprintf("/cluster/%d/internal_edit", cid),
+		uri,
 		requestTypePost,
 		DefaultService)
 	var t *types.Task
@@ -110,58 +92,43 @@ func (a *Api) ClusterInternalEditUpdate(cid int, params *types.QemuVersion) (*ty
 	return t, err
 }
 
-func (a *Api) ClusterConnectIPPool(cid int, params *types.IPPoolRequest) error {
+func (a *Api) ClusterConnectIPPool(cid int, params *types.IPPoolRequest) ([]byte, error) {
 	payload, _ := json.Marshal(params)
-	_, err := a.NewRequest(
-		payload,
-		fmt.Sprintf("/cluster/%d/ippool", cid),
-		requestTypePost,
-		DefaultService)
+	uri := fmt.Sprintf("%s/%d/ippool", ClusterUri, cid)
+	bodyResp, err := a.NewRequest(payload, uri, requestTypePost, DefaultService)
 
-	return err
+	return bodyResp, err
 }
 
-func (a *Api) ClusterLocalStorageGet(cid int) error {
-	_, err := a.NewRequest(
-		[]byte(NilPayload),
-		fmt.Sprintf("/cluster/%d/local_storage", cid),
-		requestTypeGet,
-		DefaultService)
+func (a *Api) ClusterLocalStorage(cid int) ([]byte, error) {
+	uri := fmt.Sprintf("%s/%d/local_storage", ClusterUri, cid)
+	bodyResp, err := a.NewRequest(NilPayload, uri, requestTypeGet, DefaultService)
 
-	return err
+	return bodyResp, err
 }
 
-func (a *Api) ClusterSettingsUpdate(cid int, params *types.Name) error {
+func (a *Api) ClusterSettingsUpdate(cid int, params *types.Name) ([]byte, error) {
 	payload, _ := json.Marshal(params)
-	_, err := a.NewRequest(
-		payload,
-		fmt.Sprintf("/cluster/%d/settings", cid),
-		requestTypePost,
-		DefaultService)
+	uri := fmt.Sprintf("%s/%d/settings", ClusterUri, cid)
+	bodyResp, err := a.NewRequest(payload, uri, requestTypePost, DefaultService)
 
-	return err
+	return bodyResp, err
 }
 
-func (a *Api) ClusterSSHKeysUpdate(cid int, params *types.SSHKeysRequest) error {
+func (a *Api) ClusterSSHKeysUpdate(cid int, params *types.SSHKeysRequest) ([]byte, error) {
 	payload, _ := json.Marshal(params)
-	_, err := a.NewRequest(
-		payload,
-		fmt.Sprintf("/cluster/%d/ssh_key", cid),
-		requestTypePost,
-		DefaultService)
+	uri := fmt.Sprintf("%s/%d/ssh_key", ClusterUri, cid)
+	bodyResp, err := a.NewRequest(payload, uri, requestTypePost, DefaultService)
 
-	return err
+	return bodyResp, err
 }
 
 func (a *Api) ClusterStorageAttach(
 	cid int, sid int, params *types.AttachStorageToClusterRequest) (
 	*types.StoragesTasks, error) {
 	payload, _ := json.Marshal(params)
-	bodyResp, err := a.NewRequest(
-		payload,
-		fmt.Sprintf("/cluster/%d/storage/%d", cid, sid),
-		requestTypePost,
-		DefaultService)
+	uri := fmt.Sprintf("%s/%d/storage/%d", ClusterUri, cid, sid)
+	bodyResp, err := a.NewRequest(payload, uri, requestTypePost, DefaultService)
 
 	var r *types.StoragesTasks
 	json.Unmarshal(bodyResp, &r)
@@ -169,24 +136,17 @@ func (a *Api) ClusterStorageAttach(
 }
 
 func (a *Api) ClusterStorageDetach(cid int, sid int) (*types.DeletedResponse, error) {
-	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
-		fmt.Sprintf("/cluster/%d/storage/%d", cid, sid),
-		requestTypeDelete,
-		DefaultService)
+	uri := fmt.Sprintf("%s/%d/storage/%d", ClusterUri, cid, sid)
+	bodyResp, err := a.NewRequest(NilPayload, uri, requestTypeDelete, DefaultService)
+
 	var d *types.DeletedResponse
 	json.Unmarshal(bodyResp, &d)
 	return d, err
 }
 
-func (a *Api) ClusterStorageCephConnect(
-	cid int, sid int) (
-	*types.StoragesTasks, error) {
-	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
-		fmt.Sprintf("/cluster/%d/storage/%d/ceph_connect", cid, sid),
-		requestTypePost,
-		DefaultService)
+func (a *Api) ClusterStorageCephConnect(cid int, sid int) (*types.StoragesTasks, error) {
+	uri := fmt.Sprintf("%s/%d/storage/%d/ceph_connect", ClusterUri, cid, sid)
+	bodyResp, err := a.NewRequest(NilPayload, uri, requestTypePost, DefaultService)
 
 	var r *types.StoragesTasks
 	json.Unmarshal(bodyResp, &r)
@@ -194,11 +154,8 @@ func (a *Api) ClusterStorageCephConnect(
 }
 
 func (a *Api) ClusterStorageCheck(cid int, sid int) (*types.Task, error) {
-	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
-		fmt.Sprintf("/cluster/%d/storage/%d/check", cid, sid),
-		requestTypePost,
-		DefaultService)
+	uri := fmt.Sprintf("%s/%d/storage/%d/check", ClusterUri, cid, sid)
+	bodyResp, err := a.NewRequest(NilPayload, uri, requestTypePost, DefaultService)
 
 	var r *types.Task
 	json.Unmarshal(bodyResp, &r)
@@ -206,11 +163,8 @@ func (a *Api) ClusterStorageCheck(cid int, sid int) (*types.Task, error) {
 }
 
 func (a *Api) ClusterStorageDisable(cid int, sid int) (*types.Task, error) {
-	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
-		fmt.Sprintf("/cluster/%d/storage/%d/disable", cid, sid),
-		requestTypePost,
-		DefaultService)
+	uri := fmt.Sprintf("%s/%d/storage/%d/disable", ClusterUri, cid, sid)
+	bodyResp, err := a.NewRequest(NilPayload, uri, requestTypePost, DefaultService)
 
 	var r *types.Task
 	json.Unmarshal(bodyResp, &r)
@@ -218,11 +172,8 @@ func (a *Api) ClusterStorageDisable(cid int, sid int) (*types.Task, error) {
 }
 
 func (a *Api) ClusterStorageEnable(cid int, sid int) (*types.Task, error) {
-	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
-		fmt.Sprintf("/cluster/%d/storage/%d/enable", cid, sid),
-		requestTypePost,
-		DefaultService)
+	uri := fmt.Sprintf("%s/%d/storage/%d/enable", ClusterUri, cid, sid)
+	bodyResp, err := a.NewRequest(NilPayload, uri, requestTypePost, DefaultService)
 
 	var r *types.Task
 	json.Unmarshal(bodyResp, &r)
@@ -233,11 +184,8 @@ func (a *Api) ClusteHDDOversellingUpdate(
 	cid int, sid int, params *types.HDDOversellingRequest) (
 	*types.HDDOversellingResponse, error) {
 	payload, _ := json.Marshal(params)
-	bodyResp, err := a.NewRequest(
-		payload,
-		fmt.Sprintf("/cluster/%d/storage/%d/hdd_overselling", cid, sid),
-		requestTypePost,
-		DefaultService)
+	uri := fmt.Sprintf("%s/%d/storage/%d/hdd_overselling", ClusterUri, cid, sid)
+	bodyResp, err := a.NewRequest(payload, uri, requestTypePost, DefaultService)
 
 	var r *types.HDDOversellingResponse
 	json.Unmarshal(bodyResp, &r)
@@ -245,84 +193,61 @@ func (a *Api) ClusteHDDOversellingUpdate(
 }
 
 func (a *Api) ClusterStorageMakeMain(cid int, sid int) (*types.Task, error) {
-	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
-		fmt.Sprintf("/cluster/%d/storage/%d/make_main", cid, sid),
-		requestTypePost,
-		DefaultService)
+	uri := fmt.Sprintf("%s/%d/storage/%d/make_main", ClusterUri, cid, sid)
+	bodyResp, err := a.NewRequest(NilPayload, uri, requestTypePost, DefaultService)
 
 	var r *types.Task
 	json.Unmarshal(bodyResp, &r)
 	return r, err
 }
 
-func (a *Api) ClusterVXLanGet(cid int) (*types.VXLanResponse, error) {
-	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
-		fmt.Sprintf("/cluster/%d/vxlan", cid),
-		requestTypeGet,
-		DefaultService)
+func (a *Api) ClusterVXLan(cid int) (*types.VXLanResponse, error) {
+	uri := fmt.Sprintf("%s/%d/vxlan", ClusterUri, cid)
+	bodyResp, err := a.NewRequest(NilPayload, uri, requestTypeGet, DefaultService)
 
 	var r *types.VXLanResponse
 	json.Unmarshal(bodyResp, &r)
 	return r, err
 }
 
-func (a *Api) ClusterNodesVXLanGet(cid int) (*types.NodesVXLanResponse, error) {
-	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
-		fmt.Sprintf("/cluster/%d/vxlan/node", cid),
-		requestTypeGet,
-		DefaultService)
+func (a *Api) ClusterNodesVXLan(cid int) (*types.NodesVXLanResponse, error) {
+	uri := fmt.Sprintf("%s/%d/vxlan/node", ClusterUri, cid)
+	bodyResp, err := a.NewRequest(NilPayload, uri, requestTypeGet, DefaultService)
 
 	var r *types.NodesVXLanResponse
 	json.Unmarshal(bodyResp, &r)
 	return r, err
 }
 
-func (a *Api) ClusterUsersVXLanGet(cid int) (*types.UsersVXLanResponse, error) {
-	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
-		fmt.Sprintf("/cluster/%d/vxlan/user", cid),
-		requestTypeGet,
-		DefaultService)
+func (a *Api) ClusterUsersVXLan(cid int) (*types.UsersVXLanResponse, error) {
+	uri := fmt.Sprintf("%s/%d/vxlan/user", ClusterUri, cid)
+	bodyResp, err := a.NewRequest(NilPayload, uri, requestTypeGet, DefaultService)
 
 	var r *types.UsersVXLanResponse
 	json.Unmarshal(bodyResp, &r)
 	return r, err
 }
 
-func (a *Api) ClusterSSHKeyList() (*types.SSHKeyResponse, error) {
-	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
-		"/ssh_key",
-		requestTypeGet,
-		DefaultService)
+func (a *Api) SSHKeys() (*types.SSHKeyResponse, error) {
+	bodyResp, err := a.NewRequest(NilPayload, SSHUri, requestTypeGet, DefaultService)
 
 	var r *types.SSHKeyResponse
 	json.Unmarshal(bodyResp, &r)
 	return r, err
 }
 
-func (a *Api) ClusterAddSSHKey(params *types.SSHKeyRequest) (*types.Task, error) {
+func (a *Api) SSHKeyNew(params *types.SSHKeyRequest) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
-	bodyResp, err := a.NewRequest(
-		payload,
-		"/ssh_key",
-		requestTypePost,
-		DefaultService)
+	bodyResp, err := a.NewRequest(payload, SSHUri, requestTypePost, DefaultService)
 
 	var r *types.Task
 	json.Unmarshal(bodyResp, &r)
 	return r, err
 }
 
-func (a *Api) ClusterDeleteSSHKey(kid int) (*types.Task, error) {
-	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
-		fmt.Sprintf("/ssh_key/%d", kid),
-		requestTypeDelete,
-		DefaultService)
+func (a *Api) SSHKeyDelete(kid int) (*types.Task, error) {
+	uri := fmt.Sprintf("%s/%d", SSHUri, kid)
+	bodyResp, err := a.NewRequest(NilPayload, uri, requestTypeDelete, DefaultService)
 
 	var r *types.Task
 	json.Unmarshal(bodyResp, &r)

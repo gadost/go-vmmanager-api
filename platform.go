@@ -9,7 +9,7 @@ import (
 
 func (a *Api) PlatformBackup(bid int) ([]byte, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/platform/backup/%d", bid),
 		requestTypeGet,
 		DefaultService)
@@ -19,7 +19,7 @@ func (a *Api) PlatformBackup(bid int) ([]byte, error) {
 
 func (a *Api) PlatformBackupInfo(bid int) ([]byte, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/platform/backup/%d/info", bid),
 		requestTypeGet,
 		DefaultService)
@@ -27,9 +27,9 @@ func (a *Api) PlatformBackupInfo(bid int) ([]byte, error) {
 	return bodyResp, err
 }
 
-func (a *Api) PlatformBackupScheduleList() (*types.PlatformBackupSchedule, error) {
+func (a *Api) PlatformBackupSchedule() (*types.PlatformBackupSchedule, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		"/platform/backup/schedule",
 		requestTypeGet,
 		DefaultService)
@@ -69,7 +69,7 @@ func (a *Api) PlatformBackupScheduleUpdate(scid int,
 
 func (a *Api) PlatformBackupScheduleRun(scid int) (*types.ID, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/platform/backup/schedule/%d", scid),
 		requestTypePost,
 		DefaultService)
@@ -81,7 +81,7 @@ func (a *Api) PlatformBackupScheduleRun(scid int) (*types.ID, error) {
 
 func (a *Api) PlatformBackupScheduleDelete(scid int) (*types.ID, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/platform/backup/schedule/%d", scid),
 		requestTypeDelete,
 		DefaultService)

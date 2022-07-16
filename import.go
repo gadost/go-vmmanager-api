@@ -7,9 +7,9 @@ import (
 	"github.com/gadost/go-vmmanager-api/types"
 )
 
-func (a *Api) ImportHistoryList() (*types.ImportHistoryResponse, error) {
+func (a *Api) ImportHistory() (*types.ImportHistoryResponse, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		"/import_history",
 		requestTypeGet,
 		DefaultService)

@@ -72,7 +72,7 @@ func (a *Api) IPMgr5NetworkMigrate(params *types.IPMgr5MigrateRequest) (*types.T
 	return t, err
 }
 
-func (a *Api) NodeHetznerIPAdd(nid int, params *types.HetznerIPs) (*types.Task, error) {
+func (a *Api) NodeHetznerIPNew(nid int, params *types.HetznerIPs) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
 		payload,
@@ -113,7 +113,7 @@ func (a *Api) UserspaceIPNetworkNew(usid int, params *types.IPNetUpdate) (*types
 
 func (a *Api) IPPool() (*types.IPPoolResponse, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		"/ippool",
 		requestTypeGet,
 		DefaultService)
@@ -123,9 +123,9 @@ func (a *Api) IPPool() (*types.IPPoolResponse, error) {
 	return t, err
 }
 
-func (a *Api) IPPoolClustersList(ipid int) (*types.IPPoolClusterListResponse, error) {
+func (a *Api) IPPoolClusters(ipid int) (*types.IPPoolClusterListResponse, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/ippool/%d/cluster", ipid),
 		requestTypeGet,
 		DefaultService)
@@ -135,9 +135,9 @@ func (a *Api) IPPoolClustersList(ipid int) (*types.IPPoolClusterListResponse, er
 	return t, err
 }
 
-func (a *Api) NodeHetznerIPList(nid int) (*types.NodeHetznerIPResponse, error) {
+func (a *Api) NodeHetznerIPs(nid int) (*types.NodeHetznerIPResponse, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/node/%d/hetzner_ip", nid),
 		requestTypeGet,
 		DefaultService)
@@ -147,9 +147,9 @@ func (a *Api) NodeHetznerIPList(nid int) (*types.NodeHetznerIPResponse, error) {
 	return t, err
 }
 
-func (a *Api) Ranges() ([]byte, error) {
+func (a *Api) IPRanges() ([]byte, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		"/range",
 		requestTypeGet,
 		DefaultService)
@@ -157,9 +157,9 @@ func (a *Api) Ranges() ([]byte, error) {
 	return bodyResp, err
 }
 
-func (a *Api) Range(rid int) ([]byte, error) {
+func (a *Api) IPRange(rid int) ([]byte, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/range/%d/ip", rid),
 		requestTypeGet,
 		DefaultService)
@@ -169,7 +169,7 @@ func (a *Api) Range(rid int) ([]byte, error) {
 
 func (a *Api) HetznerIPDelete(hipid int) (*types.Task, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/hetzner_ip/%d", hipid),
 		requestTypeDelete,
 		DefaultService)
@@ -181,7 +181,7 @@ func (a *Api) HetznerIPDelete(hipid int) (*types.Task, error) {
 
 func (a *Api) HetznerSubNetDelete(hsid int) (*types.Task, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/hetzner_subnet/%d", hsid),
 		requestTypeDelete,
 		DefaultService)
@@ -193,7 +193,7 @@ func (a *Api) HetznerSubNetDelete(hsid int) (*types.Task, error) {
 
 func (a *Api) IPNetworkDelete(ipnid int) (*types.DeletedResponse, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/ipnet/%d", ipnid),
 		requestTypeDelete,
 		DefaultService)
@@ -205,7 +205,7 @@ func (a *Api) IPNetworkDelete(ipnid int) (*types.DeletedResponse, error) {
 
 func (a *Api) IPPoolDelete(ippid int) (*types.DeletedResponse, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/ippool/%d", ippid),
 		requestTypeDelete,
 		DefaultService)
@@ -217,7 +217,7 @@ func (a *Api) IPPoolDelete(ippid int) (*types.DeletedResponse, error) {
 
 func (a *Api) IPRangeDelete(iprid int) (*types.DeletedResponse, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/range/%d", iprid),
 		requestTypeDelete,
 		DefaultService)

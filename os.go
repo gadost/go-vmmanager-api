@@ -7,9 +7,9 @@ import (
 	"github.com/gadost/go-vmmanager-api/types"
 )
 
-func (a *Api) OSList() (*types.OSList, error) {
+func (a *Api) OSes() (*types.OSList, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		"/os",
 		requestTypeGet,
 		DefaultService)
@@ -33,7 +33,7 @@ func (a *Api) OSUpdate(oid int, params *types.OSUpdateParams) (*types.Tasks, err
 
 func (a *Api) OSDelete(oid int) (*types.DeletedResponse, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/os/%d", oid),
 		requestTypeDelete,
 		DefaultService)
@@ -43,9 +43,9 @@ func (a *Api) OSDelete(oid int) (*types.DeletedResponse, error) {
 	return t, err
 }
 
-func (a *Api) NodeOSDelete(oid int, nid int) (*types.DeletedResponse, error) {
+func (a *Api) OSNodeDelete(oid int, nid int) (*types.DeletedResponse, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/os/%d/node/%d", oid, nid),
 		requestTypeDelete,
 		DefaultService)
@@ -55,18 +55,18 @@ func (a *Api) NodeOSDelete(oid int, nid int) (*types.DeletedResponse, error) {
 	return t, err
 }
 
-func (a *Api) NodeOSDisable(oid int, nid int) ([]byte, error) {
+func (a *Api) OSNodeDisable(oid int, nid int) ([]byte, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/os/%d/node/%d/disable", oid, nid),
 		requestTypePost,
 		DefaultService)
 
 	return bodyResp, err
 }
-func (a *Api) NodeOSEnable(oid int, nid int) ([]byte, error) {
+func (a *Api) OSNodeEnable(oid int, nid int) ([]byte, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/os/%d/node/%d/enable", oid, nid),
 		requestTypePost,
 		DefaultService)
@@ -74,9 +74,9 @@ func (a *Api) NodeOSEnable(oid int, nid int) ([]byte, error) {
 	return bodyResp, err
 }
 
-func (a *Api) OSListAll() (*types.OSList, error) {
+func (a *Api) OSesAll() (*types.OSList, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		"/os/all",
 		requestTypeGet,
 		DefaultService)

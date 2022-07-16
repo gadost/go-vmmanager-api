@@ -9,7 +9,7 @@ import (
 
 func (a *Api) NodeScriptDelete(nsid int) (*types.DeletedResponse, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/node_script/%d", nsid),
 		requestTypeDelete,
 		DefaultService)
@@ -21,7 +21,7 @@ func (a *Api) NodeScriptDelete(nsid int) (*types.DeletedResponse, error) {
 
 func (a *Api) NodeScripts() (*types.NodeScriptResponse, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		"/node_script",
 		requestTypeGet,
 		DefaultService)
@@ -33,7 +33,7 @@ func (a *Api) NodeScripts() (*types.NodeScriptResponse, error) {
 
 func (a *Api) NodeScript(nsid int) (*types.NodeScriptElement, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/node_script/%d", nsid),
 		requestTypeGet,
 		DefaultService)

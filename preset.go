@@ -9,7 +9,7 @@ import (
 
 func (a *Api) Presets() (*types.PresetListResponse, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		"/preset",
 		requestTypeGet,
 		DefaultService)
@@ -21,7 +21,7 @@ func (a *Api) Presets() (*types.PresetListResponse, error) {
 
 func (a *Api) Preset(pid int) (*types.PresetListElement, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/preset/%d", pid),
 		requestTypeGet,
 		DefaultService)
@@ -61,7 +61,7 @@ func (a *Api) PresetUpdate(pid int,
 
 func (a *Api) PresetDelete(pid int) (*types.ID, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/preset/%d", pid),
 		requestTypeDelete,
 		DefaultService)

@@ -19,8 +19,15 @@ const (
 	requestTypePost           = "POST"
 	requestTypeGet            = "GET"
 	requestTypeDelete         = "DELETE"
-	NilPayload                = ""
 	BackupUri                 = "/backup"
+	DiskUri                   = "/disk"
+	HostUri                   = "/host"
+	ClusterUri                = "/cluster"
+	SSHUri                    = "/ssh_key"
+)
+
+var (
+	NilPayload = []byte("")
 )
 
 type Api struct {
@@ -61,19 +68,15 @@ func connect() *http.Client {
 
 // NewRequest to API
 func (a *Api) NewRequest(payload []byte, uri string, reqType string, service string) ([]byte, error) {
+
 	body := bytes.NewReader(payload)
+
 	req, err := http.NewRequest(reqType, a.entrypoint(service)+uri, body)
 	if err != nil {
 		return nil, err
 	}
 
-	req.Proto = "HTTP/2"
-	req.Header.Set("Accept", "application/json")
-	req.Header.Set("Content-Type", "application/json")
-
-	if a.AuthData.Token != "" {
-		req.Header.Set("X-XSRF-TOKEN", a.AuthData.Token)
-	}
+	req = a.SetHeaders(req)
 
 	resp, err := a.conn.Do(req)
 	if err != nil {
@@ -85,6 +88,19 @@ func (a *Api) NewRequest(payload []byte, uri string, reqType string, service str
 	bodyResp, err := io.ReadAll(resp.Body)
 
 	return bodyResp, err
+}
+
+func (a *Api) SetHeaders(req *http.Request) *http.Request {
+	req.Proto = "HTTP/2"
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("Content-Type", "application/json")
+
+	if a.AuthData.Token != "" {
+		req.Header.Set("X-XSRF-TOKEN", a.AuthData.Token)
+	}
+
+	return req
+
 }
 
 func MakeQuery(params map[string]string) *ParamsQuery {

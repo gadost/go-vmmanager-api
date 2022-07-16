@@ -9,7 +9,7 @@ import (
 
 func (a *Api) Nodes(where *ParamsQuery) (*types.NodesResponse, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/node%s", where),
 		requestTypeGet,
 		DefaultService)
@@ -21,7 +21,7 @@ func (a *Api) Nodes(where *ParamsQuery) (*types.NodesResponse, error) {
 
 func (a *Api) NodeCheck() ([]byte, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		"/node_check",
 		requestTypeGet,
 		DefaultService)
@@ -29,9 +29,9 @@ func (a *Api) NodeCheck() ([]byte, error) {
 	return bodyResp, err
 }
 
-func (a *Api) NodedShortClusterList() (*types.NodeReducedClusterListResponse, error) {
+func (a *Api) NodeClustersShort() (*types.NodeReducedClusterListResponse, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		"/node_short",
 		requestTypeGet,
 		DefaultService)
@@ -43,7 +43,7 @@ func (a *Api) NodedShortClusterList() (*types.NodeReducedClusterListResponse, er
 
 func (a *Api) Node(nid int) (*types.NodeResponse, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/node/%d", nid),
 		requestTypeGet,
 		DefaultService)
@@ -55,7 +55,7 @@ func (a *Api) Node(nid int) (*types.NodeResponse, error) {
 
 func (a *Api) NodeFiles(nid int) (*types.NodeFileListResponse, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/node/%d/file", nid),
 		requestTypeGet,
 		DefaultService)
@@ -67,7 +67,7 @@ func (a *Api) NodeFiles(nid int) (*types.NodeFileListResponse, error) {
 
 func (a *Api) NodeHeader(nid int) ([]byte, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/node/%d/header", nid),
 		requestTypeGet,
 		DefaultService)
@@ -77,7 +77,7 @@ func (a *Api) NodeHeader(nid int) ([]byte, error) {
 
 func (a *Api) NodeHistory(nid int) ([]byte, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/node/%d/history", nid),
 		requestTypeGet,
 		DefaultService)
@@ -85,9 +85,9 @@ func (a *Api) NodeHistory(nid int) ([]byte, error) {
 	return bodyResp, err
 }
 
-func (a *Api) NodeHostIFaces(nid int) (*types.NodeHostIFaces, error) {
+func (a *Api) NodeHostInterfaces(nid int) (*types.NodeHostIFaces, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/node/%d/host/ifaces", nid),
 		requestTypeGet,
 		DefaultService)
@@ -99,7 +99,7 @@ func (a *Api) NodeHostIFaces(nid int) (*types.NodeHostIFaces, error) {
 
 func (a *Api) NodeHosts(nid int) ([]byte, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/node/%d/hosts", nid),
 		requestTypeGet,
 		DefaultService)
@@ -109,7 +109,7 @@ func (a *Api) NodeHosts(nid int) ([]byte, error) {
 
 func (a *Api) NodeLocalStorage(nid int) ([]byte, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/node/%d/local_storage", nid),
 		requestTypeGet,
 		DefaultService)
@@ -119,7 +119,7 @@ func (a *Api) NodeLocalStorage(nid int) ([]byte, error) {
 
 func (a *Api) NodeMetrics(nid int) ([]byte, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/node/%d/metrics", nid),
 		requestTypeGet,
 		DefaultService)
@@ -127,9 +127,9 @@ func (a *Api) NodeMetrics(nid int) ([]byte, error) {
 	return bodyResp, err
 }
 
-func (a *Api) NodeNetworkIFaces(nid int) (*types.NodeNetworkIFaces, error) {
+func (a *Api) NodeNetworkInterfaces(nid int) (*types.NodeNetworkIFaces, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/node/%d/network/iface", nid),
 		requestTypeGet,
 		DefaultService)
@@ -141,7 +141,7 @@ func (a *Api) NodeNetworkIFaces(nid int) (*types.NodeNetworkIFaces, error) {
 
 func (a *Api) NodeStorageConnectionParams(nid int, sid int) ([]byte, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/node/%d/storage/%d/connect_params", nid, sid),
 		requestTypeGet,
 		DefaultService)
@@ -175,7 +175,7 @@ func (a *Api) NodeUpdate(nid int, params *types.NodeUpdateRequest) (*types.ID, e
 
 func (a *Api) NodeLibvirtCertUpdate(nid int) (*types.Task, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/node/%d/cert", nid),
 		requestTypePost,
 		DefaultService)
@@ -220,7 +220,7 @@ func (a *Api) NodeHAStateUpdate(nid int, params *types.State) (*types.ID, error)
 	return t, err
 }
 
-func (a *Api) NodeHostIFacesUpdate(nid int, params *types.NodeHostIFaces) (*types.Task, error) {
+func (a *Api) NodeHostInterfaceUpdate(nid int, params *types.NodeHostIFaces) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
 		payload,
@@ -379,7 +379,7 @@ func (a *Api) NodeRelocate(nid int, params interface{}) (*types.Task, error) {
 func (a *Api) NodeStorageCheck(cid int, sid int) (*types.Task, error) {
 
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/node/%d/storage/%d/check", cid, sid),
 		requestTypePost,
 		DefaultService)
@@ -404,7 +404,7 @@ func (a *Api) NodeHDDOverselling(
 
 func (a *Api) NodeDelete(nsid int) (*types.Task, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/node/%d", nsid),
 		requestTypeDelete,
 		DefaultService)
@@ -416,7 +416,7 @@ func (a *Api) NodeDelete(nsid int) (*types.Task, error) {
 
 func (a *Api) NodeNetworkInterfaceDelete(nsid int, iface string) (*types.Task, error) {
 	bodyResp, err := a.NewRequest(
-		[]byte(NilPayload),
+		NilPayload,
 		fmt.Sprintf("/node/%d/network/iface/%s", nsid, iface),
 		requestTypeDelete,
 		DefaultService)
