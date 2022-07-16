@@ -24,7 +24,7 @@ func main() {
 
     // Connect to VMmanager6
     conn := vmm.New("domain.com").Auth(auth)
-
+    
     // Get Cluster list
     resp, err := conn.ClusterList()
     fmt.Println(resp.LastNotify)
@@ -40,6 +40,14 @@ func main() {
         fmt.Println(resp2.Task)
     }
 }
+```
+
+## Extended token lifetime
+
+```go
+// Standart token lifetime = 1h inactivity . If you need extended tokenlife time:
+expiresAt := time.Now().Add(30*time.Day)
+conn := vmm.New("domain.com").Auth(auth).WithExtendedTokenLifetime(expiresAt, "extended token desc")
 ```
 
 ## Implemented
