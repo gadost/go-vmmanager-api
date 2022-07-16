@@ -1987,3 +1987,35 @@ type VXLanIPNet struct {
 	Name    string `json:"name"`
 	Gateway string `json:"gateway"`
 }
+
+type TasksList struct {
+	LastNotify int           `json:"last_notify"`
+	List       []TaskElement `json:"list"`
+}
+
+type TaskElement struct {
+	ID          int    `json:"id"`
+	ConsulID    int    `json:"consul_id"`
+	DeferReason string `json:"defer_reason"`
+	Name        string `json:"name"`
+	Status      string `json:"status"`
+}
+
+type TaskInternalUpdate struct {
+	Status string `json:"status"`
+	Output string `json:"output"`
+}
+
+type TaskSyncRequest struct {
+	Hosts []TaskHost `json:"hosts"`
+}
+type TaskHost struct {
+	Name   string      `json:"name"`
+	Events []TaskEvent `json:"events"`
+}
+
+type TaskEvent struct {
+	RelocateID int         `json:"relocate_id"`
+	Status     string      `json:"status"`
+	Params     interface{} `json:"params"`
+}

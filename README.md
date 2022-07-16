@@ -64,12 +64,12 @@ func main() {
 - Snapshot
 - Schedule
 - Tag
+- Task
 - VXLan
 
 still in development:
 
 - Settings
 - Storage
-- Task
 - User
 - VMmmanager
