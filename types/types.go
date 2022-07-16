@@ -2093,3 +2093,41 @@ type UserParams struct {
 	OldPassword string   `json:"old_password"`
 	Password    string   `json:"password"`
 }
+
+type Storages struct {
+	LastNotify int              `json:"last_notify"`
+	List       []StorageElement `json:"list"`
+}
+
+type StorageElement struct {
+	ID            int           `json:"id"`
+	Name          string        `json:"name"`
+	Comment       string        `json:"comment"`
+	Type          string        `json:"type"`
+	StorageParams StorageParams `json:"storage_params"`
+	IsNetwork     bool          `json:"is_network"`
+	Clusters      []ClusterID   `json:"clusters"`
+	Tags          []Tag         `json:"tags"`
+}
+
+type StorageParams struct {
+	IPAddr   string `json:"ip_addr"`
+	SSHPort  int    `json:"ssh_port"`
+	Login    string `json:"login"`
+	Password string `json:"password"`
+}
+
+type StorageNew struct {
+	Name          string        `json:"name"`
+	Comment       string        `json:"comment"`
+	Type          string        `json:"type"`
+	StorageParams StorageParams `json:"storage_params"`
+	IgnoreChecks  bool          `json:"ignore_checks"`
+	Tags          []int         `json:"tags"`
+}
+
+type StorageUpdate struct {
+	Name    string `json:"name"`
+	Comment string `json:"comment"`
+	Tags    []int  `json:"tags"`
+}

@@ -63,6 +63,7 @@ func main() {
 - Repository
 - Snapshot
 - Schedule
+- Storage
 - Tag
 - Task
 - VXLan
@@ -72,4 +73,3 @@ func main() {
 still in development:
 
 - Settings
-- Storage
