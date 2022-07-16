@@ -2040,3 +2040,56 @@ type LicenseSet struct {
 	Signature string `json:"signature"`
 	Content   string `json:"content"`
 }
+
+type Accounts struct {
+	List []AccountElement `json:"list"`
+}
+
+type AccountElement struct {
+	ID         int      `json:"id"`
+	Email      string   `json:"email"`
+	State      string   `json:"state"`
+	AuthSource string   `json:"auth_source"`
+	HostCount  int      `json:"host_count"`
+	CPUCount   int      `json:"cpu_count"`
+	RAMMib     int      `json:"ram_mib"`
+	HddMib     int      `json:"hdd_mib"`
+	Roles      []string `json:"roles"`
+	HostIds    []int    `json:"host_ids"`
+}
+
+type AccountNew struct {
+	Email       string `json:"email"`
+	FullName    string `json:"full_name"`
+	Password    string `json:"password"`
+	PhoneNumber string `json:"phone_number"`
+	Role        string `json:"role"`
+}
+
+type AccountSyncingParams struct {
+	List   []AccountSyncingParansElement `json:"list"`
+	Delete []int                         `json:"delete"`
+}
+
+type AccountSyncingParansElement struct {
+	ID              int      `json:"id"`
+	Email           string   `json:"email"`
+	Roles           []string `json:"roles"`
+	State           string   `json:"state"`
+	AuthSource      string   `json:"auth_source"`
+	AdditionalProp1 struct {
+	} `json:"additionalProp1"`
+}
+
+type InviteUserParams struct {
+	Email string `json:"email"`
+	Role  string `json:"role"`
+}
+
+type UserParams struct {
+	Roles       []string `json:"roles"`
+	FullName    string   `json:"full_name"`
+	Lang        string   `json:"lang"`
+	OldPassword string   `json:"old_password"`
+	Password    string   `json:"password"`
+}

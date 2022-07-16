@@ -66,10 +66,10 @@ func main() {
 - Tag
 - Task
 - VXLan
+- User
 - VMmmanager
 
 still in development:
 
 - Settings
 - Storage
-- User
