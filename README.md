@@ -59,4 +59,7 @@ func main() {
 - OS
 - Platform Backups
 - Preset
+- Recipe
+- Repository
+
 still in development

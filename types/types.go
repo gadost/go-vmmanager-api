@@ -1830,3 +1830,26 @@ type ScriptVariable struct {
 	ID      int    `json:"id"`
 	Scope   string `json:"scope"`
 }
+
+type Repositories struct {
+	LastNotify int          `json:"last_notify"`
+	List       []Repository `json:"list"`
+}
+
+type Repository struct {
+	Name  string `json:"name"`
+	URL   string `json:"url"`
+	ID    int    `json:"id"`
+	State string `json:"state"`
+	Type  string `json:"type"`
+}
+
+type RepositoryName struct {
+	ID   int    `json:"id"`
+	Name string `json:"name"`
+}
+
+type RepositoryNew struct {
+	Name string `json:"name"`
+	URL  string `json:"url"`
+}
