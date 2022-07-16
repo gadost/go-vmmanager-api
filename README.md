@@ -64,12 +64,9 @@ func main() {
 - Snapshot
 - Schedule
 - Storage
+- Settings
 - Tag
 - Task
 - VXLan
 - User
 - VMmmanager
-
-still in development:
-
-- Settings

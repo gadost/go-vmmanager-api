@@ -2131,3 +2131,31 @@ type StorageUpdate struct {
 	Comment string `json:"comment"`
 	Tags    []int  `json:"tags"`
 }
+
+type UserLimits struct {
+	HostCount       int `json:"host_count"`
+	ImageCount      int `json:"image_count"`
+	ImageCountTotal int `json:"image_count_total"`
+	CPUNumber       int `json:"cpu_number"`
+	CPUNumberTotal  int `json:"cpu_number_total"`
+	RAMMib          int `json:"ram_mib"`
+	RAMMibTotal     int `json:"ram_mib_total"`
+	HddMib          int `json:"hdd_mib"`
+	HddMibTotal     int `json:"hdd_mib_total"`
+	Ipv4Number      int `json:"ipv4_number"`
+	Ipv4NumberTotal int `json:"ipv4_number_total"`
+	VxlanCountTotal int `json:"vxlan_count_total"`
+}
+
+type KeyValue struct {
+	Name  string `json:"name"`
+	Value string `json:"value"`
+}
+
+type Value struct {
+	Value string `json:"value"`
+}
+
+type TimeoutSeconds struct {
+	TimeoutSeconds int `json:"timeout_seconds"`
+}
