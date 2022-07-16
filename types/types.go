@@ -1885,3 +1885,39 @@ type TagNew struct {
 	Name string `json:"name"`
 	Note string `json:"note"`
 }
+
+// schedule
+
+type Schedules struct {
+	LastNotify int        `json:"last_notify"`
+	List       []Schedule `json:"list"`
+}
+
+type Schedule struct {
+	ID              int       `json:"id"`
+	Name            string    `json:"name"`
+	Comment         string    `json:"comment"`
+	BackupMode      string    `json:"backup_mode"`
+	Type            string    `json:"type"`
+	LimitCount      int       `json:"limit_count"`
+	LimitSizeMib    int       `json:"limit_size_mib"`
+	StartTime       StartTime `json:"start_time"`
+	BackupLocations []int     `json:"backup_locations"`
+	Clusters        []int     `json:"clusters"`
+	Disks           []int     `json:"disks"`
+	Nodes           []int     `json:"nodes"`
+	Hosts           []int     `json:"hosts"`
+	Presets         []int     `json:"presets"`
+	NextRun         string    `json:"next_run"`
+}
+
+type StartTime struct {
+	Day     int `json:"day"`
+	WeekDay int `json:"week_day"`
+	Hour    int `json:"hour"`
+	Minute  int `json:"minute"`
+}
+
+type AffectedHostsCount struct {
+	AffectedHostsCount int `json:"affected_hosts_count"`
+}
