@@ -64,6 +64,7 @@ func main() {
 - Snapshot
 - Schedule
 - Tag
+- VXLan
 
 still in development:
 
@@ -72,4 +73,3 @@ still in development:
 - Task
 - User
 - VMmmanager
-- VXLan

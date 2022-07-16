@@ -1921,3 +1921,69 @@ type StartTime struct {
 type AffectedHostsCount struct {
 	AffectedHostsCount int `json:"affected_hosts_count"`
 }
+
+type VXLans struct {
+	LastNotify int     `json:"last_notify"`
+	List       []VXLan `json:"list"`
+}
+
+type VXLan struct {
+	ID        int            `json:"id"`
+	Name      string         `json:"name"`
+	Comment   string         `json:"comment"`
+	Account   BaseAccount    `json:"account"`
+	Tag       int            `json:"tag"`
+	HostCount int            `json:"host_count"`
+	Clusters  []VXLanCluster `json:"clusters"`
+	Ipnets    []IPnet        `json:"ipnets"`
+	Ippool    int            `json:"ippool"`
+}
+
+type VXLanCluster struct {
+	ID             int    `json:"id"`
+	Name           string `json:"name"`
+	VxlanMode      string `json:"vxlan_mode"`
+	VxlanSettings  string `json:"vxlan_settings"`
+	VxlanHostCount int    `json:"vxlan_host_count"`
+}
+
+type IPnet struct {
+	ID             int    `json:"id"`
+	Name           string `json:"name"`
+	Gateway        string `json:"gateway"`
+	VxlanHostCount int    `json:"vxlan_host_count"`
+}
+
+type VXLanNew struct {
+	Name     string          `json:"name"`
+	Comment  string          `json:"comment"`
+	Account  int             `json:"account"`
+	Ipnets   []VXLanNewIPnet `json:"ipnets"`
+	Clusters []int           `json:"clusters"`
+}
+
+type VXLanNewIPnet struct {
+	Name    string `json:"name"`
+	Gateway string `json:"gateway"`
+}
+
+type VXLanIPs struct {
+	LastNotify int       `json:"last_notify"`
+	List       []VXLanIP `json:"list"`
+}
+
+type VXLanIP struct {
+	ID      int    `json:"id"`
+	IPAddr  string `json:"ip_addr"`
+	Gateway string `json:"gateway"`
+	Ipnet   string `json:"ipnet"`
+	Domain  string `json:"domain"`
+	State   string `json:"state"`
+	Comment string `json:"comment"`
+	Host    Host   `json:"host"`
+}
+
+type VXLanIPNet struct {
+	Name    string `json:"name"`
+	Gateway string `json:"gateway"`
+}
