@@ -7,6 +7,7 @@ import (
 	"github.com/gadost/go-vmmanager-api/types"
 )
 
+// Nodes returns Nodes params
 func (a *Api) Nodes(where *ParamsQuery) (*types.NodesResponse, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,
@@ -19,6 +20,7 @@ func (a *Api) Nodes(where *ParamsQuery) (*types.NodesResponse, error) {
 	return t, err
 }
 
+// NodeCheck check Node
 func (a *Api) NodeCheck() ([]byte, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,
@@ -29,6 +31,7 @@ func (a *Api) NodeCheck() ([]byte, error) {
 	return bodyResp, err
 }
 
+// NodeClustersShort returns short node clusters info
 func (a *Api) NodeClustersShort() (*types.NodeReducedClusterListResponse, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,
@@ -41,6 +44,7 @@ func (a *Api) NodeClustersShort() (*types.NodeReducedClusterListResponse, error)
 	return t, err
 }
 
+// Node return node params
 func (a *Api) Node(nid int) (*types.NodeResponse, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,
@@ -53,6 +57,7 @@ func (a *Api) Node(nid int) (*types.NodeResponse, error) {
 	return t, err
 }
 
+// NodeFiles returns filelist on node
 func (a *Api) NodeFiles(nid int) (*types.NodeFileListResponse, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,
@@ -65,6 +70,7 @@ func (a *Api) NodeFiles(nid int) (*types.NodeFileListResponse, error) {
 	return t, err
 }
 
+// NodeHeader return node header
 func (a *Api) NodeHeader(nid int) ([]byte, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,
@@ -75,6 +81,7 @@ func (a *Api) NodeHeader(nid int) ([]byte, error) {
 	return bodyResp, err
 }
 
+// NodeHistory returns node history
 func (a *Api) NodeHistory(nid int) ([]byte, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,
@@ -85,6 +92,7 @@ func (a *Api) NodeHistory(nid int) ([]byte, error) {
 	return bodyResp, err
 }
 
+// NodeHostInterfaces return host interfaces on node
 func (a *Api) NodeHostInterfaces(nid int) (*types.NodeHostIFaces, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,
@@ -97,6 +105,7 @@ func (a *Api) NodeHostInterfaces(nid int) (*types.NodeHostIFaces, error) {
 	return t, err
 }
 
+// NodeHosts returns hosts on node
 func (a *Api) NodeHosts(nid int) ([]byte, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,
@@ -107,6 +116,7 @@ func (a *Api) NodeHosts(nid int) ([]byte, error) {
 	return bodyResp, err
 }
 
+// NodeLocalStorage returns node local storages
 func (a *Api) NodeLocalStorage(nid int) ([]byte, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,
@@ -117,6 +127,7 @@ func (a *Api) NodeLocalStorage(nid int) ([]byte, error) {
 	return bodyResp, err
 }
 
+// NodeMetrics returns node metrics
 func (a *Api) NodeMetrics(nid int) ([]byte, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,
@@ -127,6 +138,7 @@ func (a *Api) NodeMetrics(nid int) ([]byte, error) {
 	return bodyResp, err
 }
 
+// NodeNetworkInterfaces return node interfaces
 func (a *Api) NodeNetworkInterfaces(nid int) (*types.NodeNetworkIFaces, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,
@@ -139,6 +151,7 @@ func (a *Api) NodeNetworkInterfaces(nid int) (*types.NodeNetworkIFaces, error) {
 	return t, err
 }
 
+// NodeStorageConnectionParams returns node storage connection params
 func (a *Api) NodeStorageConnectionParams(nid int, sid int) ([]byte, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,
@@ -149,6 +162,7 @@ func (a *Api) NodeStorageConnectionParams(nid int, sid int) ([]byte, error) {
 	return bodyResp, err
 }
 
+// NodeNew create new node
 func (a *Api) NodeNew(params *types.NodeNewRequest) (*types.StorageTask, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
@@ -161,6 +175,7 @@ func (a *Api) NodeNew(params *types.NodeNewRequest) (*types.StorageTask, error) 
 	return t, err
 }
 
+// NodeUpdate update node params
 func (a *Api) NodeUpdate(nid int, params *types.NodeUpdateRequest) (*types.ID, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
@@ -173,6 +188,7 @@ func (a *Api) NodeUpdate(nid int, params *types.NodeUpdateRequest) (*types.ID, e
 	return t, err
 }
 
+// NodeLibvirtCertUpdate update node's libvirt certificate
 func (a *Api) NodeLibvirtCertUpdate(nid int) (*types.Task, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,
@@ -184,6 +200,7 @@ func (a *Api) NodeLibvirtCertUpdate(nid int) (*types.Task, error) {
 	return t, err
 }
 
+// NodeFilesUpdate update files on node
 func (a *Api) NodeFilesUpdate(nid int, params *types.NodeFilesUpdateRequest) (*types.ID, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
@@ -196,6 +213,7 @@ func (a *Api) NodeFilesUpdate(nid int, params *types.NodeFilesUpdateRequest) (*t
 	return t, err
 }
 
+// NodeHAEnable enable node HA
 func (a *Api) NodeHAEnable(nid int, params interface{}) (*types.ID, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
@@ -208,6 +226,7 @@ func (a *Api) NodeHAEnable(nid int, params interface{}) (*types.ID, error) {
 	return t, err
 }
 
+// NodeHAStateUpdate update Node HA state
 func (a *Api) NodeHAStateUpdate(nid int, params *types.State) (*types.ID, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
@@ -220,6 +239,7 @@ func (a *Api) NodeHAStateUpdate(nid int, params *types.State) (*types.ID, error)
 	return t, err
 }
 
+// NodeHostInterfaceUpdate update host interface on node
 func (a *Api) NodeHostInterfaceUpdate(nid int, params *types.NodeHostIFaces) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
@@ -232,6 +252,7 @@ func (a *Api) NodeHostInterfaceUpdate(nid int, params *types.NodeHostIFaces) (*t
 	return t, err
 }
 
+// NodeHostStatesUpdate update hosy state on node
 func (a *Api) NodeHostStatesUpdate(nid int, params interface{}) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
@@ -244,6 +265,7 @@ func (a *Api) NodeHostStatesUpdate(nid int, params interface{}) (*types.Task, er
 	return t, err
 }
 
+// NodeImportedConfigure import  node configuraton
 func (a *Api) NodeImportedConfigure(nid int, params *types.NetworkAutosetupDisabled) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
@@ -256,6 +278,7 @@ func (a *Api) NodeImportedConfigure(nid int, params *types.NetworkAutosetupDisab
 	return t, err
 }
 
+// NodeInterfaceNew add new interface to node
 func (a *Api) NodeInterfaceNew(nid int, params *types.NodeNetworkInterface) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
@@ -268,6 +291,7 @@ func (a *Api) NodeInterfaceNew(nid int, params *types.NodeNetworkInterface) (*ty
 	return t, err
 }
 
+// NodeInterfaceUpdate update interface params on node
 func (a *Api) NodeInterfaceUpdate(nid int, iface string, params *types.NodeNetworkInterface) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
@@ -280,6 +304,7 @@ func (a *Api) NodeInterfaceUpdate(nid int, iface string, params *types.NodeNetwo
 	return t, err
 }
 
+// NodeInterfaceRevert revert interface changes on node
 func (a *Api) NodeInterfaceRevert(nid int, iface string, params interface{}) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
@@ -292,6 +317,7 @@ func (a *Api) NodeInterfaceRevert(nid int, iface string, params interface{}) (*t
 	return t, err
 }
 
+// NodeInterfacesUpdate update  interface params on node
 func (a *Api) NodeInterfacesUpdate(nid int, params *types.NodeNetworkInterfaces) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
@@ -304,6 +330,7 @@ func (a *Api) NodeInterfacesUpdate(nid int, params *types.NodeNetworkInterfaces)
 	return t, err
 }
 
+// NodeNetworkLock lock node network
 func (a *Api) NodeNetworkLock(nid int, params interface{}) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
@@ -316,6 +343,7 @@ func (a *Api) NodeNetworkLock(nid int, params interface{}) (*types.Task, error) 
 	return t, err
 }
 
+// NodeNetworkRevert revert network changes
 func (a *Api) NodeNetworkRevert(nid int, params interface{}) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
@@ -328,6 +356,7 @@ func (a *Api) NodeNetworkRevert(nid int, params interface{}) (*types.Task, error
 	return t, err
 }
 
+// NodeNetworkSave save node network
 func (a *Api) NodeNetworkSave(nid int, params interface{}) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
@@ -340,6 +369,7 @@ func (a *Api) NodeNetworkSave(nid int, params interface{}) (*types.Task, error) 
 	return t, err
 }
 
+// NodeNetworkUnlock unlock node network
 func (a *Api) NodeNetworkUnlock(nid int, params interface{}) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
@@ -352,6 +382,7 @@ func (a *Api) NodeNetworkUnlock(nid int, params interface{}) (*types.Task, error
 	return t, err
 }
 
+// NodeProblemsNew create new problem
 func (a *Api) NodeProblemsNew(nid int, params *types.Problems) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
@@ -364,6 +395,7 @@ func (a *Api) NodeProblemsNew(nid int, params *types.Problems) (*types.Task, err
 	return t, err
 }
 
+// NodeRelocate start relocate node
 func (a *Api) NodeRelocate(nid int, params interface{}) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
@@ -376,8 +408,8 @@ func (a *Api) NodeRelocate(nid int, params interface{}) (*types.Task, error) {
 	return t, err
 }
 
+// NodeStorageCheck check  storage on node
 func (a *Api) NodeStorageCheck(cid int, sid int) (*types.Task, error) {
-
 	bodyResp, err := a.NewRequest(
 		NilPayload,
 		fmt.Sprintf("/node/%d/storage/%d/check", cid, sid),
@@ -389,6 +421,7 @@ func (a *Api) NodeStorageCheck(cid int, sid int) (*types.Task, error) {
 	return r, err
 }
 
+// NodeHDDOverselling set node hdd  overselling
 func (a *Api) NodeHDDOverselling(
 	nid int, params *types.HDDOversellingRequest) (*types.HDDOversellingResponse, error) {
 	payload, _ := json.Marshal(params)
@@ -402,6 +435,7 @@ func (a *Api) NodeHDDOverselling(
 	return t, err
 }
 
+// NodeDelete delete node
 func (a *Api) NodeDelete(nsid int) (*types.Task, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,
@@ -414,6 +448,7 @@ func (a *Api) NodeDelete(nsid int) (*types.Task, error) {
 	return t, err
 }
 
+// NodeNetworkInterfaceDelete delete node interface
 func (a *Api) NodeNetworkInterfaceDelete(nsid int, iface string) (*types.Task, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,

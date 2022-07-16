@@ -7,6 +7,7 @@ import (
 	"github.com/gadost/go-vmmanager-api/types"
 )
 
+// Tasks return all tasks
 func (a *Api) Tasks() (*types.TasksList, error) {
 	bodyResp, err := a.NewRequest(NilPayload, "/task", requestTypeGet, DefaultService)
 
@@ -15,6 +16,7 @@ func (a *Api) Tasks() (*types.TasksList, error) {
 	return r, err
 }
 
+// Task return task info
 func (a *Api) Task(tid int) (*types.TaskElement, error) {
 	uri := fmt.Sprintf("/task/%d", tid)
 	bodyResp, err := a.NewRequest(NilPayload, uri, requestTypeGet, DefaultService)
@@ -24,6 +26,7 @@ func (a *Api) Task(tid int) (*types.TaskElement, error) {
 	return r, err
 }
 
+// TagAbort abort task
 func (a *Api) TagAbort(tid int) (*types.Task, error) {
 	uri := fmt.Sprintf("/task/%d/abort", tid)
 	bodyResp, err := a.NewRequest(NilPayload, uri, requestTypePost, DefaultService)
@@ -33,6 +36,7 @@ func (a *Api) TagAbort(tid int) (*types.Task, error) {
 	return r, err
 }
 
+// TaskInternalUpdate update internal task params
 func (a *Api) TaskInternalUpdate(tid int, params *types.TaskInternalUpdate) (*types.ID, error) {
 	payload, _ := json.Marshal(params)
 	uri := fmt.Sprintf("/task/%d/internal_edit", tid)
@@ -43,6 +47,7 @@ func (a *Api) TaskInternalUpdate(tid int, params *types.TaskInternalUpdate) (*ty
 	return r, err
 }
 
+// TaskHASync Ha sync tasks
 func (a *Api) TaskHASync(params *types.TaskSyncRequest) (*types.Tasks, error) {
 	payload, _ := json.Marshal(params)
 	uri := "/task/ha/sync"
@@ -53,6 +58,7 @@ func (a *Api) TaskHASync(params *types.TaskSyncRequest) (*types.Tasks, error) {
 	return r, err
 }
 
+// TaskDelete delete task
 func (a *Api) TaskDelete(tid int) (*types.Task, error) {
 	uri := fmt.Sprintf("/task/%d/delete", tid)
 	bodyResp, err := a.NewRequest(NilPayload, uri, requestTypeDelete, DefaultService)

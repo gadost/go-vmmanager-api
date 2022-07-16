@@ -7,6 +7,7 @@ import (
 	"github.com/gadost/go-vmmanager-api/types"
 )
 
+// Storages returns all storages
 func (a *Api) Storages() (*types.Storages, error) {
 	bodyResp, err := a.NewRequest(NilPayload, "/storage", requestTypeGet, DefaultService)
 
@@ -15,6 +16,7 @@ func (a *Api) Storages() (*types.Storages, error) {
 	return r, err
 }
 
+// Storage returns storage params
 func (a *Api) Storage(sid int) (*types.StorageParams, error) {
 	uri := fmt.Sprintf("/storage/%d", sid)
 	bodyResp, err := a.NewRequest(NilPayload, uri, requestTypeGet, DefaultService)
@@ -24,6 +26,7 @@ func (a *Api) Storage(sid int) (*types.StorageParams, error) {
 	return r, err
 }
 
+// StorageNode return node storage params
 func (a *Api) StorageNode(sid int) ([]byte, error) {
 	uri := fmt.Sprintf("/storage/%d/node", sid)
 	bodyResp, err := a.NewRequest(NilPayload, uri, requestTypeGet, DefaultService)
@@ -31,12 +34,14 @@ func (a *Api) StorageNode(sid int) ([]byte, error) {
 	return bodyResp, err
 }
 
+// StorageLocal return local storage params
 func (a *Api) StorageLocal() ([]byte, error) {
 	bodyResp, err := a.NewRequest(NilPayload, "/storage/local", requestTypeGet, DefaultService)
 
 	return bodyResp, err
 }
 
+// StorageNew create new storage
 func (a *Api) StorageNew(params *types.StorageNew) (*types.ID, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(payload, "/storage", requestTypePost, DefaultService)
@@ -46,6 +51,7 @@ func (a *Api) StorageNew(params *types.StorageNew) (*types.ID, error) {
 	return r, err
 }
 
+// StorageUpdate update storage params
 func (a *Api) StorageUpdate(sid int, params *types.StorageUpdate) (*types.ID, error) {
 	payload, _ := json.Marshal(params)
 	uri := fmt.Sprintf("/storage/%d", sid)
@@ -56,6 +62,7 @@ func (a *Api) StorageUpdate(sid int, params *types.StorageUpdate) (*types.ID, er
 	return r, err
 }
 
+// StorageStateUpdate update storage state
 func (a *Api) StorageStateUpdate(sid int, params *types.State) (*types.ID, error) {
 	payload, _ := json.Marshal(params)
 	uri := fmt.Sprintf("/storage/%d/change_state", sid)
@@ -66,6 +73,7 @@ func (a *Api) StorageStateUpdate(sid int, params *types.State) (*types.ID, error
 	return r, err
 }
 
+// update node storage state
 func (a *Api) NodeStorageStateUpdate(sid int, nid int, params *types.State) (*types.ID, error) {
 	payload, _ := json.Marshal(params)
 	uri := fmt.Sprintf("/storage/%d/node/%d/change_state", sid, nid)
@@ -76,6 +84,7 @@ func (a *Api) NodeStorageStateUpdate(sid int, nid int, params *types.State) (*ty
 	return r, err
 }
 
+// StorageDelete delete storage
 func (a *Api) StorageDelete(sid int) (*types.DeletedResponse, error) {
 	uri := fmt.Sprintf("/storage/%d", sid)
 	bodyResp, err := a.NewRequest(NilPayload, uri, requestTypeDelete, DefaultService)

@@ -7,6 +7,7 @@ import (
 	"github.com/gadost/go-vmmanager-api/types"
 )
 
+// NodeScriptDelete delete node script
 func (a *Api) NodeScriptDelete(nsid int) (*types.DeletedResponse, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,
@@ -19,6 +20,7 @@ func (a *Api) NodeScriptDelete(nsid int) (*types.DeletedResponse, error) {
 	return t, err
 }
 
+// NodeScripts returns node scripts
 func (a *Api) NodeScripts() (*types.NodeScriptResponse, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,
@@ -31,6 +33,7 @@ func (a *Api) NodeScripts() (*types.NodeScriptResponse, error) {
 	return t, err
 }
 
+// NodeScript returns node script params
 func (a *Api) NodeScript(nsid int) (*types.NodeScriptElement, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,
@@ -43,6 +46,7 @@ func (a *Api) NodeScript(nsid int) (*types.NodeScriptElement, error) {
 	return t, err
 }
 
+// NodeScriptNew add new script to node
 func (a *Api) NodeScriptNew(params *types.NodeScriptRequest) (*types.ID, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
@@ -55,6 +59,7 @@ func (a *Api) NodeScriptNew(params *types.NodeScriptRequest) (*types.ID, error) 
 	return t, err
 }
 
+// NodeScriptUpdate update scripts params
 func (a *Api) NodeScriptUpdate(nsid int, params *types.NodeScriptRequest) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
@@ -67,6 +72,7 @@ func (a *Api) NodeScriptUpdate(nsid int, params *types.NodeScriptRequest) (*type
 	return t, err
 }
 
+// NodeScriptRun runs script
 func (a *Api) NodeScriptRun(nid int, params *types.Script) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(

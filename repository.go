@@ -7,6 +7,7 @@ import (
 	"github.com/gadost/go-vmmanager-api/types"
 )
 
+// Repositories returns repositories
 func (a *Api) Repositories() (*types.Repositories, error) {
 	bodyResp, err := a.NewRequest(NilPayload, "/repository", requestTypeGet, DefaultService)
 
@@ -15,6 +16,7 @@ func (a *Api) Repositories() (*types.Repositories, error) {
 	return r, err
 }
 
+// Repository return repository name/id
 func (a *Api) Repository(repoid int) (*types.RepositoryName, error) {
 	uri := fmt.Sprintf("/repository/%d", repoid)
 	bodyResp, err := a.NewRequest(NilPayload, uri, requestTypeGet, DefaultService)
@@ -24,6 +26,7 @@ func (a *Api) Repository(repoid int) (*types.RepositoryName, error) {
 	return r, err
 }
 
+// RepositoryNew add new repository
 func (a *Api) RepositoryNew(params *types.RepositoryNew) (*types.Tasks, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(payload, "/repository", requestTypePost, DefaultService)
@@ -33,6 +36,7 @@ func (a *Api) RepositoryNew(params *types.RepositoryNew) (*types.Tasks, error) {
 	return r, err
 }
 
+// RepositoryUpdate update repository params
 func (a *Api) RepositoryUpdate(repoid int, params *types.RepositoryNew) (*types.Task, error) {
 	uri := fmt.Sprintf("/repository/%d", repoid)
 	payload, _ := json.Marshal(params)
@@ -43,6 +47,7 @@ func (a *Api) RepositoryUpdate(repoid int, params *types.RepositoryNew) (*types.
 	return r, err
 }
 
+// RepositoryDelete delete repository
 func (a *Api) RepositoryDelete(repoid int) (*types.DeletedResponse, error) {
 	uri := fmt.Sprintf("/repository/%d", repoid)
 	bodyResp, err := a.NewRequest(NilPayload, uri, requestTypeDelete, DefaultService)

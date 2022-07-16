@@ -7,6 +7,7 @@ import (
 	"github.com/gadost/go-vmmanager-api/types"
 )
 
+// HostSnapshotDelete delete host snapshot
 func (a *Api) HostSnapshotDelete(hid int) (*types.Task, error) {
 	uri := fmt.Sprintf("/host/%d/snapshot", hid)
 	bodyResp, err := a.NewRequest(NilPayload, uri, requestTypeDelete, DefaultService)

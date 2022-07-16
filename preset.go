@@ -7,6 +7,7 @@ import (
 	"github.com/gadost/go-vmmanager-api/types"
 )
 
+// Presets returns preset list
 func (a *Api) Presets() (*types.PresetListResponse, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,
@@ -19,6 +20,7 @@ func (a *Api) Presets() (*types.PresetListResponse, error) {
 	return t, err
 }
 
+// Preset returns preset params
 func (a *Api) Preset(pid int) (*types.PresetListElement, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,
@@ -31,8 +33,8 @@ func (a *Api) Preset(pid int) (*types.PresetListElement, error) {
 	return t, err
 }
 
-func (a *Api) PresetNew(
-	params *types.PresetListElement) (*types.ID, error) {
+// PresetNew create new preset
+func (a *Api) PresetNew(params *types.PresetListElement) (*types.ID, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
 		payload,
@@ -45,6 +47,7 @@ func (a *Api) PresetNew(
 	return t, err
 }
 
+// PresetUpdate update preset params
 func (a *Api) PresetUpdate(pid int,
 	params *types.PresetListElement) (*types.ID, error) {
 	payload, _ := json.Marshal(params)
@@ -59,6 +62,7 @@ func (a *Api) PresetUpdate(pid int,
 	return t, err
 }
 
+// PresetDelete delete preset
 func (a *Api) PresetDelete(pid int) (*types.ID, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,

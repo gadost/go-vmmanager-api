@@ -7,7 +7,8 @@ import (
 	"github.com/gadost/go-vmmanager-api/types"
 )
 
-func (a *Api) NetworkConnect(dcnid int, params *types.Clusters) (*types.Task, error) {
+// DCNetworkConnect connect DC network to cluster
+func (a *Api) DCNetworkConnect(dcnid int, params *types.Clusters) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
 		payload,
@@ -20,7 +21,8 @@ func (a *Api) NetworkConnect(dcnid int, params *types.Clusters) (*types.Task, er
 	return t, err
 }
 
-func (a *Api) IPNetSettingsUpdate(ipnetID int, params *types.IPNetUpdate) (*types.Task, error) {
+// IPNetUpdate update ipnet params
+func (a *Api) IPNetUpdate(ipnetID int, params *types.IPNetUpdate) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
 		payload,
@@ -33,6 +35,7 @@ func (a *Api) IPNetSettingsUpdate(ipnetID int, params *types.IPNetUpdate) (*type
 	return t, err
 }
 
+// IPPoolClusterConnect connect IPPool to cluster
 func (a *Api) IPPoolClusterConnect(ippoolID int, params *types.IPPoolConnectRequest) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
@@ -46,6 +49,7 @@ func (a *Api) IPPoolClusterConnect(ippoolID int, params *types.IPPoolConnectRequ
 	return t, err
 }
 
+// IPPoolRangeClusterConnect  connect IPPool range to cluster
 func (a *Api) IPPoolRangeClusterConnect(ippoolID int, params *types.IPPoolRangeRequest) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
@@ -59,6 +63,7 @@ func (a *Api) IPPoolRangeClusterConnect(ippoolID int, params *types.IPPoolRangeR
 	return t, err
 }
 
+// IPMgr5NetworkMigrate migrate ipmanager
 func (a *Api) IPMgr5NetworkMigrate(params *types.IPMgr5MigrateRequest) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
@@ -72,6 +77,7 @@ func (a *Api) IPMgr5NetworkMigrate(params *types.IPMgr5MigrateRequest) (*types.T
 	return t, err
 }
 
+// NodeHetznerIPNew add hetzner IP
 func (a *Api) NodeHetznerIPNew(nid int, params *types.HetznerIPs) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
@@ -85,6 +91,7 @@ func (a *Api) NodeHetznerIPNew(nid int, params *types.HetznerIPs) (*types.Task, 
 	return t, err
 }
 
+// NodeIPUpdate update Node IP
 func (a *Api) NodeIPUpdate(nid int, params *types.NodeIPUpdateRequest) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
@@ -98,6 +105,7 @@ func (a *Api) NodeIPUpdate(nid int, params *types.NodeIPUpdateRequest) (*types.T
 	return t, err
 }
 
+// UserspaceIPNetworkNew add IPnetwork to userspace
 func (a *Api) UserspaceIPNetworkNew(usid int, params *types.IPNetUpdate) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
@@ -111,7 +119,8 @@ func (a *Api) UserspaceIPNetworkNew(usid int, params *types.IPNetUpdate) (*types
 	return t, err
 }
 
-func (a *Api) IPPool() (*types.IPPoolResponse, error) {
+// IPPools returns IPPools params
+func (a *Api) IPPools() (*types.IPPoolResponse, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,
 		"/ippool",
@@ -123,6 +132,7 @@ func (a *Api) IPPool() (*types.IPPoolResponse, error) {
 	return t, err
 }
 
+// IPPoolClusters return ippool clusters list
 func (a *Api) IPPoolClusters(ipid int) (*types.IPPoolClusterListResponse, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,
@@ -135,6 +145,7 @@ func (a *Api) IPPoolClusters(ipid int) (*types.IPPoolClusterListResponse, error)
 	return t, err
 }
 
+// NodeHetznerIPs returns nodes hatzner ips
 func (a *Api) NodeHetznerIPs(nid int) (*types.NodeHetznerIPResponse, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,
@@ -147,6 +158,7 @@ func (a *Api) NodeHetznerIPs(nid int) (*types.NodeHetznerIPResponse, error) {
 	return t, err
 }
 
+// IPRanges return IP ranges
 func (a *Api) IPRanges() ([]byte, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,
@@ -157,6 +169,7 @@ func (a *Api) IPRanges() ([]byte, error) {
 	return bodyResp, err
 }
 
+// IPRange return IP range params
 func (a *Api) IPRange(rid int) ([]byte, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,
@@ -167,6 +180,7 @@ func (a *Api) IPRange(rid int) ([]byte, error) {
 	return bodyResp, err
 }
 
+// HetznerIPDelete delete hetnzre IP
 func (a *Api) HetznerIPDelete(hipid int) (*types.Task, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,
@@ -179,6 +193,7 @@ func (a *Api) HetznerIPDelete(hipid int) (*types.Task, error) {
 	return t, err
 }
 
+// HetznerSubNetDelete delete hetzner subnet
 func (a *Api) HetznerSubNetDelete(hsid int) (*types.Task, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,
@@ -191,6 +206,7 @@ func (a *Api) HetznerSubNetDelete(hsid int) (*types.Task, error) {
 	return t, err
 }
 
+// IPNetworkDelete delete ip network
 func (a *Api) IPNetworkDelete(ipnid int) (*types.DeletedResponse, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,
@@ -203,6 +219,7 @@ func (a *Api) IPNetworkDelete(ipnid int) (*types.DeletedResponse, error) {
 	return t, err
 }
 
+// IPPoolDelete delete ip pool
 func (a *Api) IPPoolDelete(ippid int) (*types.DeletedResponse, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,
@@ -215,6 +232,7 @@ func (a *Api) IPPoolDelete(ippid int) (*types.DeletedResponse, error) {
 	return t, err
 }
 
+// IPRangeDelete delete ip range
 func (a *Api) IPRangeDelete(iprid int) (*types.DeletedResponse, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,

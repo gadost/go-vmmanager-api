@@ -7,6 +7,7 @@ import (
 	"github.com/gadost/go-vmmanager-api/types"
 )
 
+// OSes get os list
 func (a *Api) OSes() (*types.OSList, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,
@@ -19,6 +20,7 @@ func (a *Api) OSes() (*types.OSList, error) {
 	return t, err
 }
 
+// OSUpdate update os params
 func (a *Api) OSUpdate(oid int, params *types.OSUpdateParams) (*types.Tasks, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
@@ -31,6 +33,7 @@ func (a *Api) OSUpdate(oid int, params *types.OSUpdateParams) (*types.Tasks, err
 	return t, err
 }
 
+// OSDelete delete os
 func (a *Api) OSDelete(oid int) (*types.DeletedResponse, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,
@@ -43,6 +46,7 @@ func (a *Api) OSDelete(oid int) (*types.DeletedResponse, error) {
 	return t, err
 }
 
+// OSNodeDelete delete os on node
 func (a *Api) OSNodeDelete(oid int, nid int) (*types.DeletedResponse, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,
@@ -55,6 +59,7 @@ func (a *Api) OSNodeDelete(oid int, nid int) (*types.DeletedResponse, error) {
 	return t, err
 }
 
+// OSNodeDisable disable os on node
 func (a *Api) OSNodeDisable(oid int, nid int) ([]byte, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,
@@ -64,6 +69,8 @@ func (a *Api) OSNodeDisable(oid int, nid int) ([]byte, error) {
 
 	return bodyResp, err
 }
+
+// OSNodeEnable enable os on node
 func (a *Api) OSNodeEnable(oid int, nid int) ([]byte, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,
@@ -74,6 +81,7 @@ func (a *Api) OSNodeEnable(oid int, nid int) ([]byte, error) {
 	return bodyResp, err
 }
 
+// OSesAll get all available os
 func (a *Api) OSesAll() (*types.OSList, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,

@@ -7,6 +7,7 @@ import (
 	"github.com/gadost/go-vmmanager-api/types"
 )
 
+// ImageNew create new image
 func (a *Api) ImageNew(hid int, params *types.Image) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
@@ -20,6 +21,7 @@ func (a *Api) ImageNew(hid int, params *types.Image) (*types.Task, error) {
 	return t, err
 }
 
+// Images return images
 func (a *Api) Images() (*types.ImagesListResponse, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,
@@ -32,6 +34,7 @@ func (a *Api) Images() (*types.ImagesListResponse, error) {
 	return h, err
 }
 
+// Image return image params
 func (a *Api) Image(imid int) (*types.ImageResponse, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,
@@ -44,6 +47,7 @@ func (a *Api) Image(imid int) (*types.ImageResponse, error) {
 	return h, err
 }
 
+// ImageUpdate update image params
 func (a *Api) ImageUpdate(imid int, params *types.Image) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
@@ -57,6 +61,7 @@ func (a *Api) ImageUpdate(imid int, params *types.Image) (*types.Task, error) {
 	return t, err
 }
 
+// ImageDelete delete image
 func (a *Api) ImageDelete(hid int) (*types.Task, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,
@@ -69,6 +74,7 @@ func (a *Api) ImageDelete(hid int) (*types.Task, error) {
 	return t, err
 }
 
+// ImageStateUpdate update image state
 func (a *Api) ImageStateUpdate(imid int, params *types.ImageState) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
@@ -82,6 +88,7 @@ func (a *Api) ImageStateUpdate(imid int, params *types.ImageState) (*types.Task,
 	return t, err
 }
 
+// ImageCopy copy image
 func (a *Api) ImageCopy(imid int, params *types.Node) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
@@ -95,6 +102,7 @@ func (a *Api) ImageCopy(imid int, params *types.Node) (*types.Task, error) {
 	return t, err
 }
 
+// ImageMove move image
 func (a *Api) ImageMove(imid int, params *types.Move) (*types.Task, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
@@ -108,6 +116,7 @@ func (a *Api) ImageMove(imid int, params *types.Move) (*types.Task, error) {
 	return t, err
 }
 
+// ImageNodeDelete delete image on node
 func (a *Api) ImageNodeDelete(imid int, nid int) (*types.Task, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,
@@ -120,6 +129,7 @@ func (a *Api) ImageNodeDelete(imid int, nid int) (*types.Task, error) {
 	return t, err
 }
 
+// ImageNodeEnable enable image on node
 func (a *Api) ImageNodeEnable(imid int, nid int) (*types.Task, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,
@@ -132,6 +142,7 @@ func (a *Api) ImageNodeEnable(imid int, nid int) (*types.Task, error) {
 	return t, err
 }
 
+// ImageNodeDisable disable image on node
 func (a *Api) ImageNodeDisable(imid int, nid int) (*types.Task, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,

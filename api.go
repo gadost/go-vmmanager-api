@@ -40,6 +40,7 @@ type ParamsQuery struct {
 	Query string
 }
 
+//New Api
 func New(host string) *Api {
 	return &Api{
 		Host: host,
@@ -66,11 +67,10 @@ func connect() *http.Client {
 	return &http.Client{Transport: tl}
 }
 
-// NewRequest to API
+// NewRequest make  requests to API.
+// payload: marshaled json object, uri: endpoit uri, reqType: POST/GET/DELETE, service vm/auth
 func (a *Api) NewRequest(payload []byte, uri string, reqType string, service string) ([]byte, error) {
-
 	body := bytes.NewReader(payload)
-
 	req, err := http.NewRequest(reqType, a.entrypoint(service)+uri, body)
 	if err != nil {
 		return nil, err
@@ -90,6 +90,7 @@ func (a *Api) NewRequest(payload []byte, uri string, reqType string, service str
 	return bodyResp, err
 }
 
+// SetHeaders set default headers for API requests
 func (a *Api) SetHeaders(req *http.Request) *http.Request {
 	req.Proto = "HTTP/2"
 	req.Header.Set("Accept", "application/json")
@@ -100,9 +101,9 @@ func (a *Api) SetHeaders(req *http.Request) *http.Request {
 	}
 
 	return req
-
 }
 
+// Make query returns ?x=y&z=t
 func MakeQuery(params map[string]string) *ParamsQuery {
 	query := "?"
 	for k, v := range params {
@@ -116,6 +117,7 @@ func MakeQuery(params map[string]string) *ParamsQuery {
 	return &ParamsQuery{Query: query}
 }
 
+//NilQuery return nil query
 func NilQuery() *ParamsQuery {
 	return &ParamsQuery{}
 }

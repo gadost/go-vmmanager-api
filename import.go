@@ -7,6 +7,7 @@ import (
 	"github.com/gadost/go-vmmanager-api/types"
 )
 
+// ImportHistory import history
 func (a *Api) ImportHistory() (*types.ImportHistoryResponse, error) {
 	bodyResp, err := a.NewRequest(
 		NilPayload,
@@ -19,6 +20,7 @@ func (a *Api) ImportHistory() (*types.ImportHistoryResponse, error) {
 	return t, err
 }
 
+// ImportHistoryNew create new history entry
 func (a *Api) ImportHistoryNew(params *types.ImportHistoryRequest) (*types.ID, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
@@ -32,6 +34,7 @@ func (a *Api) ImportHistoryNew(params *types.ImportHistoryRequest) (*types.ID, e
 	return t, err
 }
 
+// ImportHistoryUpdate update history entry
 func (a *Api) ImportHistoryUpdate(hsid int, params *types.State) (*types.ID, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
@@ -45,6 +48,7 @@ func (a *Api) ImportHistoryUpdate(hsid int, params *types.State) (*types.ID, err
 	return t, err
 }
 
+// ImportHistoryResult returns history results
 func (a *Api) ImportHistoryResult(hsid int, params *types.ImportHistoryResult) (*types.ID, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
@@ -58,6 +62,7 @@ func (a *Api) ImportHistoryResult(hsid int, params *types.ImportHistoryResult) (
 	return t, err
 }
 
+// ImportCluster import cluster
 func (a *Api) ImportCluster(hsid int, params *types.ImportClusterParams) (*types.ID, error) {
 	payload, _ := json.Marshal(params)
 	bodyResp, err := a.NewRequest(
