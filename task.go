@@ -53,11 +53,11 @@ func (a *Api) TaskHASync(params *types.TaskSyncRequest) (*types.Tasks, error) {
 	return r, err
 }
 
-func (a *Api) TaskDelete(tid int) (*types.DeletedResponse, error) {
+func (a *Api) TaskDelete(tid int) (*types.Task, error) {
 	uri := fmt.Sprintf("/task/%d/delete", tid)
 	bodyResp, err := a.NewRequest(NilPayload, uri, requestTypeDelete, DefaultService)
 
-	var r *types.DeletedResponse
+	var r *types.Task
 	json.Unmarshal(bodyResp, &r)
 	return r, err
 }
