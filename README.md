@@ -62,5 +62,6 @@ func main() {
 - Recipe
 - Repository
 - Snapshot
+- Tag
 
 still in development

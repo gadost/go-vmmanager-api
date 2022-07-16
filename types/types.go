@@ -1853,3 +1853,35 @@ type RepositoryNew struct {
 	Name string `json:"name"`
 	URL  string `json:"url"`
 }
+
+// tags
+
+type Tags struct {
+	LastNotify int   `json:"last_notify"`
+	List       []Tag `json:"list"`
+}
+
+type Tag struct {
+	ID       int          `json:"id"`
+	Name     string       `json:"name"`
+	Note     string       `json:"note"`
+	Immortal bool         `json:"immortal"`
+	Storages []TagStorage `json:"storages"`
+}
+
+type TagStorage struct {
+	ID      int          `json:"id"`
+	Name    string       `json:"name"`
+	Type    string       `json:"type"`
+	Cluster []TagCluster `json:"cluster"`
+}
+type TagCluster struct {
+	ID                 int    `json:"id"`
+	Name               string `json:"name"`
+	VirtualizationType string `json:"virtualization_type"`
+}
+
+type TagNew struct {
+	Name string `json:"name"`
+	Note string `json:"note"`
+}
