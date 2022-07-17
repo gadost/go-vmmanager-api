@@ -40,6 +40,11 @@ type ParamsQuery struct {
 	Query string
 }
 
+type Error struct {
+	Code int    `json:"code,omitempty"`
+	Msg  string `json:"msg,omitempty"`
+}
+
 //New Api
 func New(host string) *Api {
 	return &Api{

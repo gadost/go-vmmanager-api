@@ -1,5 +1,10 @@
 package types
 
+type Error struct {
+	Code int    `json:"code,omitempty"`
+	Msg  string `json:"msg,omitempty"`
+}
+
 // Auth
 
 type Password struct {
@@ -25,6 +30,9 @@ type TokenLifetime struct {
 type BackupList struct {
 	LastNotify int                 `json:"last_notify,omitempty"`
 	List       []BackupListElement `json:"list,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type BackupListElement struct {
@@ -76,6 +84,9 @@ type Backup struct {
 	State          string         `json:"state,omitempty"`
 	ExpandPart     string         `json:"expand_part,omitempty"`
 	BackupLocation BackupLocation `json:"backup_location,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type ChangeBackup struct {
@@ -86,11 +97,17 @@ type ChangeBackup struct {
 type Task struct {
 	ID   int `json:"id,omitempty"`
 	Task int `json:"task,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 type RelocateTask struct {
 	ID           int `json:"id,omitempty"`
 	Task         int `json:"task,omitempty"`
 	RelocateTask int `json:"relocate_task,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type Node struct {
@@ -127,11 +144,17 @@ type VMBackupParams struct {
 type BackupByHostIDResponse struct {
 	LastNotify int      `json:"last_notify,omitempty"`
 	List       []Backup `json:"list,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type BackupLocationResponse struct {
 	LastNotify int                     `json:"last_notify,omitempty"`
 	List       []BackupLocationElement `json:"list,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type BackupLocationElement struct {
@@ -150,6 +173,9 @@ type ConnectionParams struct {
 
 type ID struct {
 	ID int `json:"id,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type BackupLocationParams struct {
@@ -168,6 +194,9 @@ type BackupLocationParams struct {
 type ClusterListResponse struct {
 	LastNotify int              `json:"last_notify,omitempty"`
 	List       []ClusterElement `json:"list,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type ClusterElement struct {
@@ -303,6 +332,9 @@ type ClusterResponse struct {
 	VxlanMode              string           `json:"vxlan_mode,omitempty"`
 	VxlanSettings          string           `json:"vxlan_settings,omitempty"`
 	Vxlans                 []Vxlan          `json:"vxlans,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type CreateClusterRequest struct {
@@ -353,10 +385,16 @@ type Tasks struct {
 
 type DeletedResponse struct {
 	Deleted []ID `json:"deleted,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type DCNetworksResponse struct {
 	DcNetworks []int `json:"dc_networks,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type QemuVersion struct {
@@ -386,12 +424,18 @@ type StoragesTasks struct {
 	ID            int   `json:"id,omitempty"`
 	Task          int   `json:"task,omitempty"`
 	StoragesTasks []int `json:"storages_tasks,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type StorageTask struct {
 	ID            int `json:"id,omitempty"`
 	Task          int `json:"task,omitempty"`
 	StoragesTasks int `json:"storages_tasks,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type HDDOversellingRequest struct {
@@ -401,11 +445,17 @@ type HDDOversellingRequest struct {
 type HDDOversellingResponse struct {
 	Value          float32 `json:"value,omitempty"`
 	HddOverselling float32 `json:"hdd_overselling,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type VXLanResponse struct {
 	LastNotify int            `json:"last_notify,omitempty"`
 	List       []VxlanElement `json:"list,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type VxlanElement struct {
@@ -431,6 +481,9 @@ type NodeHost struct {
 type NodesVXLanResponse struct {
 	LastNotify int          `json:"last_notify,omitempty"`
 	List       []NodesVxlan `json:"list,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type HostVxlan struct {
@@ -454,6 +507,9 @@ type NodesVxlanElement struct {
 type UsersVXLanResponse struct {
 	LastNotify int                `json:"last_notify,omitempty"`
 	List       []UserVxlanElement `json:"list,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type UserVxlanElement struct {
@@ -478,6 +534,9 @@ type UserVxlan struct {
 type SSHKeyResponse struct {
 	LastNotify int      `json:"last_notify,omitempty"`
 	List       []SSHKey `json:"list,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type SSHKey struct {
@@ -498,6 +557,9 @@ type SSHKeyRequest struct {
 type DiskListResponse struct {
 	LastNotify int           `json:"last_notify,omitempty"`
 	List       []DiskElement `json:"list,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type DiskElement struct {
@@ -616,6 +678,9 @@ type FirewallRule struct {
 type HostsResponse struct {
 	LastNotify int           `json:"last_notify,omitempty"`
 	List       []HostElement `json:"list,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type HostElement struct {
@@ -769,6 +834,9 @@ type RecipeTask struct {
 	Task           int   `json:"task,omitempty"`
 	RecipeTaskList []int `json:"recipe_task_list,omitempty"`
 	RecipeTask     int   `json:"recipe_task,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type HostResponse struct {
@@ -782,6 +850,9 @@ type HostResponse struct {
 	ExpandPart   string `json:"expand_part,omitempty"`
 	NetIsSynced  bool   `json:"net_is_synced,omitempty"`
 	IPAutomation string `json:"ip_automation,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type Property struct {
@@ -812,6 +883,9 @@ type Account struct {
 
 type ImageSize struct {
 	ImageGib int `json:"image_gib,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type HistoryElement struct {
@@ -824,6 +898,9 @@ type HistoryElement struct {
 
 type HostHistoryResponse struct {
 	List []HistoryElement `json:"list,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type IFaceElement struct {
@@ -839,6 +916,9 @@ type IFaceElement struct {
 type IFace struct {
 	LastNotify int            `json:"last_notify,omitempty"`
 	List       []IFaceElement `json:"list,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type IFaceParams struct {
@@ -894,21 +974,33 @@ type IPV4Info struct {
 	LastNotify int               `json:"last_notify,omitempty"`
 	List       []IPV4InfoElement `json:"list,omitempty"`
 	Size       int               `json:"size,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type IPV6Info struct {
 	LastNotify     int  `json:"last_notify,omitempty"`
 	Ipv6Enabled    bool `json:"ipv6_enabled,omitempty"`
 	Ipv6PtrEnabled bool `json:"ipv6_ptr_enabled,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type ISOTags struct {
 	URL  string   `json:"url,omitempty"`
 	Tags []string `json:"tags,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type Socket struct {
 	Socket string `json:"socket,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type Metadata struct {
@@ -924,6 +1016,9 @@ type HostMigrationStorage struct {
 
 type HostMigrateResponse struct {
 	Nodes []NodeElement `json:"nodes,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type DiskMigration struct {
@@ -960,6 +1055,9 @@ type PTRElement struct {
 
 type PTRResponse struct {
 	List []PTRElement `json:"list,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type Domain struct {
@@ -1068,6 +1166,9 @@ type IPList struct {
 	LastNotify int  `json:"last_notify,omitempty"`
 	List       []IP `json:"list,omitempty"`
 	Size       int  `json:"size,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type UpdateIPResponseValues struct {
@@ -1093,6 +1194,9 @@ type ScheduleElement struct {
 
 type ScheduleListResponse struct {
 	SheduleList []ScheduleElement `json:"shedule_list,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 // Images
@@ -1107,6 +1211,9 @@ type Image struct {
 type ImagesListResponse struct {
 	LastNotify int                         `json:"last_notify,omitempty"`
 	List       []ImagesListResponseElement `json:"list,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type ImagesListResponseElement struct {
@@ -1131,6 +1238,9 @@ type ImageResponse struct {
 	ID    int    `json:"id,omitempty"`
 	Name  string `json:"name,omitempty"`
 	State string `json:"state,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type ImageState struct {
@@ -1141,6 +1251,9 @@ type ImageState struct {
 
 type ImportHistoryResponse struct {
 	List []ImportHistoryResponseElement `json:"list,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type ImportHistoryResponseElement struct {
@@ -1313,6 +1426,9 @@ type NodeIPUpdateRequest struct {
 type IPPoolResponse struct {
 	LastNotify int      `json:"last_notify,omitempty"`
 	List       []IPPool `json:"list,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type IPPool struct {
@@ -1327,12 +1443,18 @@ type IPPool struct {
 type IPPoolClusterListResponse struct {
 	LastNotify int             `json:"last_notify,omitempty"`
 	List       []IPPoolCluster `json:"list,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type NodeHetznerIPResponse struct {
 	LastNotify int                    `json:"last_notify,omitempty"`
 	List       []NodeHetznerIPElement `json:"list,omitempty"`
 	Size       int                    `json:"size,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type NodeHetznerIPElement struct {
@@ -1368,6 +1490,9 @@ type NodeInterface struct {
 type NodesResponse struct {
 	LastNotify int           `json:"last_notify,omitempty"`
 	List       []NodeElement `json:"list,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type NodeElement struct {
@@ -1392,6 +1517,9 @@ type NodeElement struct {
 type NodeScriptResponse struct {
 	LastNotify int                 `json:"last_notify,omitempty"`
 	List       []NodeScriptElement `json:"list,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type UpdatedAt struct {
@@ -1414,6 +1542,9 @@ type NodeScriptElement struct {
 type NodeReducedClusterListResponse struct {
 	LastNotify int                         `json:"last_notify,omitempty"`
 	List       []NodeReducedClusterElement `json:"list,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type NodeReducedClusterElement struct {
@@ -1434,12 +1565,18 @@ type NodeResponse struct {
 	State       string `json:"state,omitempty"`
 	IPAddr      string `json:"ip_addr,omitempty"`
 	QemuVersion string `json:"qemu_version,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type NodeFileListResponse struct {
 	LastNotify int                   `json:"last_notify,omitempty"`
 	List       []NodeFileListElement `json:"list,omitempty"`
 	Size       int                   `json:"size,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type NodeFileListElement struct {
@@ -1453,6 +1590,9 @@ type NodeFileListElement struct {
 
 type NodeHostIFaces struct {
 	List []NodeHostIFace `json:"list,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type NodeHostIFace struct {
@@ -1481,6 +1621,9 @@ type IPParams struct {
 type NodeNetworkIFaces struct {
 	LastNotify int                `json:"last_notify,omitempty"`
 	List       []NodeNetworkIFace `json:"list,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type NodeNetworkIFace struct {
@@ -1614,6 +1757,9 @@ type OSClusterParams struct {
 type OSList struct {
 	LastNotify int        `json:"last_notify,omitempty"`
 	List       []OSParams `json:"list,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type OSParams struct {
@@ -1650,6 +1796,9 @@ type OSSaveRequest struct {
 type PlatformBackupSchedule struct {
 	LastNotify int                        `json:"last_notify,omitempty"`
 	List       []PlatformBackuListElement `json:"list,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type PlatformBackupElement struct {
@@ -1689,6 +1838,9 @@ type PlatformBackupScheduleRequest struct {
 type PresetListResponse struct {
 	LastNotify int                 `json:"last_notify,omitempty"`
 	List       []PresetListElement `json:"list,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type PresetListElement struct {
@@ -1745,6 +1897,9 @@ type MigrateFormResponse struct {
 		HostCount           int    `json:"host_count,omitempty"`
 		HostLimit           int    `json:"host_limit,omitempty"`
 	} `json:"nodes,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 // recipes
@@ -1752,6 +1907,9 @@ type MigrateFormResponse struct {
 type Recipes struct {
 	LastNotify int          `json:"last_notify,omitempty"`
 	List       []RecipeResp `json:"list,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type RecipeResp struct {
@@ -1817,6 +1975,9 @@ type RecipesSaveRequest struct {
 type ScriptVariablesResponse struct {
 	LastNotify int              `json:"last_notify,omitempty"`
 	List       []ScriptVariable `json:"list,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type ScriptVariable struct {
@@ -1829,11 +1990,17 @@ type ScriptVariable struct {
 	Account int    `json:"account,omitempty"`
 	ID      int    `json:"id,omitempty"`
 	Scope   string `json:"scope,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type Repositories struct {
 	LastNotify int          `json:"last_notify,omitempty"`
 	List       []Repository `json:"list,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type Repository struct {
@@ -1847,6 +2014,9 @@ type Repository struct {
 type RepositoryName struct {
 	ID   int    `json:"id,omitempty"`
 	Name string `json:"name,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type RepositoryNew struct {
@@ -1859,6 +2029,9 @@ type RepositoryNew struct {
 type Tags struct {
 	LastNotify int   `json:"last_notify,omitempty"`
 	List       []Tag `json:"list,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type Tag struct {
@@ -1891,6 +2064,9 @@ type TagNew struct {
 type Schedules struct {
 	LastNotify int        `json:"last_notify,omitempty"`
 	List       []Schedule `json:"list,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type Schedule struct {
@@ -1920,11 +2096,17 @@ type StartTime struct {
 
 type AffectedHostsCount struct {
 	AffectedHostsCount int `json:"affected_hosts_count,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type VXLans struct {
 	LastNotify int     `json:"last_notify,omitempty"`
 	List       []VXLan `json:"list,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type VXLan struct {
@@ -1937,6 +2119,9 @@ type VXLan struct {
 	Clusters  []VXLanCluster `json:"clusters,omitempty"`
 	Ipnets    []IPnet        `json:"ipnets,omitempty"`
 	Ippool    int            `json:"ippool,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type VXLanCluster struct {
@@ -1970,6 +2155,9 @@ type VXLanNewIPnet struct {
 type VXLanIPs struct {
 	LastNotify int       `json:"last_notify,omitempty"`
 	List       []VXLanIP `json:"list,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type VXLanIP struct {
@@ -1991,6 +2179,9 @@ type VXLanIPNet struct {
 type TasksList struct {
 	LastNotify int           `json:"last_notify,omitempty"`
 	List       []TaskElement `json:"list,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type TaskElement struct {
@@ -1999,6 +2190,9 @@ type TaskElement struct {
 	DeferReason string `json:"defer_reason,omitempty"`
 	Name        string `json:"name,omitempty"`
 	Status      string `json:"status,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type TaskInternalUpdate struct {
@@ -2027,6 +2221,9 @@ type LicenseInfo struct {
 	NodeLimit         int               `json:"node_limit,omitempty"`
 	NodeLimitExceeded bool              `json:"node_limit_exceeded,omitempty"`
 	LastNotify        int               `json:"last_notify,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type LicenseInfoParams struct {
@@ -2043,6 +2240,9 @@ type LicenseSet struct {
 
 type Accounts struct {
 	List []AccountElement `json:"list,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type AccountElement struct {
@@ -2097,6 +2297,9 @@ type UserParams struct {
 type Storages struct {
 	LastNotify int              `json:"last_notify,omitempty"`
 	List       []StorageElement `json:"list,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type StorageElement struct {
@@ -2115,6 +2318,9 @@ type StorageParams struct {
 	SSHPort  int    `json:"ssh_port,omitempty"`
 	Login    string `json:"login,omitempty"`
 	Password string `json:"password,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type StorageNew struct {
@@ -2145,6 +2351,9 @@ type UserLimits struct {
 	Ipv4Number      int `json:"ipv4_number,omitempty"`
 	Ipv4NumberTotal int `json:"ipv4_number_total,omitempty"`
 	VxlanCountTotal int `json:"vxlan_count_total,omitempty"`
+
+	// Returns on API related errors
+	Error Error `json:"error,omitempty"`
 }
 
 type KeyValue struct {

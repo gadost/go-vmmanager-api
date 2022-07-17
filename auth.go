@@ -21,6 +21,7 @@ type AuthData struct {
 	Confirmed bool   `json:"confirmed"`
 	ID        string `json:"id"`
 	Token     string `json:"token"`
+	Error     Error  `json:"error,omitempty"`
 }
 
 type Auth struct {
