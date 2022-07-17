@@ -50,6 +50,22 @@ expiresAt := time.Now().Add(30*time.Day)
 conn := vmm.New("domain.com").Auth(auth).WithExtendedTokenLifetime(expiresAt, "extended token desc")
 ```
 
+## Errors handling
+
+```go
+resp, err := conn.Hosts(1,s)
+/* related API errors: resp contains field Error 
+type Error struct {
+    Code int    `json:"code,omitempty"`
+    Msg  string `json:"msg,omitempty"`
+}
+*/
+fmt.Println(resp.Error.Msg)
+
+// Http errors : err
+fmt.Println(err)
+```
+
 ## Implemented
 
 - Auth
